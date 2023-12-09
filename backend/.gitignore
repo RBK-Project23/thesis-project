@@ -20,3 +20,7 @@ Thumbs.db
 npm-debug.log
 yarn-error.log
 /dist
+
+# Ignore npm package-lock
+package-lock.json
+
