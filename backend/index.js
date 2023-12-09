@@ -1,10 +1,18 @@
 const express = require('express');
-require('dotenv').config(); // Load environment variables from .env file
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 7000; // Use environment variable PORT or default to 7000
+const PORT = process.env.PORT || 7000;
 
-// Example route
+app.use(cors()); 
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 app.get('/', (req, res) => {
   res.send('Hello from your Express server!');
 });
