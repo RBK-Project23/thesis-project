@@ -1,22 +1,31 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config();
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 7000;
-
-app.use(cors()); 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
-
-app.get('/', (req, res) => {
-  res.send('Hello from your Express server!');
+app.get("/", (req, res) => {
+  res.send("Hello from your Express server!");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+const CONNECTION_URL = "mongodb://localhost:27017/scoutTunisian";
+const PORT = process.env.PORT || 7000;
+
+
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to the database');
+  
+  app.listen(PORT, () => {
+    console.log(`Server Running on Port: http://localhost:${PORT}`);
+  });
 });
