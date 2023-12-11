@@ -17,15 +17,15 @@ app.get("/", (req, res) => {
 const CONNECTION_URL = "mongodb://localhost:27017/scoutTunisian";
 const PORT = process.env.PORT || 7000;
 
-
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+// Updated MongoDB connection
+mongoose.connect(CONNECTION_URL)
+  .then(() => {
+    console.log('Connected to the database');
+    app.listen(PORT, () =>
+      console.log(`Server Running on Port: http://localhost:${PORT}`)
+    );
+  })
+  .catch((error) => console.log(`${error} did not connect`));
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Connected to the database');
-  
-  app.listen(PORT, () => {
-    console.log(`Server Running on Port: http://localhost:${PORT}`);
-  });
-});
