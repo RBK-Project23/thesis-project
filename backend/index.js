@@ -1,3 +1,4 @@
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -14,16 +15,21 @@ app.get("/", (req, res) => {
   res.send("Hello from your Express server!");
 });
 
-const CONNECTION_URL = "mongodb://localhost:27017/scoutTunisian";
+const postRoutes = require('./routes/posts');
+const scoutProgramRoutes = require('./routes/scoutPrograms');
+const userRoutes = require('./routes/users');
+
+app.use('/posts', postRoutes);
+app.use('/scoutprograms', scoutProgramRoutes);
+app.use('/users', userRoutes);
+
+const CONNECTION_URL = process.env.MONGODB_URI || "mongodb://localhost:27017/scoutTunisian";
 const PORT = process.env.PORT || 7000;
 
-// Updated MongoDB connection
 mongoose.connect(CONNECTION_URL)
   .then(() => {
     console.log('Connected to the database');
-    app.listen(PORT, () =>
-      console.log(`Server Running on Port: http://localhost:${PORT}`)
-    );
+    app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`));
   })
   .catch((error) => console.log(`${error} did not connect`));
 
