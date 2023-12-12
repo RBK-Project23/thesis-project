@@ -1,11 +1,11 @@
 import React from 'react';
 import Navigation from './Navigation';
-import './Header.css'; // Correct the import path
+import './Header.css'; 
 
 const Header = () => {
   return (
     <header>
-         <img src="./public/logoo" alt="Logo" className="logo" />
+         <img src="/Logo_Scouts_tunisiens.jpg" alt="Logo" className="logo" />
          <Navigation />
     </header>
   );

@@ -8,7 +8,7 @@ const scoutProgramSchema = new mongoose.Schema({
   endDate: { type: Date, required: true },
   address: { type: String, required: true },
 
-  participants: [{ type: String, ref: 'User' }], // Change the type to String
+  participants: [{ type: String, ref: 'User' }], 
 });
 
 const ScoutProgram = mongoose.model('ScoutProgram', scoutProgramSchema);
