@@ -14,7 +14,7 @@ header {
   }
   
   .logo {
-    height: auto; /* Maintain aspect ratio */
+    height: 75px; /* Maintain aspect ratio */
     margin-right: 10px; /* Add margin between the logo and the title */
   }
 nav ul {
