@@ -17,11 +17,11 @@ app.get("/", (req, res) => {
 
 const postRoutes = require('./routes/posts');
 const scoutProgramRoutes = require('./routes/scoutPrograms');
-const userRoutes = require('./routes/users');
+const userRoutes = require('./routes/userRoutes');
 
 app.use('/posts', postRoutes);
 app.use('/scoutprograms', scoutProgramRoutes);
-app.use('/users', userRoutes);
+// app.use('/users', userRoutes);
 
 const CONNECTION_URL = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/scoutTunisian";
 const PORT = process.env.PORT || 7000;
