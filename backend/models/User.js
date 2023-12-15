@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
+const passportLocalMongoose = require("passport-local-mongoose");
+
+
 
 const userSchema = new mongoose.Schema({
     firstName: { type: String, required: true },
@@ -10,6 +13,8 @@ const userSchema = new mongoose.Schema({
  
 
 });
+userSchema.plugin(passportLocalMongoose);
+
 
 const User = mongoose.model('User', userSchema);
 
