@@ -4,21 +4,39 @@
     "lastName": "Doe",
     "email": "john@example.com",
     "password": "john123",
-    "address": "123 Main St"
+    "address": "123 Main St",
+    "officialWear": {
+      "PullMeasuring": "L",
+      "ClothingMeasuring": "XL",
+      "Price": 25.99,
+      "DatePurchase": "2023-01-15T00:00:00.000Z"
+    }
   },
   {
     "firstName": "Jane",
     "lastName": "Smith",
     "email": "jane@example.com",
     "password": "jane123",
-    "address": "456 Oak Ave"
+    "address": "456 Oak Ave",
+    "officialWear": {
+      "PullMeasuring": "M",
+      "ClothingMeasuring": "L",
+      "Price": 19.99,
+      "DatePurchase": "2023-02-20T00:00:00.000Z"
+    }
   },
   {
     "firstName": "Bob",
     "lastName": "Carter",
     "email": "bob@example.com",
     "password": "bob123",
-    "address": "789 Oak St"
+    "address": "789 Oak St",
+    "officialWear": {
+      "PullMeasuring": "S",
+      "ClothingMeasuring": "M",
+      "Price": 29.99,
+      "DatePurchase": "2023-03-10T00:00:00.000Z"
+    }
   },
   {
     "name": "Camp Adventure",
@@ -30,16 +48,12 @@
       {
         "firstName": "John",
         "lastName": "Doe",
-        "email": "john@example.com",
-        "password": "john123",
-        "address": "123 Main St"
+        "email": "john@example.com"
       },
       {
         "firstName": "Jane",
         "lastName": "Smith",
-        "email": "jane@example.com",
-        "password": "jane123",
-        "address": "456 Oak Ave"
+        "email": "jane@example.com"
       }
     ]
   },
@@ -53,16 +67,12 @@
       {
         "firstName": "Bob",
         "lastName": "Carter",
-        "email": "bob@example.com",
-        "password": "bob123",
-        "address": "789 Oak St"
+        "email": "bob@example.com"
       },
       {
         "firstName": "Alice",
         "lastName": "Miller",
-        "email": "alice@example.com",
-        "password": "alice123",
-        "address": "555 Maple Dr"
+        "email": "alice@example.com"
       }
     ]
   }
