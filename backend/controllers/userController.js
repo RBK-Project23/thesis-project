@@ -37,6 +37,7 @@ module.exports = {
             passport.authenticate('local')(req,res,()=>{
 
              res.json({ message: "User registered", userId: user._id });
+             res.redirect('/');
             })
 
           }
@@ -66,6 +67,7 @@ login: async (req, res, next) => {
             const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
             // Send the token back to the client to store in local storage
             res.json({ message: "Logged in successfully", token });
+            // res.redirect('/');
         } catch (error) {
             res.status(500).send(error.message);
         }
