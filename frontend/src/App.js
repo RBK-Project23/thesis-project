@@ -11,6 +11,7 @@ import Home from "./component/Home";
 import SignIn from "./component/signIn";
 import SignUp from "./component/register";
 import Istimara from "./component/istimara";
+import PrivateRoutes from './component/authentification/authentification';
 
 function App() {
   return (
@@ -23,7 +24,11 @@ function App() {
           <Route path="/gallery" element={<PhotoGallery />} />
           <Route path="/forum" element={<Forum />} />
           <Route path="/chat" element={<Chat />} />
-          <Route path="/profiles" element={<UserProfiles />} />
+          <Route element={<PrivateRoutes />}>  
+          <Route element={<Home/>} path="/" exact/>
+          <Route path="/profiles" element={<UserProfiles />} exact />
+          </Route>
+         
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/استمارة-التسجيل" element={<Istimara />} />

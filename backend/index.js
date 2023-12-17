@@ -1,16 +1,13 @@
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const User = require('./models/User')
+const session = require('express-session');
+const passport = require("passport");
+require('./models/passportConfig');
 require("dotenv").config();
 
 const app = express();
-
-const session = require('express-session');
-const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
 
 app.use(session({
   secret: "Our little secret.",
@@ -21,8 +18,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 
 app.get("/", (req, res) => {
@@ -46,12 +43,6 @@ mongoose.connect(CONNECTION_URL)
     app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`));
   })
   .catch((error) => console.log(`${error} did not connect`));
-  // mongoose.set("useCreateIndex", true);
-
-  passport.use(User.createStrategy());
-  passport.serializeUser(User.serializeUser());
-  passport.deserializeUser(User.deserializeUser());
-
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
