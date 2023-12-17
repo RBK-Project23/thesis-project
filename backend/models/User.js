@@ -11,6 +11,11 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   // address: { type: String, required: true },
  
+  addressOM: { type: String },
+  type_user: { type: String, enum: ['admin', 'scout', 'commander', 'parent'], required: true },
+  blood_type: { type: String },
+  phoneOM: { type: String },
+  photo: { type: String },
 
 });
 userSchema.plugin(passportLocalMongoose);
