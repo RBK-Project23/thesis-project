@@ -1,55 +1,77 @@
 const User = require('../models/User') ;
-const bcrypt = require('bcrypt');
+const passportLocalMongoose = require("passport-local-mongoose");
+const passport = require("passport");
+
 const jwt = require('jsonwebtoken');
 
 module.exports = {
 
     register: async (req, res) => {
         try {
-          const { email, password,confirmPassword, firstName, lastName } = req.body;
+            console.log(req.body);
+          const { email, password,confirmPassword, firstName, lastName, active } = req.body;
       
           if (password !== confirmPassword) {
             return res.status(400).send("Passwords do not match.");
           }
       
-          const hashedPassword = await bcrypt.hash(password, 10);
+       
       
           let user = new User({
             email,
             firstName,
             lastName,
-            password: hashedPassword
+            active
            
           });
+
+
+          User.register(user,password,(err,user)=>{
+          if(err){
+        
+            return res.status(400).json({ error: err.message })
+
+          }
+
+          else {
+            passport.authenticate('local')(req,res,()=>{
+
+             res.json({ message: "User registered", userId: user._id });
+            })
+
+          }
+
+          })
       
-          user = await user.save();
-          res.json({ message: "User registered", userId: user._id });
+         
         } catch (error) {
           res.status(500).send(error.message);
         }
       },
 
-      login: async (req, res) => {
-        try {
-          const { email, password } = req.body;
-          const user = await User.findOne({ email: email });
-      
-          if (!user) {
-            return res.status(404).send('User not found');
-          }
-      
-          const isPasswordValid = await bcrypt.compare(password, user.password);
-          if (!isPasswordValid) {
-            return res.status(401).send('Invalid password');
-          }
-      
-          const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-          res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
-          res.json({ message: "Logged in successfully", token });
-        } catch (error) {
-          res.status(500).send(error.message);
+     // Login route
+login: async (req, res, next) => {
+
+    
+    passport.authenticate('local', { session: false }, (err, user, info) => {
+        if (err) {
+            return res.status(500).send(err.message);
         }
-      },
+        if (!user) {
+            return res.status(400).json({ message: info.message });
+        }
+
+        // User authenticated, proceed to generate JWT
+        try {
+            const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            // Send the token back to the client to store in local storage
+            res.json({ message: "Logged in successfully", token });
+        } catch (error) {
+            res.status(500).send(error.message);
+        }
+    })(req, res, next);
+},
+
       deleteUser: async (req, res) => {
         try {
           const { id } = req.params;
