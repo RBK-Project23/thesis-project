@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -31,13 +33,34 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
+    
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    const postData = {
+      email: data.get('email'),
+      password: data.get('password')
+    };
+    try {
+      // Make a POST request to your server
+      const response = await axios.post('http://localhost:7000/users/login', postData);
+      console.log(response.data);
+      localStorage.setItem('token', response.data.token);
+      alert('logged in succefully!');
+    
+    navigate('/home');
+    window.location.reload();
+
+    } catch (error) {
+      console.error('Error during loggdin:', error);
+      // Handle error here (e.g., show error message)
+    }
   };
 
   return (
