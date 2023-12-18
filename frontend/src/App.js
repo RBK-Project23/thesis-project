@@ -11,6 +11,8 @@ import Home from "./component/Home";
 import SignIn from "./component/signIn";
 import SignUp from "./component/register";
 import Istimara from "./component/istimara";
+import GenerateIstimara from "./component/generateIstimara";
+
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/استمارة-التسجيل" element={<Istimara />} />
+          <Route path="/doc-istimara" element={<GenerateIstimara />} />
 
         </Routes>
       </Router>
