@@ -29,10 +29,16 @@ app.get("/", (req, res) => {
 const postRoutes = require('./routes/posts');
 const scoutProgramRoutes = require('./routes/scoutPrograms');
 const userlogin = require('./routes/userlogin');
+const scoutRoutes = require('./routes/scoutRoutes');
+const commanderRoutes = require('./routes/commanderRoutes');
+const parentRoutes = require('./routes/parentRoutes');
 
 app.use('/posts', postRoutes);
 app.use('/scoutprograms', scoutProgramRoutes);
 app.use('/users', userlogin);
+app.use('/scouts', scoutRoutes);
+app.use('/commanders', commanderRoutes);
+app.use('/parents', parentRoutes);
 
 const CONNECTION_URL = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/scoutTunisian";
 const PORT = process.env.PORT || 7000;
