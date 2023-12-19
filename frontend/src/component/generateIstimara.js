@@ -15,6 +15,24 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { createTheme } from '@mui/material/styles';
 
+const fonts = {
+  Roboto: {
+    normal: 'Roboto-Regular.ttf',
+    bold: 'Roboto-Medium.ttf',
+    italics: 'Roboto-Italic.ttf',
+    bolditalics: 'Roboto-MediumItalic.ttf'
+  },
+  Arial: {
+    normal: 'Arial.ttf',
+    bold: 'Arial-Bold.ttf',
+    italics: 'Arial-Italic.ttf',
+    bolditalics: 'Arial-BoldItalic.ttf'
+  }
+};
+
+
+pdfMake.fonts = fonts;
+
 export default function GenerateIstimara() {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,6 +44,9 @@ export default function GenerateIstimara() {
     data.forEach((value, key) => {
       formData[key] = value;
     });
+
+     // Set vfs to use custom fonts
+     pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
     // Generate PDF content
     const content = `
@@ -54,11 +75,19 @@ export default function GenerateIstimara() {
 ...............
     `;
 
-    const docDefinition = {
+      // Document definition with custom font settings for Arabic
+      const docDefinition = {
         content: [
-            { text: content, alignment: 'right' },
-          ],    };
-
+          { 
+            text: content, 
+            alignment: 'right',
+            font: 'Arial' // Use the font that supports Arabic
+          },
+        ],
+        defaultStyle: {
+          font: 'Arial' // Ensure the default font is set to Arial or another font that supports Arabic
+        }
+      };
     // Generate and download PDF
     pdfMake.createPdf(docDefinition).download('Istimara.pdf');
   };
