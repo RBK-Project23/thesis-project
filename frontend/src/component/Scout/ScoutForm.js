@@ -37,7 +37,7 @@ const ScoutForm = () => {
     console.log('Submitting Scout:', scout);
   
     try {
-      const response = await axios.post('http://localhost:3000/scouts', scout, {
+      const response = await axios.post('http://localhost:7000/scouts', scout, {
         
        headers: {
         'Content-Type': 'application/json',
