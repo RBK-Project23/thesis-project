@@ -22,6 +22,7 @@ const getScoutById = async (req, res) => {
 };
 
 const RegisterScout = async (req, res) => {
+  
   try {
     const {
       FirstName,
@@ -53,6 +54,7 @@ const RegisterScout = async (req, res) => {
       expiryDateVisa,
       chronicDiseases,
     });
+    console.log(req.body)
     await UserScout.save();
     console.log(req.body);
 
