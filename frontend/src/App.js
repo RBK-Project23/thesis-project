@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./component/Header";
@@ -12,7 +12,8 @@ import SignIn from "./component/signIn";
 import SignUp from "./component/register";
 import Istimara from "./component/istimara";
 import PrivateRoutes from './component/authentification/authentification';
-import ScoutForm from './components/Scout/ScoutForm';
+import ScoutForm from './component/Scout/ScoutForm';
+import axios from "axios";
 
 function App() {
 

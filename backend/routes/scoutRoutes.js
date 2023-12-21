@@ -4,7 +4,7 @@ const scoutController = require('../controllers/scoutController');
 
 router.get('/', scoutController.getAllScouts);
 router.get('/:id', scoutController.getScoutById);
-router.post('/', scoutController.addScout);
+router.post('/', scoutController.RegisterScout);
 router.put('/:id', scoutController.updateScout);
 router.delete('/:id', scoutController.deleteScout);
 
