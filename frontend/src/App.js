@@ -12,8 +12,29 @@ import SignIn from "./component/signIn";
 import SignUp from "./component/register";
 import Istimara from "./component/istimara";
 import PrivateRoutes from './component/authentification/authentification';
+import ScoutForm from './components/Scout/ScoutForm';
 
 function App() {
+
+  const [scouts, setScouts] = useState([]);
+
+  useEffect(() => {
+    const fetchScouts = async () => {
+      try {
+        const response = await axios.get('/scouts');
+        setScouts(response.data);
+      } catch (error) {
+        console.error('Error fetching scouts:', error);
+      }
+    };
+
+    fetchScouts();
+  }, []);
+
+  const handleScoutAdded = (newScout) => {
+    setScouts([...scouts, newScout]);
+  };
+
   return (
     <>
       <Router>
@@ -26,7 +47,7 @@ function App() {
           <Route path="/chat" element={<Chat />} />
           <Route element={<PrivateRoutes />}>  
           <Route element={<Home/>} path="/" exact/>
-          <Route path="/profiles" element={<UserProfiles />} exact />
+          <Route path="/profiles" element={<ScoutForm onScoutAdded={handleScoutAdded} />} exact />
           </Route>
          
           <Route path="/signin" element={<SignIn />} />
