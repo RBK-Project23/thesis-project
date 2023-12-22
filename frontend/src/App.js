@@ -15,6 +15,7 @@ import PrivateRoutes from './component/authentification/authentification';
 import ScoutForm from './component/Scout/ScoutForm';
 import axios from "axios";
 
+
 function App() {
 
   const [scouts, setScouts] = useState([]);
@@ -40,6 +41,8 @@ function App() {
     <>
       <Router>
         <Header />
+       
+
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/events" element={<Events />} />
