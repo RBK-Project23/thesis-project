@@ -1,0 +1,21 @@
+#home-image{
+    
+    
+    min-width: 100%;
+    min-height: 20vh;
+    max-height: 60vh;
+    object-fit: cover;
+    object-position: center -40vh;
+
+    
+}
+
+.imageText {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 73.5%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for exact centering */
+    color: white; /* Choose text color */
+    font-size: 6vh; /* Adjust as needed */
+    /* Add more styling as needed */
+}
