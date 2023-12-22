@@ -19,3 +19,23 @@
     font-size: 6vh; /* Adjust as needed */
     /* Add more styling as needed */
 }
+#news{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#news h2{
+    color: rgb(219, 55, 55);
+    text-decoration: underline;
+
+}
+
+#event{
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}

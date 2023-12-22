@@ -5,8 +5,8 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="primary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://techbazaar.com/">
-        TechBazaar
+      <Link color="inherit" href="https://scoutTun.com/">
+       Scout Tunisia
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -16,32 +16,30 @@ function Copyright(props) {
 
 const footers = [
   {
-    title: 'TechBazaar',
+    title: 'Scout Tunisia',
     description: [
       { label: 'About Us', url: '/AboutUs' },
       { label: 'Contact Us', url: '/ContactUs' },
-      { label: 'Privacy Policy', url: '/PrivacyPolicy' },
-      { label: 'Terms of Use', url: '/TermOfUse' },
+      { label: 'Privacy Policy', url: '/PrivacyPolicy' }
+     
     ],
   },
   {
-    title: 'Categories',
+    title: 'Event',
     description: [
-        { label: 'Computers', url: '/Computers' },
-        { label: 'Phones', url: '/Phones' },
-        { label: 'Electronics', url: '/Electronics' },
-        { label: 'Laptops', url: '/Laptops' },
-   //   'Computers', 'Phones', 'Electronics', 'Laptops', 'Tablets', 'Smartphones', 'Wearables'
+        { label: 'Event 1', url: 'Event 1' },
+        { label: 'Event 2', url: 'event2' },
+        { label: 'Event 3', url: 'Event 3' }
+      
+   
     ],
   },
   {
-    title: 'YOUR ACCOUNT',
+    title: 'Your Account',
     description: [
         { label: 'Personal informations', url: '/profile' },
-        { label: 'Order', url: '/Order' },
-       // { label: 'Toshiba', url: '/Toshiba' },
-       // { label: 'Samsung', url: '/Samsung' },
-    //  'Apple', 'HP', 'Toshiba', 'Samsung', 'Nokia', 'Logicom', 'and more...'
+        { label: 'Subscribe', url: '/Subscribe' },
+     
     ],
   },
   {
