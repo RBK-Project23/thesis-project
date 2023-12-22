@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     const fetchScouts = async () => {
       try {
-        const response = await axios.get('/scouts');
+        const response = await axios.get('http://localhost:7000/scouts');
         setScouts(response.data);
       } catch (error) {
         console.error('Error fetching scouts:', error);
