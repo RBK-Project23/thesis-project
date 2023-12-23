@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 
 function Copyright(props) {
   return (
@@ -31,13 +32,31 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+ 
+
+    const postData = {
       email: data.get('email'),
       password: data.get('password'),
-    });
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      confirmPassword: data.get('confirm password'),
+      active:true,
+     
+    };
+    try {
+      // Make a POST request to your server
+      const response = await axios.post('http://localhost:7000/users/register', postData);
+      console.log(response.data);
+    alert('registration succefully!');
+    window.location.reload();
+    } catch (error) {
+      console.error('Error during registration:', error);
+      // Handle error here (e.g., show error message)
+    }
+  
   };
 
   return (
@@ -103,9 +122,20 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="confirm password"
+                  label="Confirm Password"
+                  type="password"
+                  id="Confirm password"
+                  autoComplete="confirm-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  label="I want to receive scout updates and news via email."
                 />
               </Grid>
             </Grid>

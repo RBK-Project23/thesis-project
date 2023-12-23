@@ -17,8 +17,10 @@ export const createPost = (post) => async (dispatch) => {
     const { data } = await api.createPost(post);
 
     dispatch({ type: CREATE, payload: data });
+    alert('Event created successfully.');
   } catch (error) {
     console.log(error.message);
+    alert('Error creating event.');
   }
 };
 
@@ -27,8 +29,10 @@ export const updatePost = (id, post) => async (dispatch) => {
     const { data } = await api.updatePost(id, post);
 
     dispatch({ type: UPDATE, payload: data });
+    alert('Event updated successfully.');
   } catch (error) {
     console.log(error.message);
+    alert(`Error updating event.`);
   }
 };
 
@@ -43,11 +47,19 @@ export const likePost = (id) => async (dispatch) => {
 };
 
 export const deletePost = (id) => async (dispatch) => {
-  try {
-    await api.deletePost(id);
+  const userConfirmed = window.confirm("Are you sure you want to delete this event?");
 
-    dispatch({ type: DELETE, payload: id });
-  } catch (error) {
-    console.log(error.message);
+  if (userConfirmed) {
+    try {
+      await api.deletePost(id);
+      dispatch({ type: DELETE, payload: id });
+      alert('Event deleted successfully.');
+    } catch (error) {
+      console.log(error.message);
+      alert(`Error deleting event`);
+    }
+  } else {
+    
+    alert('Event deletion cancelled.');
   }
 };
