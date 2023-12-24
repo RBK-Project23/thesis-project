@@ -15,6 +15,24 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { createTheme } from '@mui/material/styles';
 
+const fonts = {
+  Roboto: {
+    normal: 'Roboto-Regular.ttf',
+    bold: 'Roboto-Medium.ttf',
+    italics: 'Roboto-Italic.ttf',
+    bolditalics: 'Roboto-MediumItalic.ttf'
+  },
+  Arial: {
+    normal: 'Arial.ttf',
+    bold: 'Arial-Bold.ttf',
+    italics: 'Arial-Italic.ttf',
+    bolditalics: 'Arial-BoldItalic.ttf'
+  }
+};
+
+
+pdfMake.fonts = fonts;
+
 export default function GenerateIstimara() {
   const handleSubmit = (event) => {
     event.preventDefault();
