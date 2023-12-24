@@ -1,3 +1,4 @@
+// models/scout.js
 const mongoose = require('mongoose');
 
 const scoutSchema = new mongoose.Schema({

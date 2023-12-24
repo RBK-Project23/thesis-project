@@ -1,3 +1,4 @@
+// controllers/commanderController.js
 const Commander = require('../models/Commander');
 
 const getAllCommanders = async (req, res) => {
@@ -21,13 +22,19 @@ const getCommanderById = async (req, res) => {
   }
 };
 
-const addCommander = async (req, res) => {
+const RegisterCommander= async (req, res) => {
+
+ 
   try {
-    const newCommander = new Commander(req.body);
-    const savedCommander = await newCommander.save();
-    res.json(savedCommander);
+    const {  FirstName, LastName,dateOfBirth, placeOfBirth, isParent, CIN,gender, fadherName, grandFadherName,   maritalStatus, adressTN, phoneTN, jobOM, jobTN, educationalLevel, certificate, scoutTrainingLevel, dateLastTrainingLevelStudy } = req.body;
+    const UserCommander = new Commander({   FirstName, LastName,dateOfBirth, placeOfBirth, isParent, CIN,gender, fadherName, grandFadherName,   maritalStatus, adressTN, phoneTN, jobOM, jobTN, educationalLevel, certificate, scoutTrainingLevel, dateLastTrainingLevelStudy });
+    await UserCommander.save();
+    console.log(req.body)
+
+    res.status(200).json({ message: 'Registration successful' });
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 };
 
@@ -58,7 +65,7 @@ const deleteCommander = async (req, res) => {
 module.exports = {
   getAllCommanders,
   getCommanderById,
-  addCommander,
+  RegisterCommander,
   updateCommander,
   deleteCommander,
 };

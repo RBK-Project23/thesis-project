@@ -13,6 +13,8 @@ import SignUp from "./component/register";
 import Istimara from "./component/istimara";
 import PrivateRoutes from './component/authentification/authentification';
 import ScoutForm from './component/Scout/ScoutForm';
+import ParentForm from './component/parent/ParentForm';
+import CommanderForm from './component/commander/CommanderForm';
 import axios from "axios";
 
 
@@ -36,7 +38,43 @@ function App() {
   const handleScoutAdded = (newScout) => {
     setScouts([...scouts, newScout]);
   };
+   // const [parents, setParents] = useState([]);
 
+  // useEffect(() => {
+  //   const fetchParents = async () => {
+  //     try {
+  //       const response = await axios.get('/parents');
+  //       setParents(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching parents:', error);
+  //     }
+  //   };
+
+  //   fetchParents();
+  // }, []);
+
+  // const handleParentAdded = (newParent) => {
+  //   setParents([...parents, newParent]);
+  // };
+// const [commanders, setCommanders] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchCommanders = async () => {
+  //     try {
+  //       const response = await axios.get('/commanders');
+  //       setCommanders(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching commanders:', error);
+  //     }
+  //   };
+
+  //   fetchCommanders();
+  // }, []);
+
+  // const handleCommanderAdded = (newCommander) => {
+  //   setCommanders([...commanders, newCommander]);
+  // };
+ 
   return (
     <>
       <Router>

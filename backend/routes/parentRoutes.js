@@ -4,7 +4,7 @@ const parentController = require('../controllers/parentController');
 
 router.get('/', parentController.getAllParents);
 router.get('/:id', parentController.getParentById);
-router.post('/', parentController.addParent);
+router.post('/', parentController.RegisterParent);
 router.put('/:id', parentController.updateParent);
 router.delete('/:id', parentController.deleteParent);
 
