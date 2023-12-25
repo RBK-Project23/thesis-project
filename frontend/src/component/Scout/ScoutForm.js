@@ -125,7 +125,10 @@ const ScoutForm = () => {
             variant="outlined"
             fullWidth
             margin="normal"
-            type='date'
+            type="date"
+            InputLabelProps={{
+              shrink: true,
+            }}
             name="dateOfBirth"
             value={scout.dateOfBirth}
             onChange={handleChange}
@@ -197,7 +200,10 @@ const ScoutForm = () => {
             variant="outlined"
             fullWidth
             margin="normal"
-            type='date'
+            type="date"
+            InputLabelProps={{
+              shrink: true,
+            }}
             name="expiryDatePassport"
             value={scout.expiryDatePassport}
             onChange={handleChange}
@@ -216,7 +222,10 @@ const ScoutForm = () => {
             variant="outlined"
             fullWidth
             margin="normal"
-            type='date'
+            type="date"
+            InputLabelProps={{
+              shrink: true,
+            }}
             name="expiryDateVisa"
             value={scout.expiryDateVisa}
             onChange={handleChange}

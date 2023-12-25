@@ -1,40 +1,39 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { createTheme } from '@mui/material/styles';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { ThemeProvider } from "@mui/material/styles";
+import { useState } from "react";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import { createTheme } from "@mui/material/styles";
 
 const fonts = {
   Roboto: {
-    normal: 'Roboto-Regular.ttf',
-    bold: 'Roboto-Medium.ttf',
-    italics: 'Roboto-Italic.ttf',
-    bolditalics: 'Roboto-MediumItalic.ttf'
+    normal: "Roboto-Regular.ttf",
+    bold: "Roboto-Medium.ttf",
+    italics: "Roboto-Italic.ttf",
+    bolditalics: "Roboto-MediumItalic.ttf",
   },
   Arial: {
-    normal: 'Arial.ttf',
-    bold: 'Arial-Bold.ttf',
-    italics: 'Arial-Italic.ttf',
-    bolditalics: 'Arial-BoldItalic.ttf'
-  }
+    normal: "Arial.ttf",
+    bold: "Arial-Bold.ttf",
+    italics: "Arial-Italic.ttf",
+    bolditalics: "Arial-BoldItalic.ttf",
+  },
 };
-
 
 pdfMake.fonts = fonts;
 
 export default function GenerateIstimara() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -44,71 +43,82 @@ export default function GenerateIstimara() {
     data.forEach((value, key) => {
       formData[key] = value;
     });
+
+    // Function to convert local file to data URL
+    const fileToDataUrl = async (filePath) => {
+      try {
+        const response = await fetch(filePath);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const blob = await response.blob();
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(blob);
+        });
+      } catch (error) {
+        console.error("Error loading image:", error);
+        return null;
+      }
+    };
+
+    // Loading logos
+    const logo1Path = "/logo1.jpeg";
+    const logo2Path = "/logo2.jpeg";
+    const logo1ImageDataUrl = await fileToDataUrl(logo1Path);
+    const logo2ImageDataUrl = await fileToDataUrl(logo2Path);
+
+    // PDF document definition
     const docDefinition = {
-      header: async function (currentPage, pageCount, pageSize) {
-        const logo1Path = 'frontend/src/images/logo1.jpeg';
-        const logo2Path = 'frontend/src/images/logo2.jpeg';
-// Function to convert local file to data URL
-function fileToDataUrl(filePath) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result);
-    reader.onerror = reject;
-
-    // Use relative path directly
-    const relativePath = filePath;
-
-    // Log the relative path for debugging
-    const publicPath = 'public' + filePath;
-    console.log(' Path:', publicPath);
-
-    // Read the file as a data URL
-    fetch(publicPath)
-    .then((response) => response.blob())
-    .then((blob) => reader.readAsDataURL(blob))
-    .catch(reject);
-  
-  });
-}
-    
-        const logo1ImageDataUrl = await fileToDataUrl(logo1Path);
-        const logo2ImageDataUrl = await fileToDataUrl(logo2Path);
-    console.log('Logo 1 Data URL:', logo1ImageDataUrl);
-    console.log('Logo 2 Data URL:', logo2ImageDataUrl);
-
-        return [
+      header: {
+        columns: [
           {
+            image: logo1ImageDataUrl,
+            width: 50,
+          },
+          {
+            text: "Formulaire d'inscription",
+            alignment: "center",
+            fontSize: 16,
+            bold: true,
+            margin: [0, 10, 10, 10],
+            width: "*",
+          },
+          {
+            image: logo2ImageDataUrl,
+            width: 50,
+            alignment: "right",
             columns: [
-              // Left column with the first image
               {
                 image: logo1ImageDataUrl,
                 width: 50,
-                margin: [10, 10],
               },
-              // Center column with the document title
               {
                 text: "Formulaire d'inscription",
-                alignment: 'center',
+                alignment: "center",
                 fontSize: 16,
                 bold: true,
-                margin: [0, 15],
+                margin: [0, 10, 10, 10],
+                width: "*", 
               },
-              // Right column with the second image
               {
                 image: logo2ImageDataUrl,
                 width: 50,
-                alignment: 'right',
-                margin: [10, 10],
+                alignment: "right",
+                margin: [0, 10, 10, 10],
               },
             ],
+            
           },
-        ];
+        ],
       },
       content: [
         {
           canvas: [
             {
-              type: 'rect',
+              type: "rect",
               x: 10,
               y: 10,
               w: 520,
@@ -116,9 +126,9 @@ function fileToDataUrl(filePath) {
               r: 5, // corner radius
               lineWidth: 2,
             },
-    
+
             {
-              type: 'rect',
+              type: "rect",
               x: 50, // adjust the x-coordinate as needed
               y: 50, // adjust the y-coordinate as needed
               w: 100, // adjust the width as needed
@@ -136,30 +146,47 @@ function fileToDataUrl(filePath) {
     \n\n\n\nLes Scouts Tunisiens                            L'Association SCOUTS tunisienne à Oman
     \n
     \n                                 Formulaire d'inscription\n 
-    Régiment : ${formData.regiment} Unité : ${formData.unit1} Section : ${formData.section1}
+    Régiment : ${formData.regiment} Unité : ${formData.unit1} Section : ${
+                formData.section1
+              }
     Nom et prénom : ${formData.fullname}
     Date et lieu de naissance : ${formData.date} - ${formData.placebirth}
-    Numéro de passeport : ${formData.passeportNum} Date d'expiration : ${formData.dateEndPass}
-    Numéro de visa à Oman : ${formData.visaNum} Date d'expiration : ${formData.dateEndVisa}
-    Genre : ${formData.gender === 'male' ? 'Masculin' : 'Féminin'} . Groupe sanguin : ${formData.bloodType}
-    Souffrez-vous de maladies chroniques : ${formData.yes1 === 'yes' ? 'Oui' : 'Non'}
-    Nom du responsable légal : ${formData.fadherName} Profession : ${formData.job}
-    Numéro de téléphone : ${formData.phone}   Numéro de téléphone de secondaire : ${formData.phone2}
+    Numéro de passeport : ${formData.passeportNum} Date d'expiration : ${
+                formData.dateEndPass
+              }
+    Numéro de visa à Oman : ${formData.visaNum} Date d'expiration : ${
+                formData.dateEndVisa
+              }
+    Genre : ${
+      formData.gender === "male" ? "Masculin" : "Féminin"
+    } . Groupe sanguin : ${formData.bloodType}
+    Souffrez-vous de maladies chroniques : ${
+      formData.yes1 === "yes" ? "Oui" : "Non"
+    }
+    Nom du responsable légal : ${formData.fadherName} Profession : ${
+                formData.job
+              }
+    Numéro de téléphone : ${
+      formData.phone
+    }   Numéro de téléphone de secondaire : ${formData.phone2}
     Adresse à Oman : ${formData.Adress_OM}
     Adresse en Tunisie : ${formData.addressTN}
-    Membre de l'association SCOUTS tunisienne à Oman : ${formData.yes === 'yes' ? 'Oui' : 'Non'}
+    Membre de l'association SCOUTS tunisienne à Oman : ${
+      formData.yes === "yes" ? "Oui" : "Non"
+    }
     (En cas de participation du tuteur au Régiment Scout Tunisien au Sultanat d’Oman)
-    C.I.N : ${formData.cin} Unité : ${formData.unit} Section : ${formData.section}
+    C.I.N : ${formData.cin} Unité : ${formData.unit} Section : ${
+                formData.section
+              }
     Je certifie la véracité des informations mentionnées ci-dessus 
     Signature
     `,
-              style: 'subheader',
+              style: "subheader",
               absolutePosition: { x: 60, y: 40 }, // Adjust the coordinates as needed
             },
           ],
         },
-     
-     
+
         // End of additional content
       ],
       styles: {
@@ -174,27 +201,11 @@ function fileToDataUrl(filePath) {
         },
       },
     };
-    // Function to convert local file to data URL
-    function fileToDataUrl(filePath) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
-        reader.onerror = reject;
-    
-        // Assuming your project structure allows direct access to the 'public' folder
-        const publicPath = 'public/' + filePath;
-    
-        // Read the file as a data URL
-        fetch(publicPath)
-          .then((response) => response.blob())
-          .then((blob) => reader.readAsDataURL(blob))
-          .catch(reject);
-      });
-    }
+
     // Generate and download PDF
-    pdfMake.createPdf(docDefinition).download('Istimara.pdf');
-    };
-    
+    pdfMake.createPdf(docDefinition).download("Istimara.pdf");
+  };
+
   const defaultTheme = createTheme();
 
   return (
@@ -204,12 +215,17 @@ function fileToDataUrl(filePath) {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={4}>
                 <TextField
@@ -243,7 +259,6 @@ function fileToDataUrl(filePath) {
                   autoComplete="family-name"
                 />
               </Grid>
-
               <Grid item xs={12}>
                 <TextField
                   required
@@ -254,14 +269,13 @@ function fileToDataUrl(filePath) {
                   autoComplete="family-name"
                 />
               </Grid>
-
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
                   name="date"
                   label="Date de naissance"
-                  type="date"  // Use type="date" for a simplified date picker
+                  type="date" // Use type="date" for a simplified date picker
                   id="birthday"
                   InputLabelProps={{
                     shrink: true,
@@ -278,8 +292,6 @@ function fileToDataUrl(filePath) {
                   autoComplete="family-name"
                 />
               </Grid>
-
-
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -292,7 +304,6 @@ function fileToDataUrl(filePath) {
                     shrink: true,
                   }}
                 />
-
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -304,9 +315,6 @@ function fileToDataUrl(filePath) {
                   autoComplete="family-name"
                 />
               </Grid>
-
-
-
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -330,7 +338,6 @@ function fileToDataUrl(filePath) {
                   autoComplete="family-name"
                 />
               </Grid>
-
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -353,17 +360,18 @@ function fileToDataUrl(filePath) {
                 </Typography>
 
                 <FormControlLabel
-                  control={<Checkbox name="gender" value="female" color="primary" />}
+                  control={
+                    <Checkbox name="gender" value="female" color="primary" />
+                  }
                   label="Féminin"
                 />
                 <FormControlLabel
-                  control={<Checkbox name="gender" value="male" color="primary" />}
+                  control={
+                    <Checkbox name="gender" value="male" color="primary" />
+                  }
                   label="Mâle"
                 />
               </Grid>
-
-
-
               <Grid item xs={12}>
                 <Typography
                   component="h6"
@@ -382,8 +390,6 @@ function fileToDataUrl(filePath) {
                   label="Oui"
                 />
               </Grid>
-
-
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -405,8 +411,6 @@ function fileToDataUrl(filePath) {
                   autoFocus
                 />
               </Grid>
-
-
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
@@ -428,8 +432,6 @@ function fileToDataUrl(filePath) {
                   autoComplete="family-name"
                 />
               </Grid>
-
-
               <Grid item xs={12}>
                 <TextField
                   required
@@ -439,7 +441,8 @@ function fileToDataUrl(filePath) {
                   name="Adress_OM"
                   autoComplete="family-name"
                 />
-              </Grid> <Grid item xs={12}>
+              </Grid>{" "}
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -456,7 +459,8 @@ function fileToDataUrl(filePath) {
                   color="textSecondary"
                   style={{ marginLeft: "130px" }}
                 >
-                  Participé au Régiment Scout Tunisien au Sultanat d'Oman                    </Typography>
+                  Participé au Régiment Scout Tunisien au Sultanat d'Oman{" "}
+                </Typography>
                 <FormControlLabel
                   control={<Checkbox name="no" value="no" color="primary" />}
                   label="Non"
@@ -467,8 +471,11 @@ function fileToDataUrl(filePath) {
                 />
               </Grid>
               <Grid item xs={12}>
-                <p>(En cas de participation du tuteur au Régiment Scout Tunisien au Sultanat d'Oman)</p>             </Grid>
-
+                <p>
+                  (En cas de participation du tuteur au Régiment Scout Tunisien
+                  au Sultanat d'Oman)
+                </p>{" "}
+              </Grid>
               <Grid item xs={12} sm={4}>
                 <TextField
                   required
@@ -490,10 +497,7 @@ function fileToDataUrl(filePath) {
                   autoFocus
                 />
               </Grid>
-
-
               <Grid item xs={12} sm={4}>
-
                 <TextField
                   autoComplete="given-name"
                   name="cin"
@@ -504,13 +508,7 @@ function fileToDataUrl(filePath) {
                   autoFocus
                 />
               </Grid>
-
-
-
-
-
             </Grid>
-
 
             {/*
           <Button
@@ -523,18 +521,14 @@ function fileToDataUrl(filePath) {
             </Button>
         */}
 
-
-
-            <div style={{ display: 'flex' }}>
-
+            <div style={{ display: "flex" }}>
               <Grid item xs={12} sm={6}>
-                <p style={{ marginLeft: '20px' }}>
-                Signature
-                </p>
+                <p style={{ marginLeft: "20px" }}>Signature</p>
               </Grid>
               <Grid item xs={12} sm={6}>
-                <p style={{ marginLeft: '140px' }}>
-                  Je certifie que les informations ci-dessus sont exactes    </p>
+                <p style={{ marginLeft: "140px" }}>
+                  Je certifie que les informations ci-dessus sont exactes{" "}
+                </p>
               </Grid>
             </div>
 
@@ -548,7 +542,6 @@ function fileToDataUrl(filePath) {
             </Button>
           </Box>
         </Box>
-
       </Container>
     </ThemeProvider>
   );
