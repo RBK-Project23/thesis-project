@@ -5,7 +5,7 @@ import './Header.css';
 const Header = () => {
   return (
     <header>
-         <img src="/logo-no-background.png" alt="Logo" className="logo" />
+         <img src="/Scout_tunisen1.png" alt="Logo" className="logo" />
          <Navigation />
     </header>
   );
