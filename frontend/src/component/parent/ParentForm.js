@@ -1,7 +1,19 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import ParentCard from './ParentCard';
+import {
+  Container,
+  TextField,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  Button,
+  FormControl,
+  FormLabel,
+} from '@mui/material';
+
+import { Card, CardContent, Typography } from '@mui/material';
+import { Select, InputLabel, MenuItem } from '@mui/material';
 
 const ParentForm = () => {
   const [parent, setParent] = useState({
@@ -22,11 +34,10 @@ const ParentForm = () => {
     visaNumber: '',
     expiryDateVisa: '',
     chronicDiseases: '',
-   
   });
 
+  const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
   const [showParentCard, setShowParentCard] = useState(false);
-
 
   const handleChange = (e) => {
     setParent({
@@ -35,19 +46,30 @@ const ParentForm = () => {
     });
   };
 
+  const handleGenderChange = (e) => {
+    setParent({ ...parent, gender: e.target.value });
+  };
+
+  const handleMembreChange = (e) => {
+    setParent({ ...parent, participatedTunisianScoutRegiment: e.target.value });
+  };
+
+  const handleChronicChange = (e) => {
+    setParent({ ...parent, chronicDiseases: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('Submitting Parent:', parent);
-  
+    console.log('Submitting Commander:', parent);
+
     try {
-      const response = await axios.post('http://localhost:7000/parents', parent, {
-        
-       headers: {
-        'Content-Type': 'application/json',
-      },
-      })
-     console.log(response.data.message);
+      const response = await axios.post('http://localhost:3000/parents', parent, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log(response.data.message);
       alert(response.data.message);
 
       setShowParentCard(true);
@@ -58,123 +80,212 @@ const ParentForm = () => {
   };
 
   const handleEditClick = () => {
-    setShowParentCard(false)
-  }
-  
-  
+    setShowParentCard(false);
+  };
 
   return (
-    <div>
+    <div style={{ backgroundColor: '#f0f0f0', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Container maxWidth="sm">
       {showParentCard ? (
         <ParentCard parent={parent} onEditClick={handleEditClick} />
       ) : (
-    <form onSubmit={handleSubmit}>
-       <div style={{ position: 'relative', maxWidth: '800px', margin: 'auto', marginTop: '20px' }}>
-    <div style={{ border: '2px solid #ccc', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', padding: '20px', borderRadius: '10px', maxWidth: '800px', margin: 'auto' }}>
-      <label>
-        First Name:
-        <input style={{ marginTop: '10px' }} type="text" name="FirstName" value={parent.FirstName} onChange={handleChange} />
-      </label>
-      <label>
-        LastName:
-        <input  style={{ marginTop: '10px' }} type="text" name="LastName" value={parent.LastName} onChange={handleChange} />
-      </label>
-      <br/>
-      <label>
-        Age:
-        <input  style={{ marginTop: '10px' }} type="number" name="age" value={parent.age} onChange={handleChange} />
-      </label>
-      <label>
-        date of Birt:
-        <input  style={{ marginTop: '10px' }} type="date" name="dateOfBirth" value={parent.dateOfBirth} onChange={handleChange} />
-      </label>
-      <br/>
-      <label>
-        Adress in Oman:
-        <input  style={{ marginTop: '10px' }} type="text" name="Adress_OM" value={parent.Adress_OM} onChange={handleChange} />
-      </label>
-      <label>
-        Phone in Oman:
-        <input style={{ marginTop: '10px' }} type="text" name="PhoneOM" value={parent.PhoneOM} onChange={handleChange} />
-      </label>
-      <br/>
-      <br/>
-      <label>
-        Adress in Tunisia:
-        <input  style={{ marginTop: '10px' }} type="text" name="adressTN" value={parent.adressTN} onChange={handleChange} />
-      </label>
-      <label>
-        Phone in Tunisia:
-        <input style={{ marginTop: '10px' }} type="text" name="phoneTN" value={parent.phoneTN} onChange={handleChange} />
-      </label>
-      <br/>
-      <label>
-      participated Tunisian Scout Regiment:
-        <input  style={{ marginTop: '10px' }} type="text" name="participatedTunisianScoutRegiment" value={parent.participatedTunisianScoutRegiment} onChange={handleChange} />
-      </label>
-      <br/>
-      <label>
-        CIN:
-        <input  style={{ marginTop: '10px' }} type="text" name="CIN" value={parent.CIN} onChange={handleChange} />
-      </label>
-      <label>
-        Gender:
-        <input  style={{ marginTop: '10px' }} type="text" name="gender" value={parent.gender} onChange={handleChange} />
-      </label>
-      <br/>
-      <label>
-        Type of Blood:
-        <input  style={{ marginTop: '10px' }} type="text" name="Blood_type" value={parent.Blood_type} onChange={handleChange} />
-      </label>
-    
-      <br/>
-     <label>
-        Passport Number:
-        <input style={{ marginTop: '10px' }} type="text" name="passportNumber" value={parent.passportNumber} onChange={handleChange} />
-      </label>
-      <label>
-        Expiry Date Passport:
-        <input style={{ marginTop: '10px' }} type="date" name="expiryDatePassport" value={parent.expiryDatePassport} onChange={handleChange} />
-      </label>
-     <br/>
-      <label>
-        visa Number:
-        <input style={{ marginTop: '10px' }} type="text" name="visaNumber" value={parent.visaNumber} onChange={handleChange} />
-      </label>
-      <label>
-        expiry Date of Visa:
-        <input style={{ marginTop: '10px' }} type="date" name="expiryDateVisa" value={parent.expiryDateVisa} onChange={handleChange} />
-      </label>
-      <br/>
-      <label>
-      Chronic Diseases:
-        <input style={{ marginTop: '10px' }} type="text" name="chronicDiseases" value={parent.chronicDiseases} onChange={handleChange} />
-      </label>
-     <div style={{ display: 'flex', justifyContent: 'center', padding:'20px' }}>
-    <button type="submit"  style={{ fontSize: '16px', padding: '6px', width:'100px' }}>Submit</button>
-  </div>
-  </div>
-  <div
-    style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      borderRadius: '10px',
-      zIndex: -1,
-      backdropFilter: 'blur(10px)',
-      backgroundColor: 'rgba(255, 200, 200, 0.5)',
-      
-    }}
-  />
+        <Card sx={{ width: '150%', margin: 'auto',  backgroundColor: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>
+        <CardContent>
+        <img
+              src={`${process.env.PUBLIC_URL}/Logo_scouts_oman.png`} 
+              alt="Logo"
+              style={{ width: '130px', marginRight: '50px', marginLeft:'620px' }}
+            />
+          <Typography variant="h5" component="div" gutterBottom>
+            Complete your informations
+          </Typography>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            label="First Name"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            name="FirstName"
+            value={parent.FirstName}
+            onChange={handleChange}
+          />
+          <TextField
+            label="Last Name"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            name="LastName"
+            value={parent.LastName}
+            onChange={handleChange}
+          />
+          <TextField
+            label="age"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            name="age"
+            value={parent.age}
+            onChange={handleChange}
+          />
+          <TextField
+            label="date of Birth"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            type='date'
+            name="dateOfBirth"
+            value={parent.dateOfBirth}
+            onChange={handleChange}
+          />
+           <TextField
+            label="Adress in Oman"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            name="Adress_OM"
+            value={parent.Adress_OM}
+            onChange={handleChange}
+          />
+            <TextField
+            label="Phone in Oman"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            name="PhoneOM"
+            value={parent.PhoneOM}
+            onChange={handleChange}
+          />
+              <TextField
+            label="Adress in Tunisia"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            name="adressTN"
+            value={parent.adressTN}
+            onChange={handleChange}
+          />
+           <TextField
+            label=" Phone in Tunisia"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            name="phoneTN"
+            value={parent.phoneTN}
+            onChange={handleChange}
+          />
+          {/* ... (similar modifications for other TextField components) */}
+          <RadioGroup
+            row
+            name="gender"
+            value={parent.gender}
+            onChange={handleGenderChange}
+          >
+            <FormControlLabel value="female" control={<Radio />} label="Female" />
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
+          </RadioGroup>
+          <RadioGroup
+            row
+            name="participatedTunisianScoutRegiment"
+            value={parent.participatedTunisianScoutRegiment}
+            onChange={handleMembreChange}
+          >
+            <FormControlLabel value="yes" control={<Radio />} label="Membre of the Tunisan Scouts Regiment" />
+            <FormControlLabel value="no" control={<Radio />} label="I'm not a Membre of the Tunisan Scouts Regiment" />
+          </RadioGroup>
+          <RadioGroup
+            row
+            name="chronicDiseases"
+            value={parent.chronicDiseases}
+            onChange={handleChronicChange}
+          >
+            <FormControlLabel value="You have chronic diseases" control={<Radio />} label="You have chronic diseases" />
+            <FormControlLabel value="You don't have chronic diseases" control={<Radio />} label="You don't have chronic diseases" />
+           </RadioGroup>
+           <FormControl fullWidth margin="normal">
+                  <InputLabel>Blood Type</InputLabel>
+                  <Select
+                    label="Blood Type"
+                    name="Blood_type"
+                    value={parent.Blood_type}
+                    onChange={handleChange}
+                  >
+                    {bloodTypes.map((type) => (
+                      <MenuItem key={type} value={type}>
+                        {type}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+          <TextField
+            label="CIN"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            name="CIN"
+            value={parent.CIN}
+            onChange={handleChange}
+          />
+          <TextField
+            label="passportNumber"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            name="passportNumber"
+            value={parent.passportNumber}
+            onChange={handleChange}
+          />
+           <TextField
+            label="expiryDatePassport"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            type='date'
+            name="expiryDatePassport"
+            value={parent.expiryDatePassport}
+            onChange={handleChange}
+          />
+           <TextField
+            label="Visa Number"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            name="visaNumber"
+            value={parent.visaNumber}
+            onChange={handleChange}
+          />
+           <TextField
+            label="expiryDateVisa"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            type='date'
+            name="expiryDateVisa"
+            value={parent.expiryDateVisa}
+            onChange={handleChange}
+          />
+            <TextField
+            label="dateLastTrainingLevelStudy"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            type="date"
+            name="dateLastTrainingLevelStudy"
+            value={parent.dateLastTrainingLevelStudy}
+            onChange={handleChange}
+          />
+  <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
+          <Button type="submit" variant="contained" color="primary" size="large" style={{ backgroundColor: 'green', color: 'white' }}>
+  Submit
+</Button>
 </div>
-   </form>
-  )
-}
-  </div>
-  )
+        </form>
+        </CardContent>
+       
+        </Card>
+      )}
+       </Container>
+    </div>
+  );
 };
-
 
 export default ParentForm;

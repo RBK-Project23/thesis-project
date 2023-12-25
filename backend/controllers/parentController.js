@@ -22,13 +22,19 @@ const getParentById = async (req, res) => {
   }
 };
 
-const addParent = async (req, res) => {
+const RegisterParent= async (req, res) => {
+
+ 
   try {
-    const newParent = new Parent(req.body);
-    const savedParent = await newParent.save();
-    res.json(savedParent);
+    const {  FirstName, LastName, age, dateOfBirth, Adress_OM, PhoneOM, adressTN, phoneTN, participatedTunisianScoutRegiment, CIN, gender, Blood_type, passportNumber, expiryDatePassport, visaNumber, expiryDateVisa, chronicDiseases } = req.body;
+    const UserParent = new Parent({  FirstName, LastName, age, dateOfBirth, Adress_OM, PhoneOM, adressTN, phoneTN, participatedTunisianScoutRegiment, CIN, gender, Blood_type, passportNumber, expiryDatePassport, visaNumber, expiryDateVisa, chronicDiseases  });
+    await UserParent.save();
+    console.log(req.body)
+
+    res.status(200).json({ message: 'Registration successful' });
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 };
 
@@ -59,7 +65,7 @@ const deleteParent = async (req, res) => {
 module.exports = {
   getAllParents,
   getParentById,
-  addParent,
+  RegisterParent,
   updateParent,
   deleteParent,
 };
