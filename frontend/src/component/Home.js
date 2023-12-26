@@ -1,7 +1,7 @@
 import React from 'react';
 import homeImage from '../images/home.jpg';
 import '../component/homePage.css';
-import Footer from '../component/Scout/footer';
+import Footer from '../component/footer';
 import RecipeReviewCard from '../component/card'
 
 
