@@ -13,68 +13,14 @@ import SignUp from "./component/register";
 import Istimara from "./component/istimara";
 import GenerateIstimara from "./component/generateIstimara";
 import PrivateRoutes from './component/authentification/authentification';
-import ScoutForm from './component/Scout/ScoutForm';
-import ParentForm from './component/parent/ParentForm';
-import CommanderForm from './component/commander/CommanderForm';
+import UserProfilScout from "./component/userpages/UserScout";
+
 import axios from "axios";
 
 
 function App() {
 
-  const [scouts, setScouts] = useState([]);
-
-  useEffect(() => {
-    const fetchScouts = async () => {
-      try {
-        const response = await axios.get('http://localhost:7000/scouts');
-        setScouts(response.data);
-      } catch (error) {
-        console.error('Error fetching scouts:', error);
-      }
-    };
-
-    fetchScouts();
-  }, []);
-
-  const handleScoutAdded = (newScout) => {
-    setScouts([...scouts, newScout]);
-  };
-   // const [parents, setParents] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchParents = async () => {
-  //     try {
-  //       const response = await axios.get('/parents');
-  //       setParents(response.data);
-  //     } catch (error) {
-  //       console.error('Error fetching parents:', error);
-  //     }
-  //   };
-
-  //   fetchParents();
-  // }, []);
-
-  // const handleParentAdded = (newParent) => {
-  //   setParents([...parents, newParent]);
-  // };
-// const [commanders, setCommanders] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchCommanders = async () => {
-  //     try {
-  //       const response = await axios.get('/commanders');
-  //       setCommanders(response.data);
-  //     } catch (error) {
-  //       console.error('Error fetching commanders:', error);
-  //     }
-  //   };
-
-  //   fetchCommanders();
-  // }, []);
-
-  // const handleCommanderAdded = (newCommander) => {
-  //   setCommanders([...commanders, newCommander]);
-  // };
+  
  
   return (
     <>
@@ -90,7 +36,7 @@ function App() {
           <Route path="/chat" element={<Chat />} />
           <Route element={<PrivateRoutes />}>  
           <Route element={<Home/>} path="/" exact/>
-          <Route path="/profiles" element={<ScoutForm onScoutAdded={handleScoutAdded} />} exact />
+          <Route path="/profiles" element={<UserProfilScout/>} exact />
           </Route>
          
           <Route path="/signin" element={<SignIn />} />

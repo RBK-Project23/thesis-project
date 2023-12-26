@@ -1,5 +1,19 @@
 // controllers/parentController.js
-const Parent = require('../models/Parent');
+const multer = require('multer');
+const path = require('path');
+const Parent = require('../models/parent');
+
+const storage = multer.diskStorage({
+  destination: './parents/',
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1000000 }, 
+}).single('profileImage'); 
 
 const getAllParents = async (req, res) => {
   try {
@@ -24,10 +38,16 @@ const getParentById = async (req, res) => {
 
 const RegisterParent= async (req, res) => {
 
- 
+  upload(req, res, async function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Error uploading file' });
+    }
+
   try {
     const {  FirstName, LastName, age, dateOfBirth, Adress_OM, PhoneOM, adressTN, phoneTN, participatedTunisianScoutRegiment, CIN, gender, Blood_type, passportNumber, expiryDatePassport, visaNumber, expiryDateVisa, chronicDiseases } = req.body;
-    const UserParent = new Parent({  FirstName, LastName, age, dateOfBirth, Adress_OM, PhoneOM, adressTN, phoneTN, participatedTunisianScoutRegiment, CIN, gender, Blood_type, passportNumber, expiryDatePassport, visaNumber, expiryDateVisa, chronicDiseases  });
+    const profileImage = req.file ? req.file.filename : null;
+    const UserParent = new Parent({  FirstName, LastName, age, dateOfBirth, Adress_OM, PhoneOM, adressTN, phoneTN, participatedTunisianScoutRegiment, CIN, gender, Blood_type, passportNumber, expiryDatePassport, visaNumber, expiryDateVisa, chronicDiseases, profileImage  });
     await UserParent.save();
     console.log(req.body)
 
@@ -36,7 +56,8 @@ const RegisterParent= async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});
+}
 
 const updateParent = async (req, res) => {
   try {

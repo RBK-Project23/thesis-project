@@ -1,5 +1,19 @@
 // controllers/commanderController.js
-const Commander = require('../models/Commander');
+const multer = require('multer');
+const path = require('path');
+const Commander = require('../models/commander');
+
+const storage = multer.diskStorage({
+  destination: './commanders/',
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1000000 }, 
+}).single('profileImage'); 
 
 const getAllCommanders = async (req, res) => {
   try {
@@ -23,11 +37,19 @@ const getCommanderById = async (req, res) => {
 };
 
 const RegisterCommander= async (req, res) => {
-
+        
+  upload(req, res, async function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Error uploading file' });
+    }
  
   try {
     const {  FirstName, LastName,dateOfBirth, placeOfBirth, isParent, CIN,gender, fadherName, grandFadherName,   maritalStatus, adressTN, phoneTN, jobOM, jobTN, educationalLevel, certificate, scoutTrainingLevel, dateLastTrainingLevelStudy } = req.body;
-    const UserCommander = new Commander({   FirstName, LastName,dateOfBirth, placeOfBirth, isParent, CIN,gender, fadherName, grandFadherName,   maritalStatus, adressTN, phoneTN, jobOM, jobTN, educationalLevel, certificate, scoutTrainingLevel, dateLastTrainingLevelStudy });
+
+    const profileImage = req.file ? req.file.filename : null;
+    const UserCommander = new Commander({   FirstName, LastName,dateOfBirth, placeOfBirth, isParent, CIN,gender, fadherName, grandFadherName,   maritalStatus, adressTN, phoneTN, jobOM, jobTN, educationalLevel, certificate, scoutTrainingLevel, dateLastTrainingLevelStudy, profileImage })
+   
     await UserCommander.save();
     console.log(req.body)
 
@@ -36,7 +58,8 @@ const RegisterCommander= async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});
+}
 
 const updateCommander = async (req, res) => {
   try {

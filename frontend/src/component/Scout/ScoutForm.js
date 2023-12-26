@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ScoutCard from './ScoutCard';
 import {
@@ -30,6 +30,7 @@ const ScoutForm = () => {
     visaNumber: '',
     expiryDateVisa: '',
     chronicDiseases: '',
+    profileImage: 'filename.jpg',
   });
 
   const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
@@ -41,7 +42,19 @@ const ScoutForm = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setScout({
+          ...scout,
+          profileImage: reader.result,
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   const handleGenderChange = (e) => {
     setScout({ ...scout, gender: e.target.value });
   };
@@ -57,7 +70,7 @@ const ScoutForm = () => {
     console.log('Submitting Commander:', scout);
 
     try {
-      const response = await axios.post('http://localhost:7000/scouts', scout, {
+      const response = await axios.post('http://localhost:3000/scouts', scout, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -77,23 +90,25 @@ const ScoutForm = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#f0f0f0', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-    <Container maxWidth="sm">
+    <div style={{  backgroundImage: `url(${process.env.PUBLIC_URL}/444.jpg)`,
+    backgroundSize: 'cover', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Container maxWidth="lg" style={{ display: 'flex', justifyContent: 'space-between', marginLeft: '10px', marginRight: '10px' }}>
+   
       {showScoutCard ? (
         <ScoutCard scout={scout} onEditClick={handleEditClick} />
       ) : (
-        <Card sx={{ width: '150%', margin: 'auto', backgroundColor: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>
-        <CardContent>
-        <img
-              src={`${process.env.PUBLIC_URL}/Logo_scouts_oman.png`} 
-              alt="Logo"
-              style={{ width: '130px', marginRight: '50px', marginLeft:'620px' }}
-            />
-          <Typography variant="h5" component="div" gutterBottom>
-            Complete your informations
-          </Typography>
         <form onSubmit={handleSubmit}>
-          <TextField
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'stretch' }}>
+
+            <Card sx={{  height: '100%', width: '100%', backgroundColor: 'rgba(240, 240, 240, 0.7)', marginLeft: '10px', marginRight: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', backdropFilter: 'blur(10px)', }}>
+        <CardContent>
+        <div>
+    <Typography variant="h5" gutterBottom>
+      Complete your informations
+    </Typography>
+  </div>
+      <input type="file" name="profileImage" accept="image/*" onChange={handleFileChange} />
+           <TextField
             label="First Name"
             variant="outlined"
             fullWidth
@@ -153,7 +168,12 @@ const ScoutForm = () => {
           />
             
          
-          <RadioGroup
+         
+           </CardContent>
+            </Card>
+            <Card sx={{  height: '100%', width: '100%', backgroundColor: 'rgba(240, 240, 240, 0.7)',  marginLeft: '10px', marginRight: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', backdropFilter: 'blur(10px)' }}>
+              <CardContent>
+              <RadioGroup
             row
             name="gender"
             value={scout.gender}
@@ -168,8 +188,8 @@ const ScoutForm = () => {
             value={scout.chronicDiseases}
             onChange={handleChronicChange}
           >
-            <FormControlLabel value="You have chronic diseases" control={<Radio />} label="You have chronic diseases" />
-            <FormControlLabel value="You don't have chronic diseases" control={<Radio />} label="You don't have chronic diseases" />
+            <FormControlLabel value="I have chronic diseases" control={<Radio />} label="I have chronic diseases" />
+            <FormControlLabel value="I don't have chronic diseases" control={<Radio />} label="I don't have chronic diseases" />
            </RadioGroup>
            <FormControl fullWidth margin="normal">
                   <InputLabel>Blood Type</InputLabel>
@@ -230,15 +250,16 @@ const ScoutForm = () => {
             value={scout.expiryDateVisa}
             onChange={handleChange}
           />
+              </CardContent>
+            </Card>
+            </div>
         <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-          <Button type="submit" variant="contained" color="primary" size="large" style={{ backgroundColor: 'green', color: 'white' }}>
+          <Button type="submit" variant="contained" color="primary" size="large" style={{ backgroundColor: 'darkgreen', color: 'white' }}>
          Submit
          </Button>
         </div>
         </form>
-        </CardContent>
-       
-        </Card>
+        
       )}
        </Container>
     </div>
