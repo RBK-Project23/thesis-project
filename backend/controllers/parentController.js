@@ -1,7 +1,7 @@
 // controllers/parentController.js
 const multer = require('multer');
 const path = require('path');
-const Parent = require('../models/parent');
+const Parent = require('../models/Parent');
 
 const storage = multer.diskStorage({
   destination: './parents/',
