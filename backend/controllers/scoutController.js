@@ -1,7 +1,7 @@
 // controllers/scoutController.js
 const multer = require('multer');
 const path = require('path');
-const Scout = require('../models/scout');
+const Scout = require('../models/Scout');
 
 const storage = multer.diskStorage({
   destination: './scouts/',

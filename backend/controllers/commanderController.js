@@ -1,7 +1,7 @@
 // controllers/commanderController.js
 const multer = require('multer');
 const path = require('path');
-const Commander = require('../models/commander');
+const Commander = require('../models/Commander');
 
 const storage = multer.diskStorage({
   destination: './commanders/',
