@@ -8,7 +8,7 @@ const UserProfilCommander = () => {
   useEffect(() => {
     const fetchCommanders = async () => {
       try {
-        const response = await axios.get('/commanders');
+        const response = await axios.get('http://localhost:7000/commanders');
         setCommanders(response.data);
       } catch (error) {
         console.error('Error fetching commanders:', error);

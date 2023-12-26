@@ -38,7 +38,7 @@ const footers = [
     title: 'Scout Tunisia',
     description: [
       { label: 'About Us', url: '/about-us' },
-      { label: 'Contact Us', url: '/ContactUs' },
+      { label: 'Contact Us', url: '/contact-us' },
       { label: 'Privacy Policy', url: '/privacy-policy' },
     ],
   },

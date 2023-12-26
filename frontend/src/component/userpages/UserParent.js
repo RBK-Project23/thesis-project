@@ -8,7 +8,7 @@ const UserProfilParent = () => {
   useEffect(() => {
     const fetchParents = async () => {
       try {
-        const response = await axios.get('/parents');
+        const response = await axios.get('http://localhost:7000/parents');
         setParents(response.data);
       } catch (error) {
         console.error('Error fetching parents:', error);

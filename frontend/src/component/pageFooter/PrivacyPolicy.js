@@ -34,7 +34,7 @@ const PrivacyPolicy = () => {
               backgroundRepeat: "no-repeat",
               backgroundSize: "contain",
               backgroundPosition: "center center",
-              opacity: 0.1, // Lower the number for less contrast
+              opacity: 0.2, 
               zIndex: -1,
             },
             // Make sure the text is visible on top of the ::before pseudo-element
