@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Typography, Link, Grid } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -22,10 +23,10 @@ const GridItem = ({ footer }) => (
     <ul>
       {footer.description.map((item) => (
         <li key={item.label}>
-          <Link href={item.url} variant="subtitle1" style={{ color: 'white' }}>
-            {item.label}
-          </Link>
-        </li>
+        <Link component={RouterLink} to={item.url} variant="subtitle1" style={{ color: 'white' }}>
+          {item.label}
+        </Link>
+      </li>
       ))}
     </ul>
   </Grid>
@@ -36,9 +37,9 @@ const footers = [
   {
     title: 'Scout Tunisia',
     description: [
-      { label: 'About Us', url: '/AboutUs' },
+      { label: 'About Us', url: '/about-us' },
       { label: 'Contact Us', url: '/ContactUs' },
-      { label: 'Privacy Policy', url: '/PrivacyPolicy' }
+      { label: 'Privacy Policy', url: '/privacy-policy' },
     ],
   },
   {

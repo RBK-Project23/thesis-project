@@ -14,6 +14,8 @@ import Istimara from "./component/istimara";
 import GenerateIstimara from "./component/generateIstimara";
 import PrivateRoutes from './component/authentification/authentification';
 import UserProfilScout from "./component/userpages/UserScout";
+import AboutUs from "./component/pageFooter/AboutUs";
+import PrivacyPolicy from "./component/pageFooter/PrivacyPolicy";
 
 import axios from "axios";
 
@@ -43,6 +45,9 @@ function App() {
           <Route path="/register" element={<SignUp />} />
           <Route path="/استمارة-التسجيل" element={<Istimara />} />
           <Route path="/doc-istimara" element={<GenerateIstimara />} />
+          <Route path="/about-us" element={<AboutUs />} /> 
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
 
         </Routes>
       </Router>
