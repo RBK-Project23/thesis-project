@@ -77,7 +77,7 @@ const CommanderForm = () => {
     console.log('Submitting Commander:', commander);
 
     try {
-      const response = await axios.post('http://localhost:3000/commanders', commander, {
+      const response = await axios.post('http://localhost:7000/commanders', commander, {
         headers: {
           'Content-Type': 'application/json',
         },

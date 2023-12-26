@@ -16,6 +16,7 @@ import PrivateRoutes from './component/authentification/authentification';
 import UserProfilScout from "./component/userpages/UserScout";
 import AboutUs from "./component/pageFooter/AboutUs";
 import PrivacyPolicy from "./component/pageFooter/PrivacyPolicy";
+import ContactUs from "./component/pageFooter/ContactUs";
 
 import axios from "axios";
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/doc-istimara" element={<GenerateIstimara />} />
           <Route path="/about-us" element={<AboutUs />} /> 
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/contact-us" element={<ContactUs />} />
 
 
         </Routes>

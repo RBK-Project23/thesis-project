@@ -80,7 +80,7 @@ const ParentForm = () => {
     console.log('Submitting Commander:', parent);
 
     try {
-      const response = await axios.post('http://localhost:3000/parents', parent, {
+      const response = await axios.post('http://localhost:7000/parents', parent, {
         headers: {
           'Content-Type': 'application/json',
         },

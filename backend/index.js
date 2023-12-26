@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -5,7 +6,7 @@ const cors = require("cors");
 const session = require('express-session');
 const passport = require("passport");
 require('./models/passportConfig');
-require("dotenv").config();
+
 
 const app = express();
 
@@ -32,6 +33,8 @@ const userlogin = require('./routes/userlogin');
 const scoutRoutes = require('./routes/scoutRoutes');
 const commanderRoutes = require('./routes/commanderRoutes');
 const parentRoutes = require('./routes/parentRoutes');
+const emailRoutes = require('./routes/emailRoutes');
+
 
 app.use('/posts', postRoutes);
 app.use('/scoutprograms', scoutProgramRoutes);
@@ -39,6 +42,7 @@ app.use('/users', userlogin);
 app.use('/scouts', scoutRoutes);
 app.use('/commanders', commanderRoutes);
 app.use('/parents', parentRoutes);
+app.use('/email', emailRoutes);
 
 const CONNECTION_URL = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/scoutTunisian";
 const PORT = process.env.PORT || 7000;
