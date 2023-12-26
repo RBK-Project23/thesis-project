@@ -34,9 +34,11 @@ const ParentForm = () => {
     visaNumber: '',
     expiryDateVisa: '',
     chronicDiseases: '',
+    profileImage: '',
   });
 
   const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+  
   const [showParentCard, setShowParentCard] = useState(false);
 
   const handleChange = (e) => {
@@ -44,6 +46,20 @@ const ParentForm = () => {
       ...parent,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setParent({
+          ...parent,
+          profileImage: reader.result,
+        });
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleGenderChange = (e) => {
@@ -64,7 +80,7 @@ const ParentForm = () => {
     console.log('Submitting Commander:', parent);
 
     try {
-      const response = await axios.post('http://localhost:7000/parents', parent, {
+      const response = await axios.post('http://localhost:3000/parents', parent, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -84,22 +100,24 @@ const ParentForm = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#f0f0f0', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-    <Container maxWidth="sm">
+<div style={{  backgroundImage: `url(${process.env.PUBLIC_URL}/444.jpg)`,
+    backgroundSize: 'cover', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>   
+      <Container maxWidth="lg" style={{ display: 'flex', justifyContent: 'space-between', marginLeft: '10px', marginRight: '10px' }}>
       {showParentCard ? (
         <ParentCard parent={parent} onEditClick={handleEditClick} />
       ) : (
-        <Card sx={{ width: '150%', margin: 'auto',  backgroundColor: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>
+        <form onSubmit={handleSubmit}  encType="multipart/form-data">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'stretch' }}>
+                    <Card sx={{  height: '50%', width: '100%', backgroundColor: 'rgba(240, 240, 240, 0.7)', marginLeft: '10px', marginTop: '50px', marginBottom: '50px', marginRight: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', backdropFilter: 'blur(10px)', }}>
         <CardContent>
-        <img
-              src={`${process.env.PUBLIC_URL}/Logo_scouts_oman.png`} 
-              alt="Logo"
-              style={{ width: '130px', marginRight: '50px', marginLeft:'620px' }}
-            />
-          <Typography variant="h5" component="div" gutterBottom>
-            Complete your informations
-          </Typography>
-        <form onSubmit={handleSubmit}>
+     
+        <div>
+    <Typography variant="h5" gutterBottom>
+      Complete your informations
+    </Typography>
+  </div>
+          <input type="file" name="profileImage" accept="image/*" onChange={handleFileChange} />
+
           <TextField
             label="First Name"
             variant="outlined"
@@ -132,7 +150,10 @@ const ParentForm = () => {
             variant="outlined"
             fullWidth
             margin="normal"
-            type='date'
+            type="date"
+            InputLabelProps={{
+              shrink: true,
+            }}
             name="dateOfBirth"
             value={parent.dateOfBirth}
             onChange={handleChange}
@@ -173,8 +194,13 @@ const ParentForm = () => {
             value={parent.phoneTN}
             onChange={handleChange}
           />
-          {/* ... (similar modifications for other TextField components) */}
-          <RadioGroup
+   
+         
+          </CardContent>
+            </Card>
+            <Card sx={{  height: '40%', width: '100%', backgroundColor: 'rgba(240, 240, 240, 0.7)',  marginLeft: '10px', marginRight: '10px', marginTop: '50px', marginBottom: '50px',boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', backdropFilter: 'blur(10px)' }}>
+              <CardContent>
+              <RadioGroup
             row
             name="gender"
             value={parent.gender}
@@ -189,8 +215,8 @@ const ParentForm = () => {
             value={parent.participatedTunisianScoutRegiment}
             onChange={handleMembreChange}
           >
-            <FormControlLabel value="yes" control={<Radio />} label="Membre of the Tunisan Scouts Regiment" />
-            <FormControlLabel value="no" control={<Radio />} label="I'm not a Membre of the Tunisan Scouts Regiment" />
+            <FormControlLabel value="yes" control={<Radio />} label="Membre of the TSR" />
+            <FormControlLabel value="no" control={<Radio />} label="I'm not a Membre of the TSR" />
           </RadioGroup>
           <RadioGroup
             row
@@ -198,8 +224,8 @@ const ParentForm = () => {
             value={parent.chronicDiseases}
             onChange={handleChronicChange}
           >
-            <FormControlLabel value="You have chronic diseases" control={<Radio />} label="You have chronic diseases" />
-            <FormControlLabel value="You don't have chronic diseases" control={<Radio />} label="You don't have chronic diseases" />
+            <FormControlLabel value="You have chronic diseases" control={<Radio />} label="I have chronic diseases" />
+            <FormControlLabel value="You don't have chronic diseases" control={<Radio />} label="I don't have chronic diseases" />
            </RadioGroup>
            <FormControl fullWidth margin="normal">
                   <InputLabel>Blood Type</InputLabel>
@@ -239,7 +265,10 @@ const ParentForm = () => {
             variant="outlined"
             fullWidth
             margin="normal"
-            type='date'
+            type="date"
+            InputLabelProps={{
+              shrink: true,
+            }}
             name="expiryDatePassport"
             value={parent.expiryDatePassport}
             onChange={handleChange}
@@ -258,7 +287,10 @@ const ParentForm = () => {
             variant="outlined"
             fullWidth
             margin="normal"
-            type='date'
+            type="date"
+            InputLabelProps={{
+              shrink: true,
+            }}
             name="expiryDateVisa"
             value={parent.expiryDateVisa}
             onChange={handleChange}
@@ -269,23 +301,27 @@ const ParentForm = () => {
             fullWidth
             margin="normal"
             type="date"
+            InputLabelProps={{
+              shrink: true,
+            }}
             name="dateLastTrainingLevelStudy"
             value={parent.dateLastTrainingLevelStudy}
             onChange={handleChange}
           />
+           </CardContent>
+       </Card>
+       </div>
+
   <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
           <Button type="submit" variant="contained" color="primary" size="large" style={{ backgroundColor: 'green', color: 'white' }}>
   Submit
 </Button>
-</div>
+         </div>
         </form>
-        </CardContent>
        
-        </Card>
       )}
        </Container>
     </div>
   );
-};
-
+ }
 export default ParentForm;

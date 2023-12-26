@@ -18,6 +18,7 @@ const parentSchema = new mongoose.Schema({
     visaNumber: String,
     expiryDateVisa: String,
     chronicDiseases: String,
+    profileImage: String,
 });
 
 const Parent = mongoose.model('Parent', parentSchema);

@@ -11,7 +11,7 @@ const commanderSchema = new mongoose.Schema({
   isParent: String,
   fatherName: String,
   grandFatherName: String,
-  maritalStatus: String, // single/married/divorce/widower
+  maritalStatus: String, 
   addressTN: String,
   phoneTN: String,
   jobOM: String,
@@ -20,6 +20,7 @@ const commanderSchema = new mongoose.Schema({
   certificate: String,
   scoutTrainingLevel: String,
   dateLastTrainingLevelStudy: String,
+  profileImage: String,
  
 
  

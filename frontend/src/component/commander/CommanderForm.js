@@ -8,8 +8,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Button,
-  FormControl,
-  FormLabel,
+ 
 } from '@mui/material';
 
 import { Card, CardContent, Typography } from '@mui/material';
@@ -34,6 +33,7 @@ const CommanderForm = () => {
     certificate: '',
     scoutTrainingLevel: '',
     dateLastTrainingLevelStudy: '',
+     profileImage: 'filename.jpg',
   });
 
   const [showCommanderCard, setShowCommanderCard] = useState(false);
@@ -43,6 +43,20 @@ const CommanderForm = () => {
       ...commander,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setCommander({
+          ...commander,
+          profileImage: reader.result,
+        });
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleGenderChange = (e) => {
@@ -63,7 +77,7 @@ const CommanderForm = () => {
     console.log('Submitting Commander:', commander);
 
     try {
-      const response = await axios.post('http://localhost:7000/commanders', commander, {
+      const response = await axios.post('http://localhost:3000/commanders', commander, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -83,22 +97,23 @@ const CommanderForm = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#f0f0f0', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-    <Container maxWidth="sm">
+    <div style={{  backgroundImage: `url(${process.env.PUBLIC_URL}/444.jpg)`,
+    backgroundSize: 'cover', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>    
+          <Container maxWidth="lg" style={{ display: 'flex', justifyContent: 'space-between', marginLeft: '10px', marginRight: '10px' }}>
+
       {showCommanderCard ? (
         <CommanderCard commander={commander} onEditClick={handleEditClick} />
       ) : (
-        <Card sx={{ width: '130%', margin: 'auto',  backgroundColor: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>
+        <form onSubmit={handleSubmit}  encType="multipart/form-data">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'stretch' }}>
+        <Card sx={{  height: '100%', width: '100%', backgroundColor: 'rgba(240, 240, 240, 0.7)', marginLeft: '10px', marginTop: '50px', marginBottom: '50px', marginRight: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', backdropFilter: 'blur(10px)', }}>
         <CardContent>
-        <img
-              src={`${process.env.PUBLIC_URL}/Logo_scouts_oman.png`} 
-              alt="Logo"
-              style={{ width: '130px', marginRight: '50px', marginLeft:'530px' }}
-            />
-          <Typography variant="h5" component="div" gutterBottom>
-            Complete your informations
-          </Typography>
-        <form onSubmit={handleSubmit}>
+        <div>
+    <Typography variant="h5" gutterBottom>
+      Complete your informations
+    </Typography>
+  </div>
+          <input type="file" name="profileImage" accept="image/*" onChange={handleFileChange} />
           <TextField
             label="First Name"
             variant="outlined"
@@ -123,6 +138,9 @@ const CommanderForm = () => {
             fullWidth
             margin="normal"
             type="date"
+            InputLabelProps={{
+              shrink: true,
+            }}
             name="dateOfBirth"
             value={commander.dateOfBirth}
             onChange={handleChange}
@@ -145,7 +163,7 @@ const CommanderForm = () => {
             value={commander.CIN}
             onChange={handleChange}
           />
-          {/* ... (similar modifications for other TextField components) */}
+          
           <RadioGroup
             row
             name="gender"
@@ -175,6 +193,11 @@ const CommanderForm = () => {
             <FormControlLabel value="divorce" control={<Radio />} label="Divorce" />
             <FormControlLabel value="widower" control={<Radio />} label="Widower" />
           </RadioGroup>
+          </CardContent>
+            </Card>
+            <Card sx={{  height: '100%', width: '100%', backgroundColor: 'rgba(240, 240, 240, 0.7)',  marginLeft: '10px', marginTop: '50px', marginBottom: '50px', marginRight: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', backdropFilter: 'blur(10px)' }}>
+              <CardContent>
+         
           <TextField
             label="Address"
             variant="outlined"
@@ -235,19 +258,23 @@ const CommanderForm = () => {
             fullWidth
             margin="normal"
             type="date"
+            InputLabelProps={{
+              shrink: true,
+            }}
             name="dateLastTrainingLevelStudy"
             value={commander.dateLastTrainingLevelStudy}
             onChange={handleChange}
           />
-  <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-          <Button type="submit" variant="contained" color="primary" size="large" style={{ backgroundColor: 'green', color: 'white' }}>
-  Submit
-</Button>
-</div>
+           </CardContent>
+            </Card>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
+          <Button type="submit" variant="contained" color="primary" size="large" style={{ backgroundColor: 'darkgreen', color: 'white' }}>
+         Submit
+         </Button>
+        </div>
         </form>
-        </CardContent>
-       
-        </Card>
+        
       )}
        </Container>
     </div>

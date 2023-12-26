@@ -15,6 +15,7 @@ const scoutSchema = new mongoose.Schema({
   visaNumber: String,
   expiryDateVisa: String,
   chronicDiseases: String,
+  profileImage: String,
   
 });
 

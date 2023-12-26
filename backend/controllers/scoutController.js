@@ -1,5 +1,19 @@
 // controllers/scoutController.js
-const Scout = require('../models/Scout');
+const multer = require('multer');
+const path = require('path');
+const Scout = require('../models/scout');
+
+const storage = multer.diskStorage({
+  destination: './scouts/',
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1000000 }, 
+}).single('profileImage'); 
 
 
 const getAllScouts = async (req, res) => {
@@ -25,10 +39,19 @@ const getScoutById = async (req, res) => {
 
 const RegisterScout = async (req, res) => {
 
+  upload(req, res, async function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Error uploading file' });
+    }
+
  
   try {
-    const { FirstName, LastName, age, dateOfBirth, Adress_OM,  PhoneOM, Blood_type, passportNumber, expiryDatePassport, Gender,  visaNumber, expiryDateVisa,   chronicDiseases } = req.body;
-    const UserScout = new Scout({  FirstName, LastName, age, dateOfBirth, Adress_OM,  PhoneOM, Blood_type, passportNumber, expiryDatePassport, Gender,  visaNumber, expiryDateVisa,   chronicDiseases  });
+    const { FirstName, LastName, age, dateOfBirth, Adress_OM,  PhoneOM, Blood_type, passportNumber, expiryDatePassport, gender,  visaNumber, expiryDateVisa,   chronicDiseases } = req.body;
+
+    const profileImage = req.file ? req.file.filename : null;
+    
+    const UserScout = new Scout({  FirstName, LastName, age, dateOfBirth, Adress_OM,  PhoneOM, Blood_type, passportNumber, expiryDatePassport, gender,  visaNumber, expiryDateVisa,   chronicDiseases, profileImage  });
     await UserScout.save();
     console.log(req.body)
 
@@ -37,8 +60,8 @@ const RegisterScout = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
-
+});
+}
 
 const updateScout = async (req, res) => {
   try {
