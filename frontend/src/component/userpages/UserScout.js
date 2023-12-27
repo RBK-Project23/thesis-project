@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ScoutForm from '../Scout/ScoutForm';
+import Footer from "../footer";
 
 const UserProfilScout = () => {
   const [ scouts, setScouts] = useState([]);
@@ -25,6 +26,7 @@ const UserProfilScout = () => {
   return (
     <div>
       <ScoutForm onScoutAdded={handleScoutAdded} />
+      <Footer />
     </div>
   );
 };

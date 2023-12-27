@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CommanderForm from '../commander/CommanderForm';
+import Footer from "../footer";
 
 const UserProfilCommander = () => {
   const [commanders, setCommanders] = useState([]);
@@ -25,6 +26,7 @@ const UserProfilCommander = () => {
   return (
     <div>
       <CommanderForm onCommanderAdded={handleCommanderAdded} />
+      <Footer />
     </div>
   );
 };
