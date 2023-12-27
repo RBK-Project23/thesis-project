@@ -6,6 +6,7 @@ import Posts from "./Posts/Posts";
 import Form from "./Form/Form";
 import { getPosts } from "../actions/posts";
 import memories from "../images/Logo_Scouts.jpg";
+import Footer from "./footer";
 
 const Events = () => {
   const [currentId, setCurrentId] = useState(0);
@@ -16,6 +17,7 @@ const Events = () => {
   }, [currentId, dispatch]);
 
   return (
+    <>
     <Container maxWidth="lg">
       <AppBar
         position="static"
@@ -67,6 +69,10 @@ const Events = () => {
         </Container>
       </Grow>
     </Container>
+    <Footer />
+    
+    </>
+    
   );
 };
 

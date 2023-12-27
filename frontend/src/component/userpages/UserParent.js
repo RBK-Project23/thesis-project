@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ParentForm from '../parent/ParentForm';
+import Footer from "../footer";
 
 const UserProfilParent = () => {
   const [parents, setParents] = useState([]);
@@ -25,6 +26,7 @@ const UserProfilParent = () => {
   return (
     <div>
       <ParentForm onParentAdded={handleParentAdded} />
+      <Footer />
     </div>
   );
 };

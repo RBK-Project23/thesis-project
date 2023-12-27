@@ -32,3 +32,18 @@
 * [Google Search](https://google.com) to search for the correct page on any of the documentation above
 
 
+# .env file :
+
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=root
+JWT_SECRET=mysecret
+
+# Email credentials for Nodemailer
+EMAIL_USER= your @ email
+EMAIL_PASS= your password APP
+RECEIVING_EMAIL= your @ reiciving email 
+
+
+
+
