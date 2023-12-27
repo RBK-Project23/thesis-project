@@ -30,19 +30,32 @@ const GridItem = ({ footer }) => (
     <ul>
       {footer.description.map((item, index) => (
         <li key={index}>
-          <Link
-            component={RouterLink}
-            to={item.url}
-            variant="subtitle1"
-            style={{ color: "white" }}
-          >
-            {item.label}
-          </Link>
+          {footer.title === "Follow Us" ? (
+            <Link
+              href={item.url}
+              variant="subtitle1"
+              style={{ color: "white" }}
+              target="_blank"
+              rel="noopener noreferrer" 
+            >
+              {item.label}
+            </Link>
+          ) : (
+            <Link
+              component={RouterLink}
+              to={item.url}
+              variant="subtitle1"
+              style={{ color: "white" }}
+            >
+              {item.label}
+            </Link>
+          )}
         </li>
       ))}
     </ul>
   </Grid>
 );
+
 
 const footers = [
   {
@@ -71,12 +84,12 @@ const footers = [
   {
     title: "Follow Us",
     description: [
-      { label: "Facebook", url: "/Facebook" },
-      { label: "Twitter", url: "/Twitter" },
-      { label: "Instagram", url: "/Instagram" },
-      { label: "LinkedIn", url: "/LinkedIn" },
+      { label: "Facebook", url: "https://www.facebook.com/TSGOman/" },
+      { label: "Twitter", url: "https://twitter.com/" },
+      { label: "Instagram", url: "https://www.instagram.com/" },
+      { label: "LinkedIn", url: "https://www.linkedin.com/" },
     ],
-  },
+  }
 ];
 
 const Footer = () => {
