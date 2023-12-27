@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import Posts from "./Posts/Posts";
 import Form from "./Form/Form";
 import { getPosts } from "../actions/posts";
-import memories from "../images/Logo_Scouts.jpg";
+import logo1 from "../images/logo2.jpeg";
+import logo2 from "../images/logo1.jpeg";
 import Footer from "./footer";
 
 const Events = () => {
@@ -32,8 +33,8 @@ const Events = () => {
         }}
       >
         <img
-          src={memories}
-          alt="memories"
+          src={logo1}
+          alt="logo1"
           height="60"
           sx={{
             marginRight: "10px",
@@ -45,10 +46,19 @@ const Events = () => {
           sx={{
             color: 'rgba(239, 82, 87, 1)', 
             marginLeft: '20px',
+            marginRight: '20px'
           }}
         >
           Events
         </Typography>
+        <img
+          src={logo2}
+          alt="logo2"
+          height="60"
+          sx={{
+            marginLeft: "30px",
+          }}
+        />
       </AppBar>
 
       <Grow in>

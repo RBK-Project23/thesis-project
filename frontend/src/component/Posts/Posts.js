@@ -16,14 +16,23 @@ const Posts = ({ setCurrentId }) => {
   ) : (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <Grid container alignItems="stretch" spacing={3}>
-        {posts.map((post) => (
+        {sortedPosts.map((post) => (
           <Grid
             key={post._id}
             item
             xs={12}
-            sm={6}
-            md={6}
-            sx={{ margin: (theme) => theme.spacing(1) }}
+            sm={5.7}
+            md={5.7}
+            sx={{
+              margin: (theme) => theme.spacing(1),
+              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+              borderRadius: "8px",
+              transition: "transform 0.2s",
+              "&:hover": {
+                transform: "scale(1.03)",
+              },
+              backgroundColor: "#fff", 
+            }}
           >
             <Post
               post={post}

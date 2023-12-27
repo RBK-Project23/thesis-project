@@ -129,7 +129,7 @@ const PrivacyPolicy = () => {
             <Typography variant="body1">
               Pour toute question ou préoccupation concernant notre politique de
               confidentialité, veuillez nous contacter à
-              [scouting.oman@gmail.com].
+              [tsgoman@gmail.com].
             </Typography>
           </div>
         </Paper>
