@@ -7,32 +7,39 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { Card, CardContent, Typography } from '@mui/material';
 import Container from "@mui/material/Container";
 import { ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 import { createTheme } from "@mui/material/styles";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
-const fonts = {
-  Roboto: {
-    normal: "Roboto-Regular.ttf",
-    bold: "Roboto-Medium.ttf",
-    italics: "Roboto-Italic.ttf",
-    bolditalics: "Roboto-MediumItalic.ttf",
-  },
-  Arial: {
-    normal: "Arial.ttf",
-    bold: "Arial-Bold.ttf",
-    italics: "Arial-Italic.ttf",
-    bolditalics: "Arial-BoldItalic.ttf",
-  },
-};
-
-pdfMake.fonts = fonts;
+//const fonts = {
+//  Roboto: {
+//    normal: "Roboto-Regular.ttf",
+//    bold: "Roboto-Medium.ttf",
+//    italics: "Roboto-Italic.ttf",
+//    bolditalics: "Roboto-MediumItalic.ttf",
+//  },
+//  Arial: {
+//    normal: "Arial.ttf",
+//    bold: "Arial-Bold.ttf",
+//    italics: "Arial-Italic.ttf",
+//    bolditalics: "Arial-BoldItalic.ttf",
+//  },
+//};
+//
+//pdfMake.fonts = fonts;
 
 export default function GenerateIstimara() {
+  const [selectedGender, setSelectedGender] = useState("female");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -142,51 +149,41 @@ export default function GenerateIstimara() {
           stack: [
             {
               text: `
-    \n\n\n\n
-    \n\n\n\nLes Scouts Tunisiens                            L'Association SCOUTS tunisienne à Oman
-    \n
-    \n                                 Formulaire d'inscription\n 
-    Régiment : ${formData.regiment} Unité : ${formData.unit1} Section : ${
-                formData.section1
+              \n\n\n\n
+              \n\n\n\nLes Scouts Tunisiens                            L'Association SCOUTS tunisienne à Oman
+              \n
+              \n                                 Formulaire d'inscription\n 
+              ${formData.regiment ? `Régiment : ${formData.regiment}` : ''} 
+              ${formData.unit1 ? `Unité : ${formData.unit1}` : ''} 
+              ${formData.section1 ? `Section : ${formData.section1}` : ''}
+              Nom et prénom : ${formData.fullname || ''}
+              Date et lieu de naissance : ${formData.date ? `${formData.date} - ` : ''}${formData.placebirth || ''}
+              Numéro de passeport : ${formData.passeportNum || ''} Date d'expiration : ${formData.dateEndPass || ''}
+              Numéro de visa à Oman : ${formData.visaNum || ''} Date d'expiration : ${formData.dateEndVisa || ''}
+              Genre : ${formData.gender === 'male' ? 'Masculin' : formData.gender === 'female' ? 'Féminin' : ''} . 
+              Groupe sanguin : ${formData.bloodType || ''}
+              Souffrez-vous de maladies chroniques : ${formData.yes1 === 'yes' ? 'Oui' : 'Non'}
+              ${formData.yes1 === 'yes' && formData.chronicDiseases ? `Les maladies chroniques : ${formData.chronicDiseases}` : ''}
+              ${formData.chronicDiseases ? `Nom du responsable légal : ${formData.chronicDiseases}` : ''}
+              Profession : ${formData.job || ''}
+              Numéro de téléphone : ${formData.phone || ''}   Numéro de téléphone de secondaire : ${formData.phone2 || ''}
+              Adresse à Oman : ${formData.Adress_OM || ''}
+              Adresse en Tunisie : ${formData.addressTN || ''}
+              Membre de l'association SCOUTS tunisienne à Oman : ${
+                formData.yes === 'yes' ? 'Oui' : 'Non'
               }
-    Nom et prénom : ${formData.fullname}
-    Date et lieu de naissance : ${formData.date} - ${formData.placebirth}
-    Numéro de passeport : ${formData.passeportNum} Date d'expiration : ${
-                formData.dateEndPass
-              }
-    Numéro de visa à Oman : ${formData.visaNum} Date d'expiration : ${
-                formData.dateEndVisa
-              }
-    Genre : ${
-      formData.gender === "male" ? "Masculin" : "Féminin"
-    } . Groupe sanguin : ${formData.bloodType}
-    Souffrez-vous de maladies chroniques : ${
-      formData.yes1 === "yes" ? "Oui" : "Non"
-    }
-    Nom du responsable légal : ${formData.fadherName} Profession : ${
-                formData.job
-              }
-    Numéro de téléphone : ${
-      formData.phone
-    }   Numéro de téléphone de secondaire : ${formData.phone2}
-    Adresse à Oman : ${formData.Adress_OM}
-    Adresse en Tunisie : ${formData.addressTN}
-    Membre de l'association SCOUTS tunisienne à Oman : ${
-      formData.yes === "yes" ? "Oui" : "Non"
-    }
-    (En cas de participation du tuteur au Régiment Scout Tunisien au Sultanat d’Oman)
-    C.I.N : ${formData.cin} Unité : ${formData.unit} Section : ${
-                formData.section
-              }
-    Je certifie la véracité des informations mentionnées ci-dessus 
-    Signature
-    `,
-              style: "subheader",
-              absolutePosition: { x: 60, y: 40 }, // Adjust the coordinates as needed
+              (En cas de participation du tuteur au Régiment Scout Tunisien au Sultanat d’Oman)
+              ${formData.cin ? `C.I.N : ${formData.cin}` : ''} 
+              ${formData.unit ? `Unité : ${formData.unit}` : ''} 
+              ${formData.section ? `Section : ${formData.section}` : ''}
+              Je certifie la véracité des informations mentionnées ci-dessus 
+              Signature
+              `,
+              style: 'subheader',
+              absolutePosition: { x: 60, y: 40 },
             },
           ],
         },
-
         // End of additional content
       ],
       styles: {
@@ -207,25 +204,86 @@ export default function GenerateIstimara() {
   };
 
   const defaultTheme = createTheme();
+  const [healthCondition, setHealthCondition] = useState('no');
+  const [participation, setParticipation] = useState('no');
+  const [Blood, setBlood] = useState('');
+
+  const handleChangeParticipation = (event) => {
+    setParticipation(event.target.value);
+  };
+  const handleChange = (event) => {
+    setHealthCondition(event.target.value);
+  };
+  const handleChangeBlood = (event) => {
+    setBlood(event.target.value);
+  };
+  const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
+        <div
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/20333.jpg)`,
+        backgroundSize: 'cover',
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Container
+        maxWidth="lg"
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginLeft: '10px',
+          marginRight: '10px',
+          flexDirection: 'column',
+          alignItems: 'center',
+          margin: 'auto',
+          marginTop: '20px', // Add top margin if needed
+        }}
+      >
+          <Box
+            sx={{
+              marginTop: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              marginLeft: '20px',
+              marginRight: '20px',
+            }}
+          >
           <Box
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+            sx={{ mt: 4 }}
           >
+  <Card
+                sx={{
+                  height: '1200 vh', // Adjust the height as needed
+                  width: '100%',
+                  backgroundColor: 'rgba(240, 240, 240, 0.7)',
+                  marginLeft: '10px',
+                  marginRight: '10px',
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                  backdropFilter: 'blur(10px)',
+                }}
+              >
+             <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="fullname"
+                  label="Nom et prénom"
+                  name="fullname"
+                  autoComplete="family-name"
+                  sx={{ mb: 2 }}
+
+                />
+              </Grid>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={4}>
                 <TextField
@@ -259,13 +317,15 @@ export default function GenerateIstimara() {
                   autoComplete="family-name"
                 />
               </Grid>
-              <Grid item xs={12}>
+             
+
+              <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="fullname"
-                  label="Nom et prénom"
-                  name="fullname"
+                  id="placebirth"
+                  label=" lieu de naissance"
+                  name="placebirth"
                   autoComplete="family-name"
                 />
               </Grid>
@@ -286,9 +346,9 @@ export default function GenerateIstimara() {
                 <TextField
                   required
                   fullWidth
-                  id="placebirth"
-                  label=" lieu de naissance"
-                  name="placebirth"
+                  id="passeportNum"
+                  label=" Numéro de passeport"
+                  name="passeportNum"
                   autoComplete="family-name"
                 />
               </Grid>
@@ -305,13 +365,14 @@ export default function GenerateIstimara() {
                   }}
                 />
               </Grid>
+              
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="passeportNum"
-                  label=" Numéro de passeport"
-                  name="passeportNum"
+                  id="visaNum"
+                  label="Numéro civil au Sultanat"
+                  name="visaNum"
                   autoComplete="family-name"
                 />
               </Grid>
@@ -328,68 +389,88 @@ export default function GenerateIstimara() {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="visaNum"
-                  label="Numéro civil au Sultanat"
-                  name="visaNum"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="bloodType"
-                  label="Groupe sanguin"
-                  name="bloodType"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              {/* Gender checkboxes */}
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  component="h6"
-                  variant="subtitle1"
-                  color="textSecondary"
-                  style={{ marginLeft: "150px" }}
-                >
-                  Sexe
-                </Typography>
-
-                <FormControlLabel
-                  control={
-                    <Checkbox name="gender" value="female" color="primary" />
-                  }
-                  label="Féminin"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox name="gender" value="male" color="primary" />
-                  }
-                  label="Mâle"
-                />
-              </Grid>
+             
               <Grid item xs={12}>
-                <Typography
-                  component="h6"
-                  variant="subtitle1"
-                  color="textSecondary"
-                  style={{ marginLeft: "230px" }}
-                >
-                  Vous souffrez de maladies chroniques ?
-                </Typography>
-                <FormControlLabel
-                  control={<Checkbox name="no1" value="no" color="primary" />}
-                  label="Non"
-                />
-                <FormControlLabel
-                  control={<Checkbox name="yes1" value="yes" color="primary" />}
-                  label="Oui"
-                />
-              </Grid>
+              <FormControl fullWidth>
+        <InputLabel id="bloodType-label">Groupe sanguin</InputLabel>
+        <Select
+          labelId="bloodType-label"
+          id="bloodType"
+          label="Groupe sanguin"
+          name="bloodType"
+          value={Blood}
+          onChange={handleChangeBlood}
+        >
+          {bloodTypes.map((type) => (
+            <MenuItem key={type} value={type}>
+              {type}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+</Grid>
+              {/* Gender checkboxes */}
+              <Grid item xs={12} >
+  <Typography
+    component="h6"
+    variant="subtitle1"
+    color="textSecondary"
+  //  style={{ marginLeft: "150px" }}
+  >
+    Sexe
+  </Typography>
+  <RadioGroup
+    name="gender"
+    value={selectedGender}
+    onChange={(e) => setSelectedGender(e.target.value)}
+  //  style={{ marginLeft: "150px" }}
+  >
+    <FormControlLabel
+      value="female"
+      control={<Radio color="primary" />}
+      label="Féminin"
+    />
+    <FormControlLabel
+      value="male"
+      control={<Radio color="primary" />}
+      label="Mâle"
+    />
+  </RadioGroup>
+</Grid>
+<Grid item xs={12}>
+        <Typography
+          component="h6"
+          variant="subtitle1"
+          color="textSecondary"
+        //  style={{ marginLeft: '230px' }}
+        >
+          Vous souffrez de maladies chroniques ?
+        </Typography>
+        <FormControlLabel
+          control={<Radio name="healthCondition" value="no" color="primary" />}
+          label="Non"
+          checked={healthCondition === 'no'}
+          onChange={handleChange}
+        />
+        <FormControlLabel
+          control={<Radio name="healthCondition" value="yes" color="primary" />}
+          label="Oui"
+          checked={healthCondition === 'yes'}
+          onChange={handleChange}
+        />
+      </Grid>
+      {healthCondition === 'yes' && (
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            id="chronicDiseases"
+            label="Veuillez citer les maladies chroniques"
+            name="chronicDiseases"
+            autoComplete="family-name"
+          />
+        </Grid>
+          )}
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -413,6 +494,16 @@ export default function GenerateIstimara() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  required
+                  fullWidth
+                  id="phone"
+                  label="Numéro de téléphone"
+                  name="phone"
+                  autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
                   autoComplete="given-name"
                   name="phone2"
                   required
@@ -422,16 +513,7 @@ export default function GenerateIstimara() {
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="phone"
-                  label="Numéro de téléphone"
-                  name="phone"
-                  autoComplete="family-name"
-                />
-              </Grid>
+             
               <Grid item xs={12}>
                 <TextField
                   required
@@ -452,97 +534,107 @@ export default function GenerateIstimara() {
                   autoComplete="family-name"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <Typography
-                  component="h6"
-                  variant="subtitle1"
-                  color="textSecondary"
-                  style={{ marginLeft: "130px" }}
-                >
-                  Participé au Régiment Scout Tunisien au Sultanat d'Oman{" "}
-                </Typography>
-                <FormControlLabel
-                  control={<Checkbox name="no" value="no" color="primary" />}
-                  label="Non"
-                />
-                <FormControlLabel
-                  control={<Checkbox name="yes" value="yes" color="primary" />}
-                  label="Oui"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <p>
-                  (En cas de participation du tuteur au Régiment Scout Tunisien
-                  au Sultanat d'Oman)
-                </p>{" "}
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  required
-                  fullWidth
-                  id="section"
-                  label="Section"
-                  name="section"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  autoComplete="given-name"
-                  name="unit"
-                  required
-                  fullWidth
-                  id="unit"
-                  label="Unité"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  autoComplete="given-name"
-                  name="cin"
-                  required
-                  fullWidth
-                  id="cin"
-                  label="C.I.N"
-                  autoFocus
-                />
-              </Grid>
-            </Grid>
 
-            {/*
-          <Button
-              type="submit"
+              <Grid item xs={12}>
+        <Typography
+          component="h6"
+          variant="subtitle1"
+          color="textSecondary"
+         // style={{ marginLeft: '130px' }}
+        >
+          Participé au Régiment Scout Tunisien au Sultanat d'Oman{' '}
+        </Typography>
+        <FormControlLabel
+          control={<Radio name="participation" value="no" color="primary" />}
+          label="Non"
+          checked={participation === 'no'}
+          onChange={handleChangeParticipation}
+        />
+        <FormControlLabel
+          control={<Radio name="participation" value="yes" color="primary" />}
+          label="Oui"
+          checked={participation === 'yes'}
+          onChange={handleChangeParticipation}
+        />
+      </Grid>
+      {participation === 'yes' && (
+        <React.Fragment>
+          <Grid item xs={12}>
+            <p>
+              (En cas de participation du tuteur au Régiment Scout Tunisien au
+              Sultanat d'Oman)
+            </p>{' '}
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              required
               fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
-        */}
+              id="section"
+              label="Section"
+              name="section"
+              autoComplete="family-name"
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              autoComplete="given-name"
+              name="unit"
+              required
+              fullWidth
+              id="unit"
+              label="Unité"
+              autoFocus
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              autoComplete="given-name"
+              name="cin"
+              required
+              fullWidth
+              id="cin"
+              label="C.I.N"
+              autoFocus
+            />
+          </Grid>
+        </React.Fragment>
+      )}
+       </Grid>
+
+         
 
             <div style={{ display: "flex" }}>
-              <Grid item xs={12} sm={6}>
-                <p style={{ marginLeft: "20px" }}>Signature</p>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <p style={{ marginLeft: "140px" }}>
+             
+              <Grid item xs={12} >
+                <p 
+               >
                   Je certifie que les informations ci-dessus sont exactes{" "}
                 </p>
               </Grid>
             </div>
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                padding: '20px',
+              }}
             >
-              Imprimer
-            </Button>
+            <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+                style={{ backgroundColor: 'darkgreen', color: 'white' }}
+              >
+                Submit
+              </Button>
+              </div>
+            </Card>
           </Box>
         </Box>
       </Container>
+      </div>
     </ThemeProvider>
+    
   );
 }
