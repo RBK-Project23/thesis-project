@@ -3,39 +3,20 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { Card, CardContent, Typography } from '@mui/material';
+import { Card, Typography } from '@mui/material';
 import Container from "@mui/material/Container";
 import { ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
 import { createTheme } from "@mui/material/styles";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
-//const fonts = {
-//  Roboto: {
-//    normal: "Roboto-Regular.ttf",
-//    bold: "Roboto-Medium.ttf",
-//    italics: "Roboto-Italic.ttf",
-//    bolditalics: "Roboto-MediumItalic.ttf",
-//  },
-//  Arial: {
-//    normal: "Arial.ttf",
-//    bold: "Arial-Bold.ttf",
-//    italics: "Arial-Italic.ttf",
-//    bolditalics: "Arial-BoldItalic.ttf",
-//  },
-//};
-//
-//pdfMake.fonts = fonts;
+
 
 export default function GenerateIstimara() {
   const [selectedGender, setSelectedGender] = useState("female");
