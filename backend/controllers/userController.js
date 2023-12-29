@@ -8,8 +8,8 @@ module.exports = {
 
     register: async (req, res) => {
         try {
-            console.log(req.body);
-          const { email, password,confirmPassword, firstName, lastName, active } = req.body;
+          console.log(req.body);
+          const { email, password,confirmPassword, firstName, lastName, active, type_user, status } = req.body;
       
           if (password !== confirmPassword) {
             return res.status(400).send("Passwords do not match.");
@@ -21,7 +21,9 @@ module.exports = {
             email,
             firstName,
             lastName,
-            active
+            active,
+            type_user,
+            status
            
           });
 
