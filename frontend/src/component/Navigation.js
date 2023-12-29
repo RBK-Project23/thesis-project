@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome, FaSignInAlt, FaUserPlus, FaSignOutAlt } from 'react-icons/fa';
+import { jwtDecode } from 'jwt-decode';
+
 
 
 
@@ -9,6 +11,19 @@ const Navigation = () => {
   const isAuthenticated = () => {
     return localStorage.getItem('token') != null;
   };
+  const isAdmin = () => {
+    const token = localStorage.getItem('token');
+  
+    // Check if token exists and is a string
+    if (typeof token === 'string' && token.length > 0) {
+      const decodedToken = jwtDecode(token);
+  
+      return decodedToken.email === 'admin@gmail.com';
+    }
+  
+    return false;
+  };
+  
 
   
   const handleLogout = () => {
@@ -45,6 +60,13 @@ const Navigation = () => {
           <li id='register'>
             <Link to="/register">
               <FaUserPlus /> Register 
+            </Link>
+          </li>
+        )}
+        {isAdmin() && (
+          <li id='dashboard'>
+            <Link to="/dashborad">
+              <FaSignInAlt /> Dashboard
             </Link>
           </li>
         )}

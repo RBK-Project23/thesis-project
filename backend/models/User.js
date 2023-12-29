@@ -13,10 +13,9 @@ const userSchema = new mongoose.Schema({
   
  
   addressOM: { type: String },
-  type_user: { type: String, enum: ['admin', 'scout', 'commander', 'parent']},
-  blood_type: { type: String },
-  phoneOM: { type: String },
-  photo: { type: String },
+  type_user: { type: String},
+  status: {type: Boolean}
+ 
 
 });
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });

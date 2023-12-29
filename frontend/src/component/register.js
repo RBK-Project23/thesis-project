@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import InputSelect from '../component/input/inputSelect';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -32,6 +34,12 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const [selectedRole, setSelectedRole] = useState('');
+
+  // Callback function to update the state
+  const handleRoleChange = (newValue) => {
+    setSelectedRole(newValue);
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -44,6 +52,8 @@ export default function SignUp() {
       lastName: data.get('lastName'),
       confirmPassword: data.get('confirm password'),
       active:true,
+      type_user:selectedRole,
+      status:false
      
     };
     try {
@@ -58,6 +68,7 @@ export default function SignUp() {
     }
   
   };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -132,6 +143,10 @@ export default function SignUp() {
                   autoComplete="confirm-password"
                 />
               </Grid>
+              <Grid item xs={12}>
+              <InputSelect onRoleChange={handleRoleChange} />
+              </Grid>
+              
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
