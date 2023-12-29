@@ -158,12 +158,13 @@ export default function GenerateIstimara() {
               ${formData.unit ? `Unité : ${formData.unit}` : ''} 
               ${formData.section ? `Section : ${formData.section}` : ''}
               Je certifie la véracité des informations mentionnées ci-dessus 
-              Signature
+              ${'                                      '} Signature
               `,
               style: 'subheader',
               absolutePosition: { x: 60, y: 40 },
             },
           ],
+          
         },
         // End of additional content
       ],
@@ -452,6 +453,17 @@ export default function GenerateIstimara() {
           />
         </Grid>
           )}
+          <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="fadherName"
+                  required
+                  fullWidth
+                  id="fadherName"
+                  label="Nom du parent"
+                  autoFocus
+                />
+              </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -462,17 +474,7 @@ export default function GenerateIstimara() {
                   autoComplete="family-name"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="fadherName"
-                  required
-                  fullWidth
-                  id="fadherName"
-                  label="Nom du tuteur"
-                  autoFocus
-                />
-              </Grid>
+              
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -490,7 +492,7 @@ export default function GenerateIstimara() {
                   required
                   fullWidth
                   id="phone2"
-                  label="Numéro de téléphone de secondaire"
+                  label="Numéro de téléphone secondaire"
                   autoFocus
                 />
               </Grid>
