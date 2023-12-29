@@ -2,23 +2,23 @@ import React from "react";
 import { Grid, CircularProgress, Box } from "@mui/material";
 import { useSelector } from "react-redux";
 
-import Post from "./Post/Post";
+import ScoutsProgram from "./ScoutsProgram/ScoutsProgram";
 
-const Posts = ({ setCurrentId }) => {
-  const posts = useSelector((state) => state.posts);
+const ScoutsPrograms = ({ setCurrentId }) => {
+  const scoutPrograms = useSelector((state) => state.scoutPrograms);
 
-  const sortedPosts = posts.sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  const sortedScoutPrograms = scoutPrograms.sort(
+    (a, b) => new Date(b.startDate) - new Date(a.startDate)
   );
 
-  return !posts.length ? (
+  return !scoutPrograms.length ? (
     <CircularProgress />
   ) : (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <Grid container alignItems="stretch" spacing={3}>
-        {sortedPosts.map((post) => (
+        {sortedScoutPrograms.map((program) => (
           <Grid
-            key={post._id}
+            key={program._id}
             item
             xs={12}
             sm={5.7}
@@ -34,8 +34,8 @@ const Posts = ({ setCurrentId }) => {
               backgroundColor: "#fff",
             }}
           >
-            <Post
-              post={post}
+            <ScoutsProgram
+              program={program}
               setCurrentId={setCurrentId}
               sx={{ textAlign: "center" }}
             />
@@ -46,4 +46,4 @@ const Posts = ({ setCurrentId }) => {
   );
 };
 
-export default Posts;
+export default ScoutsPrograms;

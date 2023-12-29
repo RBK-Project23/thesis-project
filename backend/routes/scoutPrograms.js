@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const scoutProgramsController = require('../controllers/scoutProgramsController');
+const scoutProgramController = require('../controllers/scoutProgramsController');
 
-router.get('/', scoutProgramsController.getScoutPrograms);
-router.post('/', scoutProgramsController.createScoutProgram);
-
+router.get('/', scoutProgramController.getScoutPrograms);
+router.post('/', scoutProgramController.createScoutProgram);
+router.get('/:id', scoutProgramController.getScoutProgram);
+router.patch('/:id', scoutProgramController.updateScoutProgram);
+router.delete('/:id', scoutProgramController.deleteScoutProgram);
 
 module.exports = router;

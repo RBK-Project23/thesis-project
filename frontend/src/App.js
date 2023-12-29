@@ -14,6 +14,7 @@ import AboutUs from "./component/pageFooter/AboutUs";
 import PrivacyPolicy from "./component/pageFooter/PrivacyPolicy";
 import ContactUs from "./component/pageFooter/ContactUs";
 import EventDetail from "./component/EventDetail";
+import ScoutsProgramsPage from "./component/ScoutsPrograms";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/events/:id" element={<EventDetail />} />
+          <Route path="/scouts-programs" element={<ScoutsProgramsPage />} />
         </Routes>
       </Router>
     </>
