@@ -1,30 +1,35 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
-import InputSelect from '../component/input/inputSelect';
-import { useState } from 'react';
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
+import InputSelect from "../component/input/inputSelect";
+import { useState } from "react";
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
@@ -34,7 +39,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const [selectedRole, setSelectedRole] = useState('');
+  const [selectedRole, setSelectedRole] = useState("");
 
   // Callback function to update the state
   const handleRoleChange = (newValue) => {
@@ -43,32 +48,31 @@ export default function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
- 
 
     const postData = {
-      email: data.get('email'),
-      password: data.get('password'),
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      confirmPassword: data.get('confirm password'),
-      active:true,
-      type_user:selectedRole,
-      status:false
-     
+      email: data.get("email"),
+      password: data.get("password"),
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
+      confirmPassword: data.get("confirm password"),
+      active: true,
+      type_user: selectedRole,
+      status: false,
     };
     try {
       // Make a POST request to your server
-      const response = await axios.post('http://localhost:7000/users/register', postData);
+      const response = await axios.post(
+        "http://localhost:7000/users/register",
+        postData
+      );
       console.log(response.data);
-    alert('registration succefully!');
-    window.location.reload();
+      alert("registration succefully!");
+      window.location.reload();
     } catch (error) {
-      console.error('Error during registration:', error);
+      console.error("Error during registration:", error);
       // Handle error here (e.g., show error message)
     }
-  
   };
-
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -77,18 +81,23 @@ export default function SignUp() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-          S'inscrire
+            S'inscrire
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -144,12 +153,14 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-              <InputSelect onRoleChange={handleRoleChange} />
+                <InputSelect onRoleChange={handleRoleChange} />
               </Grid>
-              
+
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  control={
+                    <Checkbox value="allowExtraEmails" color="primary" />
+                  }
                   label="Je souhaite recevoir les mises à jour et les actualités des Scouts par e-mail."
                 />
               </Grid>
@@ -160,12 +171,12 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-             Inscription
+              Inscription
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                Vous avez déjà un compte ? Connectez-vous
+                <Link href="./signin" variant="body2">
+                  Vous avez déjà un compte ? Connectez-vous
                 </Link>
               </Grid>
             </Grid>
