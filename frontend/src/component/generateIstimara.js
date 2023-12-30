@@ -19,7 +19,7 @@ import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 
 export default function GenerateIstimara() {
-  const [selectedGender, setSelectedGender] = useState("female");
+  const [selectedGender, setSelectedGender] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -147,7 +147,7 @@ export default function GenerateIstimara() {
               ${formData.yes1 === 'yes' && formData.chronicDiseases ? `Les maladies chroniques : ${formData.chronicDiseases}` : ''}
               ${formData.chronicDiseases ? `Nom du responsable légal : ${formData.chronicDiseases}` : ''}
               Profession : ${formData.job || ''}
-              Numéro de téléphone : ${formData.phone || ''}   Numéro de téléphone de secondaire : ${formData.phone2 || ''}
+              Numéro de Téléphone à Oman: ${formData.phone || ''}   Numéro de téléphone de secondaire : ${formData.phone2 || ''}
               Adresse à Oman : ${formData.Adress_OM || ''}
               Adresse en Tunisie : ${formData.addressTN || ''}
               Membre de l'association SCOUTS tunisienne à Oman : ${
@@ -186,8 +186,8 @@ export default function GenerateIstimara() {
   };
 
   const defaultTheme = createTheme();
-  const [healthCondition, setHealthCondition] = useState('no');
-  const [participation, setParticipation] = useState('no');
+  const [healthCondition, setHealthCondition] = useState('');
+  const [participation, setParticipation] = useState('');
   const [Blood, setBlood] = useState('');
 
   const handleChangeParticipation = (event) => {
@@ -254,19 +254,23 @@ export default function GenerateIstimara() {
                   backdropFilter: 'blur(10px)',
                 }}
               >
-             <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="fullname"
-                  label="Nom et prénom"
-                  name="fullname"
-                  autoComplete="family-name"
-                  sx={{ mb: 2 }}
+<Grid container spacing={2} sx={{ width: '90%', marginBottom: 2, marginTop: 4, marginLeft: 4, marginRight: 5 }}>
+  <TextField
+    required
+    fullWidth
+    id="fullname"
+    label="Nom et prénom"
+    name="fullname"
+    autoComplete="family-name"
+    sx={{
+   
+      marginLeft: 2,   
+    }}
+  />
+</Grid>
 
-                />
-              </Grid>
-            <Grid container spacing={2}>
+
+<Grid container spacing={2} sx={{ width: '90%', marginBottom: 4, marginTop: 2, marginLeft: 4, marginRight: 5 }}>
               <Grid item xs={12} sm={4}>
                 <TextField
                   autoComplete="given-name"
@@ -276,6 +280,10 @@ export default function GenerateIstimara() {
                   id="section1"
                   label="Section"
                   autoFocus
+                  sx={{
+                    marginBottom: 2,
+                   
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -309,6 +317,10 @@ export default function GenerateIstimara() {
                   label=" lieu de naissance"
                   name="placebirth"
                   autoComplete="family-name"
+                  sx={{
+                    marginBottom: 2, 
+                   
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -317,7 +329,7 @@ export default function GenerateIstimara() {
                   fullWidth
                   name="date"
                   label="Date de naissance"
-                  type="date" // Use type="date" for a simplified date picker
+                  type="date" 
                   id="birthday"
                   InputLabelProps={{
                     shrink: true,
@@ -332,6 +344,10 @@ export default function GenerateIstimara() {
                   label=" Numéro de passeport"
                   name="passeportNum"
                   autoComplete="family-name"
+                  sx={{
+                    marginBottom: 2, 
+                   
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -382,12 +398,16 @@ export default function GenerateIstimara() {
           name="bloodType"
           value={Blood}
           onChange={handleChangeBlood}
+          sx={{
+           marginTop: 2,
+          }}
         >
           {bloodTypes.map((type) => (
             <MenuItem key={type} value={type}>
               {type}
             </MenuItem>
           ))}
+
         </Select>
       </FormControl>
 </Grid>
@@ -399,7 +419,7 @@ export default function GenerateIstimara() {
     color="textSecondary"
   //  style={{ marginLeft: "150px" }}
   >
-    Sexe
+    Genre
   </Typography>
   <RadioGroup
     name="gender"
@@ -415,7 +435,7 @@ export default function GenerateIstimara() {
     <FormControlLabel
       value="male"
       control={<Radio color="primary" />}
-      label="Mâle"
+      label="Masculin"
     />
   </RadioGroup>
 </Grid>
@@ -450,6 +470,10 @@ export default function GenerateIstimara() {
             label="Veuillez citer les maladies chroniques"
             name="chronicDiseases"
             autoComplete="family-name"
+            sx={{
+              marginBottom: 2, 
+             
+            }}
           />
         </Grid>
           )}
@@ -480,9 +504,13 @@ export default function GenerateIstimara() {
                   required
                   fullWidth
                   id="phone"
-                  label="Numéro de téléphone"
+                  label="Numéro de Téléphone à Oman"
                   name="phone"
                   autoComplete="family-name"
+                  sx={{
+                    marginBottom: 2, 
+                   
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -505,6 +533,10 @@ export default function GenerateIstimara() {
                   label="Adresse au Sultanat"
                   name="Adress_OM"
                   autoComplete="family-name"
+                  sx={{
+                    marginBottom: 2, 
+                   
+                  }}
                 />
               </Grid>{" "}
               <Grid item xs={12}>
@@ -586,9 +618,9 @@ export default function GenerateIstimara() {
 
          
 
-            <div style={{ display: "flex" }}>
+            <div style={{ display: "flex" }} >
              
-              <Grid item xs={12} >
+              <Grid item xs={12} sx={{ width: '90%',  marginLeft: 6, marginRight: 5 }} >
                 <p 
                >
                   Je certifie que les informations ci-dessus sont exactes{" "}
@@ -609,7 +641,7 @@ export default function GenerateIstimara() {
                 size="large"
                 style={{ backgroundColor: 'darkgreen', color: 'white' }}
               >
-                Submit
+                Imprimer
               </Button>
               </div>
             </Card>

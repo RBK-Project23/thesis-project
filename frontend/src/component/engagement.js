@@ -137,8 +137,8 @@ export default function Engagement() {
                 formData.cin ? `C.I.N : ${formData.cin}` : ''
               } 
               délivré le ${formData.datecin || ''}  par ${formData.placecin || ''}
-              Titulaire d'un numéro de carte de séjour  ${formData.visaNum || ''}  
-               Délivré le ${formData.dateEndVisa || ''}  par ${
+              Titulaire d'une carte de séjour numéro  ${formData.visaNum || ''}  
+               délivrée le ${formData.dateEndVisa || ''}  par ${
                 formData.placevisa || ''
               }  
               Je soumets une demande à la direction du Régiment Scout Tunisien au Sultanat d'Oman pour participer à une activité de scoutisme, pour (mon/ma) (fils/fille),
@@ -239,7 +239,7 @@ export default function Engagement() {
                   backdropFilter: "blur(10px)",
                 }}
               >
-                <Grid item xs={12}>
+<Grid container spacing={2} sx={{ width: '90%', marginBottom: 4, marginTop: 4, marginLeft: 4, marginRight: 5 }}>
                   <TextField
                     required
                     fullWidth
@@ -250,7 +250,7 @@ export default function Engagement() {
                     sx={{ mb: 2 }}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid container spacing={2} sx={{ width: '90%', marginBottom: 4, marginTop: 2, marginLeft: 4, marginRight: 5 }}>
                   <TextField
                     required
                     fullWidth
@@ -261,7 +261,7 @@ export default function Engagement() {
                     sx={{ mb: 2 }}
                   />
                 </Grid>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} sx={{ width: '91.7%', marginBottom: 4,  marginLeft: 2, marginRight: 3 }}>
 
                 <Grid item xs={12} sm={4}>
                   <TextField
@@ -300,14 +300,14 @@ export default function Engagement() {
                 </Grid>
 
 <br></br>
-                <Grid container spacing={2}>
+<Grid container spacing={2} sx={{ width: '91.7%', marginBottom: 4,  marginLeft: 2, marginRight: 3 }}>
 
 <Grid item xs={12} sm={4}>
                   <TextField
                     required
                     fullWidth
                     id="visaNum"
-                    label="Numéro civil au Sultanat"
+                    label="Titulaire d'une carte de séjour numéro"
                     name="visaNum"
                     autoComplete="family-name"
                   />
@@ -317,7 +317,7 @@ export default function Engagement() {
                     required
                     fullWidth
                     name="dateEndVisa"
-                    label="Date d'expiration"
+                    label="délivrée le"
                     type="date"
                     id="dateEndVisa"
                     InputLabelProps={{
@@ -336,16 +336,12 @@ export default function Engagement() {
                   />
                 </Grid>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid container spacing={2} sx={{ width: '91.7%', marginBottom: 3,  marginLeft: 2, marginRight: 3 }}>
                   <Grid item xs={12}>
-                    <Typography
-                      component="h6"
-                      variant="subtitle1"
-                      color="textSecondary"
-                    >
+                  <p>
                       Je souhaite partager de photos et de vidéos de l'activité scoute de
                       mon enfant sur les réseaux sociaux officiels du groupe.
-                    </Typography>
+                    </p>
                     <FormControlLabel
                       control={
                         <Radio
@@ -375,7 +371,7 @@ export default function Engagement() {
                 
         
               <div style={{ display: "flex" }}>
-                <Grid item xs={12}>
+              <Grid container spacing={2} sx={{ width: '91.7%',   marginLeft: 3, marginRight: 3 }}>
                   <p>
                     Je certifie que les informations ci-dessus sont exactes{" "}
                   </p>
@@ -395,7 +391,7 @@ export default function Engagement() {
                   size="large"
                   style={{ backgroundColor: "darkgreen", color: "white" }}
                 >
-                  Submit
+                  IMPRIMER
                 </Button>
               </div>
             </Card>
