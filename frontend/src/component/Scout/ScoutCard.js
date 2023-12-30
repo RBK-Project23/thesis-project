@@ -28,6 +28,20 @@ const ScoutCard = ({ scout, onEditClick }) => {
         <Grid item>
           <img src={scout.profileImage} alt="Profile" style={{ width: '170px', height: '170px', borderRadius: '50px', marginLeft:'10px' }} />
         </Grid>
+        <Grid  container
+      justifyContent="center"
+      alignItems="center"
+      style={{
+        backgroundColor: 'rgba(240, 240, 240, 0.7)',
+        backdropFilter: 'blur(10px)',
+        padding: '20px',
+        borderRadius: '10px',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+        width: '60%',
+        margin: 'auto',
+        marginTop: '20px',
+        marginBottom: '20px',
+      }}>
         <Grid item>
           <Typography variant="body1">
             <strong>First Name:</strong> {scout.FirstName}
@@ -71,6 +85,7 @@ const ScoutCard = ({ scout, onEditClick }) => {
           <Typography>
           <strong>ChronicDiseases:</strong> {scout.chronicDiseases}
           </Typography>
+          </Grid>
          
         </Grid>
       </Grid>
