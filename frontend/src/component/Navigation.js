@@ -17,6 +17,7 @@ const Navigation = () => {
     // Check if token exists and is a string
     if (typeof token === 'string' && token.length > 0) {
       const decodedToken = jwtDecode(token);
+     console.log(decodedToken);
   
       return decodedToken.email === 'admin@gmail.com';
     }

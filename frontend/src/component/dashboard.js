@@ -6,8 +6,30 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 export default function Dashboard() {
-  const [products, setProducts] = useState([]);
+ 
   const [users, setUsers] = useState([]);
+
+  const updateStatus= async(email,initialStatus)=>{
+     try{
+     
+      const status = !initialStatus;
+      console.log('email: '+email,'status :'+status);
+      const confirmUser = window.confirm(!initialStatus?'Are you sure you want to confirm this user?':'Are you sure you want to pend this user?');
+      if(confirmUser){
+      
+         const response = await axios.post('http://localhost:7000/users/updateStatus', {email, status});
+       console.log(response);
+       window.location.reload();
+     
+      }
+      
+
+     }
+     catch (err){
+      console.log(err);
+
+     }
+  }
 
   const deleteUser = async (userId) => {
     try {
@@ -26,34 +48,18 @@ export default function Dashboard() {
   };
 
 
-  useEffect(() => {
-    // Inner function that calls the API
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get('http://localhost:7000/products'); 
-         
-
-        setProducts(response.data);
-       
-      
-      
-      } catch (error) {
-        console.error('Error fetching products:', error);
-       
-      }
-    };
+ 
  
 
    
-    fetchProducts();
-  }, []);
+ 
 
   useEffect(() => {
     // Inner function that calls the API
     const fetchUsers = async () => {
       try {
         
-        const resp = await axios.get('http://localhost:7000/tech/getAllUsers'); 
+        const resp = await axios.get('http://localhost:7000/users/getuser'); 
 
        
         setUsers(resp.data);
@@ -81,7 +87,7 @@ export default function Dashboard() {
      
      <div class="dashboard-tab">
        
-       <DenseTable users ={users} deleteUser={deleteUser} />
+       <DenseTable users ={users} deleteUser={deleteUser} updateStatus={updateStatus} />
         
      </div>
 

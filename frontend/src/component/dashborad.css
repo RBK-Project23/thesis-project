@@ -4,7 +4,9 @@
     justify-content: center;
     color: rgb(13, 12, 12);
     background-image: url('../images/dashborad.jpg');
-    /* background: linear-gradient(123deg, #46b4a2 0%, #74a096 63%); */
+    background-repeat: no-repeat;
+    background-size: cover;
+   
 
     
     
@@ -19,7 +21,7 @@
     margin-top: 10vh;
     margin-bottom: 10vh;
     padding-bottom: 5vh;
-    opacity: 0.8;
+    opacity: 0.9;
     padding: 15px 25px 15px 25px;
 background-color: aliceblue;
     
