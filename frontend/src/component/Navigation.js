@@ -36,37 +36,37 @@ const Navigation = () => {
       <ul>
       <li>
         <Link to="/home">
-          <FaHome /> Home 
+          <FaHome /> Accueil 
         </Link>
       </li>
-        <li><Link to="/events">Events</Link></li>
-        <li><Link to="/scouts-programs">Scouts Programs</Link></li> 
-        <li><Link to="/profiles">User Profile</Link></li>
+        <li><Link to="/events">Événements</Link></li>
+        <li><Link to="/scouts-programs">Programmes des Scouts</Link></li> 
+        <li><Link to="/profiles">Profil Utilisateur</Link></li>
         {isAuthenticated() && (
           <li id='logout'>
             <Link to="/home" onClick={handleLogout}>
-              <FaSignOutAlt /> Logout 
+              <FaSignOutAlt /> Déconnexion 
             </Link>
           </li>
         )}
         {!isAuthenticated() && (
           <li id='login'>
             <Link to="/signin">
-              <FaSignInAlt /> Login 
+              <FaSignInAlt /> Connexion 
             </Link>
           </li>
         )}
         {!isAuthenticated() && (
           <li id='register'>
             <Link to="/register">
-              <FaUserPlus /> Register 
+              <FaUserPlus /> Créer un compte 
             </Link>
           </li>
         )}
         {isAdmin() && (
           <li id='dashboard'>
             <Link to="/dashborad">
-              <FaSignInAlt /> Dashboard
+              <FaSignInAlt /> Tableau de bord
             </Link>
           </li>
         )}
