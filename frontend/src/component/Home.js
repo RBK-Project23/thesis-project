@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../actions/posts";
-import homeImage from "../images/home.jpg";
+import homeImage from "../images/home2.jpg";
 import "../component/homePage.css";
 import Footer from "../component/footer";
 /* import RecipeReviewCard from "../component/card"; */
+import SlideCard from "./slider";
 import Post from "./Posts/Post/Post";
 
 const Home = () => {
@@ -38,6 +39,7 @@ const Home = () => {
           />
         ))}
       </div>
+      <SlideCard />
 
       <Footer />
     </>

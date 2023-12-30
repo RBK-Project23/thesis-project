@@ -118,7 +118,7 @@ const Footer = () => {
       maxWidth={false}
       component="footer"
       sx={{
-        backgroundColor: "#000F16",
+        backgroundColor: "#010911",
         py: [3, 6],
         color: "white",
         paddingLeft: 0,
@@ -132,7 +132,7 @@ const Footer = () => {
         alignItems="flex-start"
       >
         <Grid item xs={12} sm={2} md={3}>
-          {<img src="/Scout_tunisen1.png" alt="Logo" className="logo" />}
+          {<img  style = {{ width: '160px', height: '100px', marginLeft:'2px'}} src="/flogo.png" alt="Logo" className="logo" />}
         </Grid>
         {updatedFooters.map((footer) => (
           <GridItem footer={footer} key={footer.title} />

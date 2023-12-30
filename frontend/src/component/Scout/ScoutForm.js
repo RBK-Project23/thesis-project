@@ -65,7 +65,7 @@ const ScoutForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Submitting Commander:", scout);
+    console.log("Submitting Scout:", scout);
 
     try {
       const response = await axios.post("http://localhost:7000/scouts", scout, {
@@ -90,7 +90,7 @@ const ScoutForm = () => {
   return (
     <div
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/444.jpg)`,
+      
         backgroundSize: "cover",
         minHeight: "100vh",
         display: "flex",
