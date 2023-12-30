@@ -66,7 +66,7 @@ login: async (req, res, next) => {
 
         // User authenticated, proceed to generate JWT
         try {
-            const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            const token = jwt.sign({ id: user._id, email: user.email, type_user:user.type_user }, process.env.JWT_SECRET, { expiresIn: '1h' });
             // Send the token back to the client to store in local storage
             res.json({ message: "Logged in successfully", token });
             // res.redirect('/');
@@ -90,6 +90,37 @@ login: async (req, res, next) => {
           res.json({ message: 'User deleted successfully' });
         } catch (error) {
           res.status(500).send(error.message);
+        }
+      },
+      getuser: async(req,res) =>{
+        try {
+          const users = await User.find({});
+          res.json(users);
+        } catch (error) {
+          res.status(500).send(error);
+        }
+      },
+      updateStatus: async (req, res) => {
+        try {
+          const { email, status } = req.body;
+         
+      
+          // Find the user by email and update the status
+          const updatedUser = await User.findOneAndUpdate(
+            { email: email }, 
+            { status: status },
+            { new: true } // This option returns the updated document
+          );
+      
+          if (!updatedUser) {
+            return res.status(404).send('User not found');
+          }
+      
+          // Send the updated user back
+          res.status(200).send(updatedUser);
+        } catch (error) {
+          // Handle errors
+          res.status(500).send(error);
         }
       }
             

@@ -6,20 +6,31 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useStepperContext } from '@mui/material';
-
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
 
 
 
-export default function DenseTable({users, deleteUser}) {
-   
+
+
+
+export default function DenseTable({users, deleteUser,updateStatus}) {
+  const status = (email,status)=>{
+    if(status){return (
+      <Button variant="contained" color="success" size = 'small' onClick={() => updateStatus(email,status)} >
+      confirmed
+    </Button>
+    )}
+    else {return (
+      <Button variant="outlined" color="error" size = 'small'  onClick={() => updateStatus(email,status)}
+              
+              >pendding</Button>
+
+    )}
+  }
   return (
     <TableContainer component={Paper} style={{background:'transparent', marginTop:'0vh', color:'black'}}>
      <h2 style={{textAlign:'center', padding:'1vh'}}> User list</h2>
@@ -45,11 +56,12 @@ export default function DenseTable({users, deleteUser}) {
               </TableCell>
               <TableCell align="right" style={{ color:'black'}}>{user.lastName}</TableCell>
               <TableCell align="right" style={{ color:'black'}}>{user.email}</TableCell>
-              <TableCell align="right" style={{ color:'black'}}>{user.purpose}</TableCell>
-              <TableCell align="right" style={{ color:'black'}}>
-              <button  onClick={() => deleteUser(user.id)}
+              <TableCell align="right" style={{ color:'black'}}>{user.type_user}</TableCell>
+              <TableCell align="right" style={{ color:'black'}}>{status(user.email, user.status)}</TableCell>
+                  <TableCell align="right" style={{ color:'black'}}>
+              <Button variant="outlined"  startIcon={<DeleteIcon />} size = 'small' onClick={() => deleteUser(user.id)}
               
-              >Delete</button></TableCell>
+              >Delete</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>
