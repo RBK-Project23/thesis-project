@@ -5,8 +5,8 @@ import { getPosts } from "../actions/posts";
 import { Container, Paper, Typography, Grid, CardMedia, AppBar } from "@mui/material";
 import moment from "moment";
 import Footer from "./footer";
-import logo1 from "../images/logo2.jpeg";
-import logo2 from "../images/logo1.jpeg";
+//import logo1 from "../images/logo2.jpeg";
+//import logo2 from "../images/logo1.jpeg";
 
 const EventDetail = () => {
   const { id } = useParams();
@@ -34,14 +34,14 @@ const EventDetail = () => {
           alignItems: "center",
         }}
       >
-        <img
+       {/*  <img
           src={logo1}
           alt="logo1"
           height="60"
           sx={{
             marginRight: "10px",
           }}
-        />
+        /> */}
         <Typography
           variant="h2"
           align="center"
@@ -51,16 +51,16 @@ const EventDetail = () => {
             marginRight: '20px'
           }}
         >
-          Events
+          Événement
         </Typography>
-        <img
+       {/*  <img
           src={logo2}
           alt="logo2"
           height="60"
           sx={{
             marginLeft: "30px",
           }}
-        />
+        /> */}
       </AppBar>
       
       <Container>

@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardActions,
-  Button,
-  Typography,
-  Box,
-} from "@mui/material/";
+import { Card, CardActions, Button, Typography, Box } from "@mui/material/";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import moment from "moment";
@@ -14,10 +8,12 @@ import { useDispatch } from "react-redux";
 import { deleteScoutProgram } from "../../../actions/scoutPrograms";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { Link } from "react-router-dom";
 
 const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
   const dispatch = useDispatch();
 
+  // Position for testing default Djerba
   /*  const position = [
     33 + 46 / 60 + 59.99 / 3600, 
     10 + 52 / 60 + 59.99 / 3600, 
@@ -95,6 +91,17 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
             <MoreHorizIcon fontSize="default" />
           </Button>
         </Box>
+        <Typography gutterBottom variant="h5" component="h2">
+          <Link
+            to={`/scoutPrograms/${program._id}`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            {program.name}
+          </Link>
+        </Typography>
+        <Typography variant="body2">
+          {moment(program.startDate).format("MMMM Do YYYY")}
+        </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
           {truncateText(program.description, 30)}
         </Typography>

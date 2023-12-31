@@ -15,8 +15,9 @@ import PrivacyPolicy from "./component/pageFooter/PrivacyPolicy";
 import ContactUs from "./component/pageFooter/ContactUs";
 import EventDetail from "./component/EventDetail";
 import ScoutsProgramsPage from "./component/ScoutsPrograms";
-import Dashborad from '../src/component/dashboard';
+import Dashborad from "../src/component/dashboard";
 import Engagement from "./component/engagement";
+import ScoutProgramDetail from "./component/ScoutProgramDetail";
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
           <Route path="/scouts-programs" element={<ScoutsProgramsPage />} />
           <Route path="/dashboard" element={<Dashborad />} />
           <Route path="/Engagement" element={<Engagement />} />
-
+          <Route path="/scoutPrograms/:id" element={<ScoutProgramDetail />} />
         </Routes>
       </Router>
     </>
