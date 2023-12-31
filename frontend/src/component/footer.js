@@ -3,6 +3,7 @@ import { Container, Typography, Link, Grid } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../actions/posts";
+import { getScoutPrograms } from "../actions/scoutPrograms";
 
 function Copyright(props) {
   return (
@@ -73,13 +74,22 @@ const footers = [
       { label: "Event 3", url: "/event3" },
     ],
   },
+
   {
+    title: "Scouts Programs",
+    description: [
+      { label: "Program 1", url: "/program1" },
+      { label: "Program 2", url: "/program2" },
+      { label: "Program 3", url: "/program3" },
+    ],
+  },
+  /*  {
     title: "Your Account",
     description: [
       { label: "Personal informations", url: "/profile" },
       { label: "Subscribe", url: "/Subscribe" },
     ],
-  },
+  }, */
   {
     title: "Follow Us",
     description: [
@@ -94,13 +104,20 @@ const footers = [
 const Footer = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
+  const scoutPrograms = useSelector((state) => state.scoutPrograms);
 
   useEffect(() => {
     dispatch(getPosts());
+    dispatch(getScoutPrograms());
   }, [dispatch]);
 
   const latestThreePosts = [...posts]
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 3);
+
+  const latestThreePrograms = scoutPrograms
+    .slice()
+    .sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
     .slice(0, 3);
 
   const updatedFooters = footers.map((footer) => {
@@ -108,6 +125,12 @@ const Footer = () => {
       footer.description = latestThreePosts.map((post, index) => ({
         label: post.title,
         url: `/events/${post._id}`,
+      }));
+    }
+      if (footer.title === "Scouts Programs") {
+      footer.description = latestThreePrograms.map((program) => ({
+        label: program.name,
+        url: `/scoutPrograms/${program._id}`,
       }));
     }
     return footer;
