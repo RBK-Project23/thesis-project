@@ -7,8 +7,12 @@ import ScoutsProgram from "./ScoutsProgram/ScoutsProgram";
 const ScoutsPrograms = ({ setCurrentId }) => {
   const scoutPrograms = useSelector((state) => state.scoutPrograms);
 
-  const sortedScoutPrograms = scoutPrograms.sort(
+  /*  const sortedScoutPrograms = scoutPrograms.sort(
     (a, b) => new Date(b.startDate) - new Date(a.startDate)
+  ); */
+
+  const sortedScoutPrograms = [...scoutPrograms].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 
   return !scoutPrograms.length ? (

@@ -31,7 +31,7 @@ const Navigation = () => {
       <ul>
         <li style={{ display: "flex", alignItems: "center" }}>
           <Link to="/home" style={{ display: "flex", alignItems: "center" }}>
-            <FaHome /> Accueil
+            <FaHome style={{ marginRight: "8px" }} /> Accueil
           </Link>
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
@@ -62,7 +62,7 @@ const Navigation = () => {
               onClick={handleLogout}
               style={{ display: "flex", alignItems: "center" }}
             >
-              <FaSignOutAlt /> Déconnexion
+              <FaSignOutAlt style={{ marginRight: "8px" }} /> Déconnexion
             </Link>
           </li>
         )}
@@ -72,7 +72,7 @@ const Navigation = () => {
               to="/signin"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <FaSignInAlt /> Connexion
+              <FaSignInAlt style={{ marginRight: "8px" }} /> Connexion
             </Link>
           </li>
         )}
@@ -82,7 +82,7 @@ const Navigation = () => {
               to="/register"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <FaUserPlus /> Créer un compte
+              <FaUserPlus style={{ marginRight: "8px" }} /> Créer un compte
             </Link>
           </li>
         )}
@@ -92,7 +92,7 @@ const Navigation = () => {
               to="/dashboard"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <FaSignInAlt /> Tableau de bord
+              <FaSignInAlt style={{ marginRight: "8px" }} /> Tableau de bord
             </Link>
           </li>
         )}
