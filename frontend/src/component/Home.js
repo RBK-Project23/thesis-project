@@ -27,7 +27,7 @@ const Home = () => {
         مرحبا بكم بالكشافة التونسية بسلطنة عمان
       </span>
       <div id="news">
-        <h2>الأحداث القادمة</h2>
+        <h2>Events</h2>
       </div>
       <div id="event">
         {latestThreePosts.map((post) => (

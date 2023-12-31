@@ -14,7 +14,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link style={{ color: "white" }} href="https://scoutTun.com/">
-        Scout Tunisia
+        Tunisian Scouts
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -36,7 +36,7 @@ const GridItem = ({ footer }) => (
               variant="subtitle1"
               style={{ color: "white" }}
               target="_blank"
-              rel="noopener noreferrer" 
+              rel="noopener noreferrer"
             >
               {item.label}
             </Link>
@@ -56,10 +56,9 @@ const GridItem = ({ footer }) => (
   </Grid>
 );
 
-
 const footers = [
   {
-    title: "Scout Tunisia",
+    title: "Tunisian Scouts",
     description: [
       { label: "About Us", url: "/about-us" },
       { label: "Contact Us", url: "/contact-us" },
@@ -67,7 +66,7 @@ const footers = [
     ],
   },
   {
-    title: "Event",
+    title: "Events",
     description: [
       { label: "Event 1", url: "/event1" },
       { label: "Event 2", url: "/event2" },
@@ -89,7 +88,7 @@ const footers = [
       { label: "Instagram", url: "https://www.instagram.com/" },
       { label: "LinkedIn", url: "https://www.linkedin.com/" },
     ],
-  }
+  },
 ];
 
 const Footer = () => {
@@ -105,7 +104,7 @@ const Footer = () => {
     .slice(0, 3);
 
   const updatedFooters = footers.map((footer) => {
-    if (footer.title === "Event") {
+    if (footer.title === "Events") {
       footer.description = latestThreePosts.map((post, index) => ({
         label: post.title,
         url: `/events/${post._id}`,
@@ -132,7 +131,14 @@ const Footer = () => {
         alignItems="flex-start"
       >
         <Grid item xs={12} sm={2} md={3}>
-          {<img  style = {{ width: '160px', height: '100px', marginLeft:'2px'}} src="/flogo.png" alt="Logo" className="logo" />}
+          {
+            <img
+              style={{ width: "160px", height: "100px", marginLeft: "2px" }}
+              src="/Flogo.png"
+              alt="Logo"
+              className="logo"
+            />
+          }
         </Grid>
         {updatedFooters.map((footer) => (
           <GridItem footer={footer} key={footer.title} />

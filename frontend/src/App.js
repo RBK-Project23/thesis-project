@@ -40,7 +40,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/events/:id" element={<EventDetail />} />
           <Route path="/scouts-programs" element={<ScoutsProgramsPage />} />
-          <Route path="/dashborad" element={<Dashborad />} />
+          <Route path="/dashboard" element={<Dashborad />} />
           <Route path="/Engagement" element={<Engagement />} />
 
         </Routes>
