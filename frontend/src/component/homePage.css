@@ -12,20 +12,21 @@
 
 .imageText {
     position: absolute;
-    top: 50%; /* Center vertically */
-    left: 73.5%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust for exact centering */
-    color: white; /* Choose text color */
-    font-size: 6vh; /* Adjust as needed */
-    /* Add more styling as needed */
+    top: 50%; 
+    left: 73.5%; 
+    transform: translate(-50%, -50%); 
+    color: white; 
+    font-size: 6vh; 
+    
 }
-#news{
+#news, #scout-programs{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap; 
 }
-#news h2{
+#news{
     color: rgb(219, 55, 55);
     text-decoration: underline;
     font-size: 5vh;
@@ -33,7 +34,7 @@
 
 }
 
-#event{
+#event, #scout-programs{
     padding: 20px;
     margin: 20px;
     display: flex;

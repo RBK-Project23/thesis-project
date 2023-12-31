@@ -19,7 +19,7 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
     10 + 52 / 60 + 59.99 / 3600, 
   ]; */
 
-  const position = program.location
+  const position = program?.location
     ? [program.location.lat, program.location.lon]
     : null;
 
@@ -42,7 +42,7 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
       }}
     >
       {position && (
-        <Box sx={{ height: 194, width: "100%" }}>
+        <Box sx={{ height: 194, overflow: "hidden" }}>
           <MapContainer
             center={position}
             zoom={13}

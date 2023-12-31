@@ -7,17 +7,28 @@ import Footer from "../component/footer";
 /* import RecipeReviewCard from "../component/card"; */
 import SlideCard from "./slider";
 import Post from "./Posts/Post/Post";
+import ScoutsProgram from "./ScoutsPrograms/ScoutsProgram/ScoutsProgram";
+
+import { getScoutPrograms } from "../actions/scoutPrograms";
+import "leaflet/dist/leaflet.css";
 
 const Home = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
+  const scoutPrograms = useSelector((state) => state.scoutPrograms);
 
   useEffect(() => {
     dispatch(getPosts());
+    dispatch(getScoutPrograms());
   }, [dispatch]);
 
   const latestThreePosts = [...posts]
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 3);
+
+  const latestThreePrograms = scoutPrograms
+    .slice()
+    .sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
     .slice(0, 3);
   return (
     <>
@@ -31,12 +42,25 @@ const Home = () => {
       </div>
       <div id="event">
         {latestThreePosts.map((post) => (
-          <Post
-            key={post._id}
-            post={post}
-            setCurrentId={() => {}}
-            showActions={false}
-          />
+          <div key={post._id}>
+            <Post post={post} setCurrentId={() => {}} showActions={false} />
+          </div>
+        ))}
+      </div>
+
+      <div id="news">
+        <h2>Scouts Programs</h2>
+      </div>
+
+      <div id="scout-programs">
+        {latestThreePrograms.map((program) => (
+          <div key={program._id}>
+            <ScoutsProgram
+              program={program}
+              setCurrentId={() => {}}
+              showActions={false}
+            />
+          </div>
         ))}
       </div>
       <SlideCard />
