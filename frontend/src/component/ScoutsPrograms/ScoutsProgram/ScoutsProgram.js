@@ -2,7 +2,6 @@ import React from "react";
 import {
   Card,
   CardActions,
-  CardMedia,
   Button,
   Typography,
   Box,
@@ -13,9 +12,20 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 
 import { deleteScoutProgram } from "../../../actions/scoutPrograms";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
 const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
   const dispatch = useDispatch();
+
+  /*  const position = [
+    33 + 46 / 60 + 59.99 / 3600, 
+    10 + 52 / 60 + 59.99 / 3600, 
+  ]; */
+
+  const position = program.location
+    ? [program.location.lat, program.location.lon]
+    : null;
 
   const truncateText = (text, limit) => {
     const words = text.split(" ", limit);
@@ -35,14 +45,24 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
         marginBottom: 2,
       }}
     >
-      <CardMedia
-        component="img"
-        image={program.image || "defaultImageURL"}
-        alt={program.name}
-        sx={{
-          height: 194,
-        }}
-      />
+      {position && (
+        <Box sx={{ height: 194, width: "100%" }}>
+          <MapContainer
+            center={position}
+            zoom={13}
+            scrollWheelZoom={false}
+            style={{ height: "100%", width: "100%" }}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <Marker position={position}>
+              <Popup>{program.name}</Popup>
+            </Marker>
+          </MapContainer>
+        </Box>
+      )}
       <Box sx={{ padding: "0 16px", flexGrow: 1 }}>
         <Box
           sx={{
@@ -52,7 +72,9 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
             color: "white",
           }}
         >
-          <Typography variant="h5" component="h2">{program.name}</Typography>
+          <Typography variant="h5" component="h2">
+            {program.name}
+          </Typography>
           <Typography variant="body2">
             {moment(program.startDate).format("MMMM Do YYYY")}
           </Typography>

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
 const scoutProgramSchema = new mongoose.Schema({
@@ -7,10 +7,20 @@ const scoutProgramSchema = new mongoose.Schema({
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   address: { type: String, required: true },
-
-  participants: [{ type: String, ref: 'User' }], 
+  location: {
+    type: {
+      lat: Number,
+      lon: Number,
+    },
+    required: false,
+  },
+  participants: [{ type: String, ref: "User" }],
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
-const ScoutProgram = mongoose.model('ScoutProgram', scoutProgramSchema);
+const ScoutProgram = mongoose.model("ScoutProgram", scoutProgramSchema);
 
 module.exports = ScoutProgram;
