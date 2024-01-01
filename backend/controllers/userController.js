@@ -37,7 +37,7 @@ module.exports = {
           return res.status(400).json({ error: err.message });
         } else {
           passport.authenticate("local")(req, res, () => {
-            res.json({ message: "User registered", userId: user._id });
+            res.json({ success: true, message: "User registered", userId: user._id });
           });
         }
       });
