@@ -60,17 +60,20 @@ export default function SignUp() {
       status: false,
     };
     try {
-      // Make a POST request to your server
       const response = await axios.post(
         "http://localhost:7000/users/register",
         postData
       );
       console.log(response.data);
-      alert("registration succefully!");
-      window.location.reload();
+      if (response.data.success) {
+        alert("Registration successful!");
+
+        window.location.href = "/home";
+      } else {
+        alert(response.data.message);
+      }
     } catch (error) {
       console.error("Error during registration:", error);
-      // Handle error here (e.g., show error message)
     }
   };
 
