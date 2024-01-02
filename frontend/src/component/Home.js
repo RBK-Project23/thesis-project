@@ -63,6 +63,9 @@ const Home = () => {
           </div>
         ))}
       </div>
+      <div id="news">
+        <h2>Slider</h2>
+      </div>
       <SlideCard />
 
       <Footer />

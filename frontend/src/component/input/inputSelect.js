@@ -7,9 +7,9 @@ export default function InputSelect({ onRoleChange }) {
  
   
     const type = [
-      { label: 'scout' },
-      { label: 'commander' },
-      { label: 'parent'}
+      { label: 'Scouts' },
+      { label: 'Commander' },
+      { label: 'Parent'}
     ];
   return (
     <Autocomplete
