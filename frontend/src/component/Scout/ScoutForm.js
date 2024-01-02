@@ -9,10 +9,14 @@ import {
   FormControlLabel,
   Button,
   FormControl,
+  Typography,
+  Card,
+  CardContent,
+  Box,
+  Select,
+  InputLabel,
+  MenuItem,
 } from "@mui/material";
-
-import { Card, CardContent, Typography } from "@mui/material";
-import { Select, InputLabel, MenuItem } from "@mui/material";
 
 const ScoutForm = () => {
   const [scout, setScout] = useState({
@@ -88,9 +92,8 @@ const ScoutForm = () => {
   };
 
   return (
-    <div
+    <Box
       style={{
-      
         backgroundSize: "cover",
         minHeight: "100vh",
         display: "flex",
@@ -98,33 +101,29 @@ const ScoutForm = () => {
         alignItems: "center",
       }}
     >
-      <Container
-        maxWidth="lg"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginLeft: "10px",
-          marginRight: "10px",
-        }}
-      >
+      <Container maxWidth="lg">
+        <Typography
+          variant="h4"
+          gutterBottom
+          style={{
+            textAlign: "center",
+            color: "#010911",
+            marginBottom: "20px",
+            marginTop: "20px",
+          }}
+        >
+          Complete Scouts Information
+        </Typography>
         {showScoutCard ? (
           <ScoutCard scout={scout} onEditClick={handleEditClick} />
         ) : (
           <form onSubmit={handleSubmit}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "stretch",
-              }}
-            >
+            <Box display="flex" justifyContent="space-between" flexWrap="wrap">
               <Card
                 sx={{
-                  height: "100%",
-                  width: "100%",
+                  width: "48%",
                   backgroundColor: "rgba(240, 240, 240, 0.7)",
-                  marginLeft: "10px",
-                  marginRight: "10px",
+                  marginY: "10px",
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
                   backdropFilter: "blur(10px)",
                 }}
@@ -203,11 +202,9 @@ const ScoutForm = () => {
               </Card>
               <Card
                 sx={{
-                  height: "100%",
-                  width: "100%",
+                  width: "48%",
                   backgroundColor: "rgba(240, 240, 240, 0.7)",
-                  marginLeft: "10px",
-                  marginRight: "10px",
+                  marginY: "10px",
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
                   backdropFilter: "blur(10px)",
                 }}
@@ -308,28 +305,25 @@ const ScoutForm = () => {
                   />
                 </CardContent>
               </Card>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                padding: "20px",
-              }}
-            >
+            </Box>
+            <Box display="flex" justifyContent="center" marginTop="20px">
               <Button
                 type="submit"
                 variant="contained"
-                color="primary"
                 size="large"
-                style={{ backgroundColor: "darkgreen", color: "white" }}
+                style={{
+                  backgroundColor: "darkgreen",
+                  color: "white",
+                  marginBottom: "20px",
+                }}
               >
                 Valider
               </Button>
-            </div>
+            </Box>
           </form>
         )}
       </Container>
-    </div>
+    </Box>
   );
 };
 
