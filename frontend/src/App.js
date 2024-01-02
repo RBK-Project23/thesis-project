@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+
 import Header from "./component/Header";
 import Events from "./component/Events";
 import Home from "./component/Home";
@@ -20,6 +21,7 @@ import Engagement from "./component/engagement";
 import ScoutProgramDetail from "./component/ScoutProgramDetail";
 import UserProfilCommander from "./component/userpages/UserCommander";
 import UserProfilParent from "./component/userpages/UserParent";
+import Impactpage from './component/Impact'
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
             <Route element={<Home />} path="/" exact />
             <Route path="/profiles" element={< UserProfilScout/>} exact />
           </Route>
+         <Route path="/Impact" element={<Impactpage/>}/>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/استمارة-التسجيل" element={<Istimara />} />

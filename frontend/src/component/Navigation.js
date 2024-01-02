@@ -44,7 +44,15 @@ const Navigation = () => {
             to="/scouts-programs"
             style={{ display: "flex", alignItems: "center" }}
           >
-            Programmes Scouts
+            Programmes
+          </Link>
+        </li>
+        <li style={{ display: "flex", alignItems: "center" }}>
+          <Link
+            to="/Impact"
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            Impact
           </Link>
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
@@ -52,7 +60,7 @@ const Navigation = () => {
             to="/profiles"
             style={{ display: "flex", alignItems: "center" }}
           >
-            Profil Utilisateur
+            Profil
           </Link>
         </li>
         {isAuthenticated() && (
