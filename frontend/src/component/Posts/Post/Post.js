@@ -85,7 +85,7 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
           </Link>
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          {truncateText(post.message, 30)}
+          {truncateText(post.message, 50)}
         </Typography>
       </Box>
       {showActions && (

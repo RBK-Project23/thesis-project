@@ -21,6 +21,33 @@ const Navigation = () => {
     return false;
   };
 
+  const getUserRole = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        return decodedToken.type_user;
+      } catch (error) {
+        console.error("Error decoding token", error);
+      }
+    }
+    return null;
+  };
+
+  const profileLink = () => {
+    const role = getUserRole();
+    switch (role) {
+      case "Scouts":
+        return "/UserScout";
+      case "Commander":
+        return "/UserCommander";
+      case "Parent":
+        return "/UserParent";
+      default:
+        return "/profiles";
+    }
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.reload();
@@ -48,21 +75,20 @@ const Navigation = () => {
           </Link>
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
-          <Link
-            to="/Impact"
-            style={{ display: "flex", alignItems: "center" }}
-          >
+          <Link to="/Impact" style={{ display: "flex", alignItems: "center" }}>
             Impact
           </Link>
         </li>
-        <li style={{ display: "flex", alignItems: "center" }}>
-          <Link
-            to="/profiles"
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            Profil
-          </Link>
-        </li>
+        {isAuthenticated() && (
+          <li style={{ display: "flex", alignItems: "center" }}>
+            <Link
+              to={profileLink()}
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              Profil
+            </Link>
+          </li>
+        )}
         {isAuthenticated() && (
           <li style={{ display: "flex", alignItems: "center" }} id="logout">
             <Link

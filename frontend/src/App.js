@@ -21,7 +21,7 @@ import Engagement from "./component/engagement";
 import ScoutProgramDetail from "./component/ScoutProgramDetail";
 import UserProfilCommander from "./component/userpages/UserCommander";
 import UserProfilParent from "./component/userpages/UserParent";
-import Impactpage from './component/Impact'
+import Impactpage from "./component/Impact";
 
 function App() {
   return (
@@ -33,10 +33,12 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/events" element={<Events />} />
           <Route element={<PrivateRoutes />}>
-            <Route element={<Home />} path="/" exact />
-            <Route path="/profiles" element={< UserProfilScout/>} exact />
+            <Route path="/" element={<Home />} exact />
+            <Route path="/UserScout" element={<UserProfilScout />} />
+            <Route path="/UserCommander" element={<UserProfilCommander />} />
+            <Route path="/UserParent" element={<UserProfilParent />} />
           </Route>
-         <Route path="/Impact" element={<Impactpage/>}/>
+          <Route path="/Impact" element={<Impactpage />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/استمارة-التسجيل" element={<Istimara />} />
