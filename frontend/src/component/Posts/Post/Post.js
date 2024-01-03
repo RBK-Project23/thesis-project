@@ -76,7 +76,16 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
             <MoreHorizIcon fontSize="default" />
           </Button>
         </Box>
-        <Typography gutterBottom variant="h5" component="h2">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          style={{
+            fontSize: "1.7rem",
+            fontWeight: "bold",
+            color: "#010911",
+          }}
+        >
           <Link
             to={`/events/${post._id}`}
             style={{ textDecoration: "none", color: "inherit" }}
@@ -84,8 +93,13 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
             {post.title}
           </Link>
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {truncateText(post.message, 50)}
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          style={{ fontSize: "1.2rem" }}
+        >
+          {truncateText(post.message, 30)}
         </Typography>
       </Box>
       {showActions && (

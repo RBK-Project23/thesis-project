@@ -10,7 +10,6 @@ const Navigation = () => {
   const isAdmin = () => {
     const token = localStorage.getItem("token");
 
-    // Check if token exists and is a string
     if (typeof token === "string" && token.length > 0) {
       const decodedToken = jwtDecode(token);
       console.log(decodedToken);

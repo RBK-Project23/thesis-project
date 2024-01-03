@@ -91,7 +91,16 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
             <MoreHorizIcon fontSize="default" />
           </Button>
         </Box>
-        <Typography gutterBottom variant="h5" component="h2">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          style={{
+            fontSize: "1.7rem",
+            fontWeight: "bold",
+            color: "#010911",
+          }}
+        >
           <Link
             to={`/scoutPrograms/${program._id}`}
             style={{ textDecoration: "none", color: "inherit" }}
@@ -102,7 +111,12 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
         <Typography variant="body2">
           {moment(program.startDate).format("MMMM Do YYYY")}
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          style={{ fontSize: "1.2rem" }}
+        >
           {truncateText(program.description, 30)}
         </Typography>
       </Box>
