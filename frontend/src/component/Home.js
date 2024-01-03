@@ -38,7 +38,7 @@ const Home = () => {
         مرحبا بكم بالكشافة التونسية بسلطنة عمان
       </span>
       <div id="news">
-        <h2>Events</h2>
+        <h2 className="section-title">Events</h2>
       </div>
       <div id="event">
         {latestThreePosts.map((post) => (
@@ -49,7 +49,7 @@ const Home = () => {
       </div>
 
       <div id="news">
-        <h2>Scouts Programs</h2>
+        <h2 className="section-title">Scouts Programs</h2>
       </div>
 
       <div id="scout-programs">
@@ -64,7 +64,7 @@ const Home = () => {
         ))}
       </div>
       <div id="news">
-        <h2>Slider</h2>
+        <h2 className="section-title">Explore Our Adventures</h2>
       </div>
       <SlideCard />
 

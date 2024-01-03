@@ -1,43 +1,46 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./SlideCard.css";
 
 const SlideCard = () => {
   const settings = {
-   // dots: true,
-   // infinite: true,
-   // speed: 500,
-   // slidesToShow: 3,
-   // slidesToScroll: 1,
-
-
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
   return (
     <div style={{ marginBottom: "50px" }} className="w-3/4 m-auto">
       <div className="mt-20">
         <Slider {...settings}>
           {data.map((d) => (
-            <div
-              key={d.name}
-              className="bg-gray-100 h-[450px] text-black rounded-xl"
-            >
-              <div className="h-56 bg-slate-950 flex justify-center items-center rounded-t-xl">
-                <img src={d.img} alt="" className="h-44 w-44 rounded-full" />
+            <div key={d.name} className="slide-card">
+              <div className="image-container">
+                <img src={d.img} alt="" className="slide-image" />
               </div>
 
-              <div className="flex flex-col items-center justify-center gap-4 p-4">
-                <p className="text-xl font-semibold">{d.name}</p>
-                <p className="text-center">{d.review}</p>
-                <button className="bg-transparent hover:bg-slate-950 text-slate-950 font-semibold hover:text-white py-2 px-4 border border-indigo-950 hover:border-transparent rounded">
-                  See More
-                </button>
+              <div className="content-container">
+                <p className="title">{d.name}</p>
+                <p className="review">{d.review}</p>
+                <button className="see-more-button">See More</button>
               </div>
             </div>
           ))}

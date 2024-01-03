@@ -1,0 +1,63 @@
+.slide-card {
+    background-color: #f3f3f3;
+    height: 450px;
+    color: black;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .image-container {
+    background-color: #1e293b; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  
+  .slide-image {
+    height: 176px; 
+    width: 176px; 
+    border-radius: 50%;
+  }
+  
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 16px; 
+    font-weight: bold;
+    margin: 7px 0; 
+  }
+  
+  .review {
+    font-size: 13px; 
+    text-align: center;
+    padding: 0 10px; 
+  }
+  
+  .see-more-button {
+    background-color: transparent;
+    color: #1e293b;
+    font-weight: bold;
+    padding: 6px 12px;
+    border: 2px solid #1e293b;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 13px;
+  }
+  
+  .see-more-button:hover {
+    background-color: #1e293b;
+    color: white;
+    border-color: transparent;
+  }
+  
