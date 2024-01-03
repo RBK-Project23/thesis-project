@@ -1,15 +1,16 @@
-#home-image{
-    
-    
+@import url('https://fonts.googleapis.com/css?family=ScoutFont');
+
+/* Image styles */
+#home-image {
     min-width: 100%;
     min-height: 20vh;
     max-height: 60vh;
     object-fit: cover;
     object-position: center -40vh;
-
-    
 }
 
+
+/* Text on top of the home image */
 .imageText {
     position: absolute;
     top: 50%; 
@@ -17,28 +18,64 @@
     transform: translate(-50%, -50%); 
     color: white; 
     font-size: 6vh; 
-    
 }
-#news, #scout-programs{
+
+
+.section-title {
+    font-family: 'ScoutFont', sans-serif;
+    color: #db3737; 
+    text-decoration: underline;
+    font-size: 3vh; 
+    margin-bottom: 20px; 
+    transition: all 0.5s ease; 
+    text-align: center; 
     width: 100%;
+}
+
+
+.section-title:hover {
+    transform: scale(1.05); 
+    cursor: pointer; 
+}
+
+
+
+
+
+#news, #scout-programs, #slider-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; 
-}
-#news{
-    color: rgb(219, 55, 55);
-    text-decoration: underline;
-    font-size: 3vh;
-
-
+    flex-wrap: wrap;
+    margin: 20px 0; 
 }
 
-#event, #scout-programs{
-    padding: 20px;
-    margin: 20px;
+
+#event, #scout-programs, #slider-section {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px; 
+}
+
+.card {
+    flex: 1; 
+    min-width: 250px; 
+    max-width: calc(33.33% - 40px);
+    margin-bottom: 20px;
+    
+}
+
+
+#event .section-title,
+#scout-programs .section-title,
+#slider-section .section-title {
+    font-weight: bold; 
+}
+
+
+#slider-section .section-title {
+    font-size: 3vh; 
 }
