@@ -4,11 +4,20 @@ import "slick-carousel/slick/slick-theme.css";
 
 const SlideCard = () => {
   const settings = {
-    dots: true,
+   // dots: true,
+   // infinite: true,
+   // speed: 500,
+   // slidesToShow: 3,
+   // slidesToScroll: 1,
+
+
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
   return (
     <div style={{ marginBottom: "50px" }} className="w-3/4 m-auto">
