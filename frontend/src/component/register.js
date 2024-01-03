@@ -90,7 +90,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            S'inscrire
+            Sign Up
           </Typography>
           <Box
             component="form"
@@ -106,7 +106,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="firstName"
-                  label="Prénom"
+                  label="First Name"
                   autoFocus
                 />
               </Grid>
@@ -115,7 +115,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Nom"
+                  label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
                 />
@@ -125,7 +125,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
-                  label="Adresse Email "
+                  label="Email Adresse"
                   name="email"
                   autoComplete="email"
                 />
@@ -135,7 +135,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   name="password"
-                  label="Mot de Passe"
+                  label="Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -146,7 +146,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   name="confirm password"
-                  label="Confirmer le mot de passe"
+                  label="Confirme Password"
                   type="password"
                   id="Confirm password"
                   autoComplete="confirm-password"
@@ -161,7 +161,7 @@ export default function SignUp() {
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
-                  label="Je souhaite recevoir les mises à jour et les actualités des Scouts par e-mail."
+                  label="I would like to receive updates and news from Tunisian Scouts by e-mail."
                 />
               </Grid>
             </Grid>
@@ -171,12 +171,12 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Inscription
+              Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="./signin" variant="body2">
-                  Vous avez déjà un compte ? Connectez-vous
+                  Already have an account? Log In
                 </Link>
               </Grid>
             </Grid>
