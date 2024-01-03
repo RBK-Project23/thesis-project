@@ -57,12 +57,12 @@ const Navigation = () => {
       <ul>
         <li style={{ display: "flex", alignItems: "center" }}>
           <Link to="/home" style={{ display: "flex", alignItems: "center" }}>
-            <FaHome style={{ marginRight: "8px" }} /> Accueil
+            <FaHome style={{ marginRight: "8px" }} /> Home
           </Link>
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
           <Link to="/events" style={{ display: "flex", alignItems: "center" }}>
-            Événements
+            Events
           </Link>
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
@@ -70,7 +70,7 @@ const Navigation = () => {
             to="/scouts-programs"
             style={{ display: "flex", alignItems: "center" }}
           >
-            Programmes
+            Scouts Programs
           </Link>
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
@@ -84,7 +84,7 @@ const Navigation = () => {
               to={profileLink()}
               style={{ display: "flex", alignItems: "center" }}
             >
-              Profil
+              My Profil
             </Link>
           </li>
         )}
@@ -95,7 +95,7 @@ const Navigation = () => {
               onClick={handleLogout}
               style={{ display: "flex", alignItems: "center" }}
             >
-              <FaSignOutAlt style={{ marginRight: "8px" }} /> Déconnexion
+              <FaSignOutAlt style={{ marginRight: "8px" }} /> Logout 
             </Link>
           </li>
         )}
@@ -105,7 +105,7 @@ const Navigation = () => {
               to="/signin"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <FaSignInAlt style={{ marginRight: "8px" }} /> Connexion
+              <FaSignInAlt style={{ marginRight: "8px" }} /> Log In
             </Link>
           </li>
         )}
@@ -115,7 +115,7 @@ const Navigation = () => {
               to="/register"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <FaUserPlus style={{ marginRight: "8px" }} /> Créer un compte
+              <FaUserPlus style={{ marginRight: "8px" }} /> Sign Up
             </Link>
           </li>
         )}
@@ -125,7 +125,7 @@ const Navigation = () => {
               to="/dashboard"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <FaSignInAlt style={{ marginRight: "8px" }} /> Tableau de bord
+              <FaSignInAlt style={{ marginRight: "8px" }} /> Dashboard
             </Link>
           </li>
         )}

@@ -25,7 +25,14 @@ function Copyright(props) {
 
 const GridItem = ({ footer }) => (
   <Grid item xs={12} sm={2} key={footer.title}>
-    <Typography variant="h6" style={{ color: "white" }} gutterBottom>
+    <Typography
+      variant="h6"
+      gutterBottom
+      sx={{
+        fontSize: "2rem",
+        color: "white",
+      }}
+    >
       {footer.title}
     </Typography>
     <ul>
@@ -35,7 +42,10 @@ const GridItem = ({ footer }) => (
             <Link
               href={item.url}
               variant="subtitle1"
-              style={{ color: "white" }}
+              sx={{
+                fontSize: "1.2rem",
+                color: "white",
+              }}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -46,7 +56,10 @@ const GridItem = ({ footer }) => (
               component={RouterLink}
               to={item.url}
               variant="subtitle1"
-              style={{ color: "white" }}
+              sx={{
+                fontSize: "1.2rem",
+                color: "white",
+              }}
             >
               {item.label}
             </Link>
@@ -127,7 +140,7 @@ const Footer = () => {
         url: `/events/${post._id}`,
       }));
     }
-      if (footer.title === "Scouts Programs") {
+    if (footer.title === "Scouts Programs") {
       footer.description = latestThreePrograms.map((program) => ({
         label: program.name,
         url: `/scoutPrograms/${program._id}`,
