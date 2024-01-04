@@ -5,6 +5,11 @@ import axios from "axios";
 import ReactPaginate from "react-paginate";
 import Papa from "papaparse";
 
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
+
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
@@ -132,9 +137,8 @@ export default function Dashboard() {
     setCurrentPage(data.selected + 1);
   };
 
-  // Slicing filtered users array for current page
   const visibleUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
-
+ // Export CSV logic 
   const exportToCSV = () => {
     const csvData = filteredUsers.map((user) => ({
       FirstName: user.firstName,
@@ -162,34 +166,60 @@ export default function Dashboard() {
       <div id="body">
         <div className="dashboard-container">
           <div id="dashboard-title">
-            <h1>DASHBORAD ADMINISTRATOR </h1>
+            <h1>DASHBORAD ADMINISTRATOR</h1>
           </div>
-
-          <div className="filter-container">
-            <input
-              type="text"
+  
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              p: 2, 
+              boxShadow: 1, 
+              borderRadius: 1, 
+              bgcolor: 'background.paper', 
+              mb: 2, 
+            }}
+          >
+            <TextField
               placeholder="Filter by name"
               value={nameFilter}
               onChange={(e) => setNameFilter(e.target.value)}
+              size="small"
+              variant="outlined"
+              sx={{ mr: 1 }} 
             />
-
-            <input
-              type="text"
+            <TextField
               placeholder="Filter by email"
               value={emailFilter}
               onChange={(e) => setEmailFilter(e.target.value)}
+              size="small"
+              variant="outlined"
+              sx={{ mx: 1 }} 
             />
-
-            <select onChange={handleFilterChange} value={filter}>
-              <option value="">All Positions</option>
-              <option value="Scouts">Scouts</option>
-              <option value="Commander">Commander</option>
-              <option value="Parent">Parent</option>
-            </select>
-          </div>
-
-          <button onClick={exportToCSV}>Export to CSV</button>
-
+            <TextField
+              select
+              onChange={handleFilterChange}
+              value={filter}
+              size="small"
+              variant="outlined"
+              sx={{ mx: 1 }} 
+            >
+              <MenuItem value="">All Positions</MenuItem>
+              <MenuItem value="Scouts">Scouts</MenuItem>
+              <MenuItem value="Commander">Commander</MenuItem>
+              <MenuItem value="Parent">Parent</MenuItem>
+            </TextField>
+            <Button
+              onClick={exportToCSV}
+              size="small"
+              variant="contained"
+              sx={{ ml: 1 }} 
+            >
+              Export to CSV
+            </Button>
+          </Box>
+  
           <div className="dashboard-tab">
             <DenseTable
               users={visibleUsers}
@@ -214,4 +244,5 @@ export default function Dashboard() {
       </div>
     </>
   );
+  
 }
