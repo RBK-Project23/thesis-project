@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Link from "@mui/material/Link";
 
 export default function DenseTable({ users, deleteUser, updateStatus }) {
   const status = (email, status) => {
@@ -45,43 +46,50 @@ export default function DenseTable({ users, deleteUser, updateStatus }) {
         <TableHead>
           <TableRow>
             <TableCell
+              align="left"
               style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
             >
-              {" "}
               First Name
             </TableCell>
             <TableCell
-              align="right"
+              align="left"
               style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
             >
               Last Name
             </TableCell>
             <TableCell
-              align="right"
+              align="left"
               style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
             >
               E-mail
             </TableCell>
             <TableCell
-              align="right"
+              align="left"
               style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
             >
               Position
             </TableCell>
             <TableCell
-              align="right"
+              align="left"
               style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
             >
               Status
             </TableCell>
             <TableCell
-              align="right"
+              align="center"
+              style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
+            >
+              PDF Files
+            </TableCell>
+            <TableCell
+              align="left"
               style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
             >
               Action
             </TableCell>
           </TableRow>
         </TableHead>
+
         <TableBody>
           {users.map((user) => (
             <TableRow
@@ -91,19 +99,39 @@ export default function DenseTable({ users, deleteUser, updateStatus }) {
               <TableCell component="th" scope="row" style={{ color: "black" }}>
                 {user.firstName}
               </TableCell>
-              <TableCell align="right" style={{ color: "black" }}>
+              <TableCell  style={{ color: "black" }}>
                 {user.lastName}
               </TableCell>
-              <TableCell align="right" style={{ color: "black" }}>
+              <TableCell  style={{ color: "black" }}>
                 {user.email}
               </TableCell>
-              <TableCell align="right" style={{ color: "black" }}>
+              <TableCell  style={{ color: "black" }}>
                 {user.type_user}
               </TableCell>
-              <TableCell align="right" style={{ color: "black" }}>
+              <TableCell align="centre" style={{ color: "black" }}>
                 {status(user.email, user.status)}
               </TableCell>
-              <TableCell align="right" style={{ color: "black" }}>
+              <TableCell align="center" style={{ color: "black" }}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  component={Link}
+                  href="http://localhost:3000/doc-istimara"
+                  target="_blank"
+                >
+                  Istimara
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  component={Link}
+                  href="http://localhost:3000/Engagement"
+                  target="_blank"
+                >
+                  Engagement
+                </Button>
+              </TableCell>
+              <TableCell align="centre" style={{ color: "black" }}>
                 <Button
                   variant="outlined"
                   startIcon={<DeleteIcon />}
