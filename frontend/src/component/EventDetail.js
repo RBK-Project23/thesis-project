@@ -51,7 +51,7 @@ const EventDetail = () => {
             marginRight: '20px'
           }}
         >
-          Événement
+          Event
         </Typography>
        {/*  <img
           src={logo2}

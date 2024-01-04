@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardActions, Button, Typography, Box } from "@mui/material/";
 import DeleteIcon from "@mui/icons-material/Delete";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import EditIcon from "@mui/icons-material/Edit";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 
@@ -84,22 +84,6 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
             {moment(program.startDate).format("MMMM Do YYYY")}
           </Typography>
         </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "20px",
-            right: "20px",
-            color: "white",
-          }}
-        >
-          <Button
-            style={{ color: "white" }}
-            size="small"
-            onClick={() => setCurrentId(program._id)}
-          >
-            <MoreHorizIcon fontSize="default" />
-          </Button>
-        </Box>
         <Typography
           gutterBottom
           variant="h5"
@@ -137,6 +121,13 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
             justifyContent: "space-between",
           }}
         >
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => setCurrentId(program._id)}
+          >
+            <EditIcon fontSize="small" /> Edit
+          </Button>
           <Button
             size="small"
             color="primary"

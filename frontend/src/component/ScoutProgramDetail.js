@@ -11,7 +11,9 @@ import "leaflet/dist/leaflet.css";
 const ScoutProgramDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const program = useSelector((state) => state.scoutPrograms.find((p) => p._id === id));
+  const program = useSelector((state) =>
+    state.scoutPrograms.find((p) => p._id === id)
+  );
 
   useEffect(() => {
     dispatch(getScoutProgram(id));
@@ -25,7 +27,7 @@ const ScoutProgramDetail = () => {
 
   return (
     <>
-           <AppBar
+      <AppBar
         position="static"
         color="inherit"
         sx={{
@@ -37,7 +39,7 @@ const ScoutProgramDetail = () => {
           alignItems: "center",
         }}
       >
-       {/*  <img
+        {/*  <img
           src={logo1}
           alt="logo1"
           height="60"
@@ -49,14 +51,14 @@ const ScoutProgramDetail = () => {
           variant="h2"
           align="center"
           sx={{
-            color: 'rgba(239, 82, 87, 1)', 
-            marginLeft: '20px',
-            marginRight: '20px'
+            color: "rgba(239, 82, 87, 1)",
+            marginLeft: "20px",
+            marginRight: "20px",
           }}
         >
-          Programmes Scouts
+          Scouts Program
         </Typography>
-       {/*  <img
+        {/*  <img
           src={logo2}
           alt="logo2"
           height="60"
@@ -90,14 +92,15 @@ const ScoutProgramDetail = () => {
               )}
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Typography variant="h3" component="h1">{program.name}</Typography>
+              <Typography variant="h3" component="h1">
+                {program.name}
+              </Typography>
               <Typography variant="body2">
                 {moment(program.startDate).format("MMMM Do YYYY")}
               </Typography>
               <Typography variant="body1" gutterBottom>
                 {program.description}
               </Typography>
-              {/* Other details here... */}
             </Grid>
           </Grid>
         </Paper>
