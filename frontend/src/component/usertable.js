@@ -44,18 +44,41 @@ export default function DenseTable({ users, deleteUser, updateStatus }) {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell style={{ color: "black" }}> First Name</TableCell>
-            <TableCell align="right" style={{ color: "black" }}>
+            <TableCell
+              style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
+            >
+              {" "}
+              First Name
+            </TableCell>
+            <TableCell
+              align="right"
+              style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
+            >
               Last Name
             </TableCell>
-            <TableCell align="right" style={{ color: "black" }}>
+            <TableCell
+              align="right"
+              style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
+            >
               E-mail
             </TableCell>
-            <TableCell align="right" style={{ color: "black" }}>
+            <TableCell
+              align="right"
+              style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
+            >
               Position
             </TableCell>
-            <TableCell align="right" style={{ color: "black" }}>
+            <TableCell
+              align="right"
+              style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
+            >
               Status
+            </TableCell>
+            <TableCell
+              align="right"
+              style={{ color: "black", fontWeight: "bold", fontSize: "1rem" }}
+            >
+              Action
             </TableCell>
           </TableRow>
         </TableHead>
