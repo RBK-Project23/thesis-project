@@ -179,6 +179,7 @@ export default function Dashboard() {
               borderRadius: 1, 
               bgcolor: 'background.paper', 
               mb: 2, 
+              width: '75%',
             }}
           >
             <TextField

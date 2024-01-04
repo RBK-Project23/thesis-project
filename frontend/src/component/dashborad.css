@@ -149,7 +149,17 @@ border-bottom: 1px solid white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 20px;
   }
   
+  #dhashboard-filter select {
+    width: 50%;
+    margin-right: 3vh;
+    padding: 0.5vh;
+    
+  }
   
+  #dhashboard-filter select option {
+    padding: 0.5vh;
+   
+  }
