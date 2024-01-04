@@ -5,14 +5,15 @@ import axios from "axios";
 import ReactPaginate from "react-paginate";
 import Papa from "papaparse";
 
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import Footer from "../component/footer";
 
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("all");
   const [nameFilter, setNameFilter] = useState("");
   const [emailFilter, setEmailFilter] = useState("");
 
@@ -34,7 +35,7 @@ export default function Dashboard() {
       );
       console.log("Email send response:", response.data);
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error sending email:", error.response.data);
     }
   };
 
@@ -126,7 +127,7 @@ export default function Dashboard() {
     );
   }
 
-  if (filter) {
+  if (filter && filter !== "all") {
     filteredUsers = filteredUsers.filter((user) => user.type_user === filter);
   }
 
@@ -138,7 +139,7 @@ export default function Dashboard() {
   };
 
   const visibleUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
- // Export CSV logic 
+  // Export CSV logic
   const exportToCSV = () => {
     const csvData = filteredUsers.map((user) => ({
       FirstName: user.firstName,
@@ -168,18 +169,18 @@ export default function Dashboard() {
           <div id="dashboard-title">
             <h1>DASHBORAD ADMINISTRATOR</h1>
           </div>
-  
+
           <Box
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              p: 2, 
-              boxShadow: 1, 
-              borderRadius: 1, 
-              bgcolor: 'background.paper', 
-              mb: 2, 
-              width: '75%',
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              p: 2,
+              boxShadow: 1,
+              borderRadius: 1,
+              bgcolor: "background.paper",
+              mb: 2,
+              width: "75%",
             }}
           >
             <TextField
@@ -188,7 +189,7 @@ export default function Dashboard() {
               onChange={(e) => setNameFilter(e.target.value)}
               size="small"
               variant="outlined"
-              sx={{ mr: 1 }} 
+              sx={{ mr: 1 }}
             />
             <TextField
               placeholder="Filter by email"
@@ -196,7 +197,7 @@ export default function Dashboard() {
               onChange={(e) => setEmailFilter(e.target.value)}
               size="small"
               variant="outlined"
-              sx={{ mx: 1 }} 
+              sx={{ mx: 1 }}
             />
             <TextField
               select
@@ -204,9 +205,9 @@ export default function Dashboard() {
               value={filter}
               size="small"
               variant="outlined"
-              sx={{ mx: 1 }} 
+              sx={{ mx: 1 }}
             >
-              <MenuItem value="">All Positions</MenuItem>
+              <MenuItem value="all">All Positions</MenuItem>
               <MenuItem value="Scouts">Scouts</MenuItem>
               <MenuItem value="Commander">Commander</MenuItem>
               <MenuItem value="Parent">Parent</MenuItem>
@@ -215,12 +216,12 @@ export default function Dashboard() {
               onClick={exportToCSV}
               size="small"
               variant="contained"
-              sx={{ ml: 1 }} 
+              sx={{ ml: 1 }}
             >
               Export to CSV
             </Button>
           </Box>
-  
+
           <div className="dashboard-tab">
             <DenseTable
               users={visibleUsers}
@@ -243,7 +244,7 @@ export default function Dashboard() {
           />
         </div>
       </div>
+      <Footer />
     </>
   );
-  
 }

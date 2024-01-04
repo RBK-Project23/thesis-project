@@ -42,7 +42,7 @@ router.post("/contact", async (req, res) => {
   }
 });
 
-router.post("/sendPendingEmail", async (req, res) => {
+router.post("/", async (req, res) => {
   console.log(req.body);
   console.log("Sending pending email to:", req.body.userEmail);
 
@@ -53,8 +53,8 @@ router.post("/sendPendingEmail", async (req, res) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: userEmail,
-    subject: `Your Account Status`,
-    text: `Dear ${userName},\n\nYour account is currently pending. Please wait for further instructions.\n\nBest regards,\nYour Team`,
+    subject: `Your Account Confirmation`,
+    text: `Dear ${userName},\n\nYour account has been successfully confirmed. You can now log in to the site via the following link:\nhttp://localhost:3000/home\n\nBest regards,\nTunisian Scouts in the Sultanate of Oman`,
   };
 
   try {
