@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Button, Typography, Paper, Box, useTheme} from "@mui/material";
+import {
+  TextField,
+  Button,
+  Typography,
+  Paper,
+  Box,
+  useTheme,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -35,6 +42,11 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (new Date(scoutProgramData.endDate) < new Date(scoutProgramData.startDate)) {
+    alert("End date cannot be earlier than start date.");
+    return;
+  }
+
 
     if (currentId === 0) {
       dispatch(createScoutProgram(scoutProgramData));
@@ -42,6 +54,7 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
       dispatch(updateScoutProgram(currentId, scoutProgramData));
     }
     clear();
+    
   };
 
   return (
@@ -109,6 +122,7 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
             })
           }
           InputLabelProps={{ shrink: true }}
+          inputProps={{ min: new Date().toISOString().split("T")[0] }}
         />
         <TextField
           name="endDate"
@@ -138,7 +152,7 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
             })
           }
         />
-        <Box sx={{margin: "10px 0"}}/>
+        <Box sx={{ margin: "10px 0" }} />
         <Button
           sx={{
             marginBottom: 2,

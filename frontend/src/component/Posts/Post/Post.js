@@ -9,7 +9,7 @@ import {
 } from "@mui/material/";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import DeleteIcon from "@mui/icons-material/Delete";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import EditIcon from "@mui/icons-material/Edit";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 
@@ -60,22 +60,6 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
             {moment(post.createdAt).fromNow()}
           </Typography>
         </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "20px",
-            right: "20px",
-            color: "white",
-          }}
-        >
-          <Button
-            style={{ color: "white" }}
-            size="small"
-            onClick={() => setCurrentId(post._id)}
-          >
-            <MoreHorizIcon fontSize="default" />
-          </Button>
-        </Box>
         <Typography
           gutterBottom
           variant="h5"
@@ -92,6 +76,10 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
           >
             {post.title}
           </Link>
+        </Typography>
+        <Typography variant="h6">{post.creator}</Typography>
+        <Typography variant="body2" color="textSecondary">
+          {moment(post.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
         </Typography>
         <Typography
           variant="body2"
@@ -116,6 +104,13 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
             onClick={() => dispatch(likePost(post._id))}
           >
             <ThumbUpAltIcon fontSize="small" /> Like {post.likeCount}
+          </Button>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => setCurrentId(post._id)}
+          >
+            <EditIcon fontSize="small" /> Edit
           </Button>
           <Button
             size="small"
