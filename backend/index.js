@@ -43,6 +43,7 @@ app.use('/scouts', scoutRoutes);
 app.use('/commanders', commanderRoutes);
 app.use('/parents', parentRoutes);
 app.use('/email', emailRoutes);
+app.use('/sendPendingEmail', emailRoutes); 
 
 const CONNECTION_URL = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/scoutTunisian";
 const PORT = process.env.PORT || 7000;
