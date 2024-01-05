@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../actions/posts";
-import homeImage from "../images/home2.jpg";
+import homeImage from "../images/scouts_home.webp";
 import "../component/homePage.css";
 import Footer from "../component/footer";
-/* import RecipeReviewCard from "../component/card"; */
 import SlideCard from "./slider";
 import Post from "./Posts/Post/Post";
 import ScoutsProgram from "./ScoutsPrograms/ScoutsProgram/ScoutsProgram";
@@ -33,10 +32,13 @@ const Home = () => {
   return (
     <>
       <img id="home-image" src={homeImage} alt="Home" />
-      <span className="imageText">
-        {" "}
-        مرحبا بكم بالكشافة التونسية بسلطنة عمان
-      </span>
+      {
+        <span className="imageText">
+          {" "}
+          مرحبا بكم بالفوج الكشفي التونسي بسلطنة عمان
+        </span>
+      }
+
       <div id="news">
         <h2 className="section-title">Events</h2>
       </div>
@@ -46,6 +48,15 @@ const Home = () => {
             <Post post={post} setCurrentId={() => {}} showActions={false} />
           </div>
         ))}
+      </div>
+      <div className="donate-section">
+        <p className="donate-text">
+          Donate to Tunisian Scouts in the Sultanate of Oman, today!
+          <br /> Your support makes all the difference.
+        </p>
+        <a href="/donate" className="donate-button">
+          Donate now
+        </a>
       </div>
 
       <div id="news">
