@@ -6,18 +6,18 @@
     min-height: 20vh;
     max-height: 60vh;
     object-fit: cover;
-    object-position: center -40vh;
+    object-position: center -53vh;
 }
 
 
 /* Text on top of the home image */
 .imageText {
     position: absolute;
-    top: 50%; 
-    left: 73.5%; 
+    top: 42%; 
+    left: 46.5%; 
     transform: translate(-50%, -50%); 
     color: white; 
-    font-size: 6vh; 
+    font-size: 2.5vh; 
 }
 
 
@@ -79,3 +79,41 @@
 #slider-section .section-title {
     font-size: 3vh; 
 }
+
+/* Donate Section Styles */
+.donate-section {
+    background-color: #aa2d27; 
+    padding: 20px;
+    text-align: center; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 20px; 
+    min-height: 200px;
+  }
+  
+  .donate-text {
+    color: #ffffff; 
+    font-size: 2rem; 
+    margin: 0; 
+    flex-grow: 1; 
+  }
+  
+  .donate-button {
+    padding: 10px 25px; 
+    background-color: #385435; 
+    color: white;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease; 
+  }
+  
+  .donate-button:hover {
+    background-color: #16a34a; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+    transform: translateY(-2px); 
+  }
+  

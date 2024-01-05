@@ -22,6 +22,8 @@ import ScoutProgramDetail from "./component/ScoutProgramDetail";
 import UserProfilCommander from "./component/userpages/UserCommander";
 import UserProfilParent from "./component/userpages/UserParent";
 import Impactpage from "./component/Impact";
+import DonatePage from "./component/DonatePage";
+
 
 function App() {
   return (
@@ -51,6 +53,8 @@ function App() {
           <Route path="/dashboard" element={<Dashborad />} />
           <Route path="/Engagement" element={<Engagement />} />
           <Route path="/scoutPrograms/:id" element={<ScoutProgramDetail />} />
+          <Route path="/donate" element={<DonatePage />} /> {/* Add the route for DonatePage */}
+
         </Routes>
       </Router>
     </>

@@ -61,6 +61,11 @@ const Navigation = () => {
           </Link>
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
+          <Link to="/Impact" style={{ display: "flex", alignItems: "center" }}>
+            Impact
+          </Link>
+        </li>
+        <li style={{ display: "flex", alignItems: "center" }}>
           <Link to="/events" style={{ display: "flex", alignItems: "center" }}>
             Events
           </Link>
@@ -73,11 +78,7 @@ const Navigation = () => {
             Scouts Programs
           </Link>
         </li>
-        <li style={{ display: "flex", alignItems: "center" }}>
-          <Link to="/Impact" style={{ display: "flex", alignItems: "center" }}>
-            Impact
-          </Link>
-        </li>
+
         {isAuthenticated() && (
           <li style={{ display: "flex", alignItems: "center" }}>
             <Link
@@ -95,7 +96,7 @@ const Navigation = () => {
               onClick={handleLogout}
               style={{ display: "flex", alignItems: "center" }}
             >
-              <FaSignOutAlt style={{ marginRight: "8px" }} /> Logout 
+              <FaSignOutAlt style={{ marginRight: "8px" }} /> Logout
             </Link>
           </li>
         )}
