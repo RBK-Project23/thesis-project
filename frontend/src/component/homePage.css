@@ -6,18 +6,18 @@
     min-height: 20vh;
     max-height: 60vh;
     object-fit: cover;
-   
+    object-position: center -33vh;
 }
 
 
 /* Text on top of the home image */
 .imageText {
     position: absolute;
-    top: 30%; 
-    left: 60%; 
+    top: 38%; 
+    left: 13.5%; 
     transform: translate(-50%, -50%); 
     color: white; 
-    font-size: 5.7vh; 
+    font-size: 3.8vh; 
 }
 
 
