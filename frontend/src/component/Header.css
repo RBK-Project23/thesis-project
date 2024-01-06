@@ -1,6 +1,7 @@
 /* src/components/Header.css */
 header {
-    background-color: #010911;
+    background-color: rgba(1, 9, 17);;
+  
     color: white;
     padding: 10px;
     display: flex;
