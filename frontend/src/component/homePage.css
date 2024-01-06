@@ -13,11 +13,11 @@
 /* Text on top of the home image */
 .imageText {
     position: absolute;
-    top: 38%; 
+    top: 45%; 
     left: 13.5%; 
     transform: translate(-50%, -50%); 
     color: white; 
-    font-size: 3.8vh; 
+    font-size: 3vh; 
 }
 
 
@@ -82,7 +82,9 @@
 
 /* Donate Section Styles */
 .donate-section {
-    background-color: #f58497; 
+    background-color: #f6c9ab ; 
+    box-shadow: #f4cea0;
+    border-color: burlywood;
     padding: 20px;
     text-align: center; 
     display: flex;
@@ -102,7 +104,7 @@
   
   .donate-button {
     padding: 10px 25px; 
-    background-color: #c93636; 
+    background-color: #f59051; 
     color: white;
     border: none;
     border-radius: 25px;
@@ -111,9 +113,25 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
     transition: all 0.3s ease; 
   }
-  
+  .joinus-button {
+    /* margin-bottom: 50px; */
+    padding: 10px 25px; 
+    background-color: #f5701d; 
+    color: white;
+    border: none;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease; 
+  }
+  .joinus-button:hover {
+    background-color: #b55010; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+    transform: translateY(-2px); 
+  }
   .donate-button:hover {
-    background-color: #f58497; 
+    background-color: #b5612c; 
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
     transform: translateY(-2px); 
   }

@@ -103,7 +103,7 @@
   background-color: var(--robin-blue-color);
 }
 .btn__blue:hover{
-  background-color: #e8240a;
+  background-color: #f5701d;
 }
 
 /* letter spacing */
@@ -117,7 +117,8 @@
 
 :root{
 --font-base: 'Poppins', sans-serif;
---robin-blue-color: #f58497 ;
+--robin-blue-color: #fea96b ;
+
 --black-color: #141414;
 --grey-color: #8e8e8e;
 --white-color: #fff;

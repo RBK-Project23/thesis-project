@@ -19,7 +19,7 @@ const Testimonials = () => {
     };
 
     return(
-        <div className="testimonials bg__blue section__padding">
+        <div  style= {{ opacity: "0.8"}} className="testimonials bg__blue section__padding">
             <div className="container">
                 <div className="testimonials__content text__center">
                     <Slider {...settings}>
