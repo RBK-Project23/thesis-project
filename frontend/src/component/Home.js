@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../actions/posts";
-import homeImage from "../images/hombjpg.jpg";
+import homeImage from "../images/home_new.jpg";
 import "../component/homePage.css";
 import Footer from "../component/footer";
 import SlideCard from "./slider";
@@ -35,7 +35,7 @@ const Home = () => {
       {
         <span className="imageText">
           {" "}
-          مرحبا بكم بالفوج الكشفي التونسي بسلطنة عمان
+          Welcome to Tunisian Scouts <br/> in the Sultanate of Oman
         </span>
       }
 
