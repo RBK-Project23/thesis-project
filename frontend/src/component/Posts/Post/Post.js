@@ -25,7 +25,7 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
   };
 
   return (
-    <Card
+    <Card    
       sx={{
         maxWidth: 345,
         display: "flex",
@@ -34,14 +34,17 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
         borderRadius: "15px",
         position: "relative",
         margin: "auto",
-        marginBottom: 2,
+        marginBottom: 3,
+        marginRight:3
+       
       }}
     >
-      <CardMedia
+      <CardMedia   
         component="img"
         image={post.selectedFile || "defaultImageURL"}
         alt={post.title}
         sx={{
+        
           height: 194,
         }}
       />

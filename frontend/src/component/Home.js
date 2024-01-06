@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../actions/posts";
-import homeImage from "../images/scouts_home.webp";
+import homeImage from "../images/hombjpg.jpg";
 import "../component/homePage.css";
 import Footer from "../component/footer";
 import SlideCard from "./slider";

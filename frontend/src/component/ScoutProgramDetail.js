@@ -39,14 +39,7 @@ const ScoutProgramDetail = () => {
           alignItems: "center",
         }}
       >
-        {/*  <img
-          src={logo1}
-          alt="logo1"
-          height="60"
-          sx={{
-            marginRight: "10px",
-          }}
-        /> */}
+  
         <Typography
           variant="h2"
           align="center"
@@ -58,18 +51,11 @@ const ScoutProgramDetail = () => {
         >
           Scouts Program
         </Typography>
-        {/*  <img
-          src={logo2}
-          alt="logo2"
-          height="60"
-          sx={{
-            marginLeft: "30px",
-          }}
-        /> */}
+      
       </AppBar>
 
       <Container>
-        <Paper style={{ padding: "20px", marginTop: "20px" }}>
+        <Paper style={{ padding: "20px", marginTop: "20px", marginBottom: "20px" }}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
               {position && (

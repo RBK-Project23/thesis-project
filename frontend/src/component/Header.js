@@ -6,8 +6,8 @@ const Header = () => {
   return (
     <header>
       <img
-        style={{ width: "160px", height: "70px", marginLeft: "2px" }}
-        src="/Flogo.png"
+        style={{ width: "160px", height: "78px", marginLeft: "2px" }}
+        src="/FinallogoH.png"
         alt="Logo"
         className="logo"
       />
