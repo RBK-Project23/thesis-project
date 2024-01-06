@@ -9,7 +9,7 @@
   }
   
   .image-container {
-    background-color: #1e293b; 
+    background-color: #010911; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,17 +46,17 @@
   
   .see-more-button {
     background-color: transparent;
-    color: #1e293b;
+    color: #010911;
     font-weight: bold;
     padding: 6px 12px;
-    border: 2px solid #1e293b;
+    border: 2px solid #010911;
     border-radius: 8px;
     transition: all 0.3s ease;
     font-size: 13px;
   }
   
   .see-more-button:hover {
-    background-color: #1e293b;
+    background-color: #010911;
     color: white;
     border-color: transparent;
   }

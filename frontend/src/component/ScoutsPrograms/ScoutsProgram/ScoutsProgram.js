@@ -47,7 +47,8 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
         borderRadius: "15px",
         position: "relative",
         margin: "auto",
-        marginBottom: 2,
+        marginBottom: 3,
+        marginRight: 3,
       }}
     >
       {position && (
