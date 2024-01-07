@@ -8,7 +8,7 @@ import SlideCard from "./slider";
 import Post from "./Posts/Post/Post";
 import ScoutsProgram from "./ScoutsPrograms/ScoutsProgram/ScoutsProgram";
 import { Grid } from "@mui/material"
-import Header from "./Header";
+
 
 import { getScoutPrograms } from "../actions/scoutPrograms";
 import "leaflet/dist/leaflet.css";
