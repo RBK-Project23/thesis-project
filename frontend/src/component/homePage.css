@@ -1,12 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=ScoutFont');
 
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+
+}
 /* Image styles */
 #home-image {
-    min-width: 100%;
+    /* min-width: 100%;
     min-height: 20vh;
-    max-height: 60vh;
+    max-height: 60vh; */
+    width: 100%;
+    height: auto;
     object-fit: cover;
-    object-position: center -33vh;
+    object-position: center -20vh;
 }
 
 
@@ -43,6 +53,7 @@
 
 
 #news, #scout-programs, #slider-section {
+ 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,6 +63,7 @@
 
 
 #event, #scout-programs, #slider-section {
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -115,7 +127,7 @@
   }
   .joinus-button {
     /* margin-bottom: 50px; */
-    padding: 10px 25px; 
+    padding: 5px 25px; 
     background-color: #f5701d; 
     color: white;
     border: none;

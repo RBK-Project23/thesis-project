@@ -8,10 +8,12 @@ import SlideCard from "./slider";
 import Post from "./Posts/Post/Post";
 import ScoutsProgram from "./ScoutsPrograms/ScoutsProgram/ScoutsProgram";
 import { Grid } from "@mui/material"
+import AboutCard from "./BCardH";
 
 
 import { getScoutPrograms } from "../actions/scoutPrograms";
 import "leaflet/dist/leaflet.css";
+import { relativeTimeRounding } from "moment";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -38,13 +40,17 @@ const Home = () => {
       
       {
   
-        <Grid className="imageText" style={ {  backgroundColor: "rgba(1, 9, 17, 0.5)",boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)" , display: "flex",flexDirection: "column", justifyContent:"center", alignItems: "center",  borderRadius: "5px" }}> 
+        <Grid className="imageText" style={ {  backgroundColor: "rgba(1, 9, 17, 0.5)",boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)" , display: "flex",flexDirection: "column", justifyContent:"center", alignItems: "baseline",  borderRadius: "5px", marginLeft: "50px"  }}> 
           {" "}
 
-         <strong style={{ margin: "30px"}}>Welcome to Tunisian Scouts <br/> in the Sultanate of Oman</strong> 
-         <a href="/register"  className= "joinus-button"style={{ marginBottom: "20px", fontSize: "2vh"}}> join us</a>
+         <strong style={{ margin: "20px", marginBottom: "10px", color: "#f5701d"}}>  Tunisian Scouts in the Sultanate of Oman<br/></strong> 
+         <h5> Give young people the skills <br/>and means to create a better world</h5> 
+         <a href="/register"  className= "joinus-button"style={{ marginBottom: "20px",marginTop: "15px", marginRight:"px", fontSize: "2vh"}}> join us</a>
           </Grid>
+
+
       }
+       <AboutCard/>
 
       <div id="news">
         <h2 className="section-title">Events</h2>
