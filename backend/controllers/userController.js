@@ -76,22 +76,25 @@ login: async (req, res, next) => {
     })(req, res, next);
 },
 
-      deleteUser: async (req, res) => {
-        try {
-          const { id } = req.params;
-      
-          const user = await User.findById(id);
-      
-          if (!user) {
-            return res.status(404).send('User not found');
-          }
-      
-          await user.remove();
-          res.json({ message: 'User deleted successfully' });
-        } catch (error) {
-          res.status(500).send(error.message);
-        }
-      },
+   deleteUser: async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    
+    const deletedUser = await User.deleteOne({_id:id});
+
+    if (!deletedUser) {
+      return res.status(404).send('User not found');
+    }
+
+    res.status(200).send(`User with id ${id} deleted successfully`);
+  } catch (err) {
+    res.status(500).send('Error deleting the user');
+    console.log(err);
+  }
+},
+
+
       getuser: async(req,res) =>{
         try {
           const users = await User.find({});
@@ -122,8 +125,9 @@ login: async (req, res, next) => {
           // Handle errors
           res.status(500).send(error);
         }
-      }
-            
+      },
 
+      
+        
 
 }

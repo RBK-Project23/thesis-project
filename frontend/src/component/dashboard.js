@@ -14,7 +14,7 @@ export default function Dashboard() {
      
       const status = !initialStatus;
       console.log('email: '+email,'status :'+status);
-      const confirmUser = window.confirm(!initialStatus?'Are you sure you want to confirm this user?':'Are you sure you want to pend this user?');
+      const confirmUser = window.confirm(!initialStatus?'Are you sure you want to confirm this user?':'Are you sure you want to suspend this user?');
       if(confirmUser){
       
          const response = await axios.post('http://localhost:7000/users/updateStatus', {email, status});
@@ -36,10 +36,12 @@ export default function Dashboard() {
       const confirmDelete = window.confirm('Are you sure you want to delete this user?');
 
       if(confirmDelete){
-         await axios.delete(`http://localhost:7000/tech/delete/${userId}`);
+         await axios.delete(`http://localhost:7000/users/delete/${userId}`);
       // Update the users state to reflect the deletion
       const updatedUsers = users.filter(user => user.id !== userId);
       setUsers(updatedUsers);
+      window.confirm('deleted successfully!');
+      window.location.reload();
       }
      
     } catch (error) {
@@ -79,13 +81,15 @@ export default function Dashboard() {
   return (
     <>
     <div id='body'>
-     <div class="dashboard-container">
+     <div className="dashboard-container">
      <div id="dashboard-title">
         <h1>DASHBORAD ADMINISTRATOR </h1>
      
      </div>
+
+    
      
-     <div class="dashboard-tab">
+     <div className="dashboard-tab">
        
        <DenseTable users ={users} deleteUser={deleteUser} updateStatus={updateStatus} />
         
