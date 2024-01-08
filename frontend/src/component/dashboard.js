@@ -76,16 +76,18 @@ export default function Dashboard() {
   };
 
   const deleteUser = async (userId) => {
+    console.log("Deleting user with ID:", userId);
     try {
       const confirmDelete = window.confirm(
         "Are you sure you want to delete this user?"
       );
 
       if (confirmDelete) {
-        await axios.delete(`http://localhost:7000/tech/delete/${userId}`);
-        // Update the users state to reflect the deletion
+        await axios.delete(`http://localhost:7000/users/delete/${userId}`);
         const updatedUsers = users.filter((user) => user.id !== userId);
         setUsers(updatedUsers);
+        window.confirm("deleted successfully!");
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error deleting user:", error);

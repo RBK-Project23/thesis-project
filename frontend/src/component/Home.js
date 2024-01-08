@@ -7,8 +7,7 @@ import Footer from "../component/footer";
 import SlideCard from "./slider";
 import Post from "./Posts/Post/Post";
 import ScoutsProgram from "./ScoutsPrograms/ScoutsProgram/ScoutsProgram";
-import { Grid } from "@mui/material"
-
+import { Grid } from "@mui/material";
 
 import { getScoutPrograms } from "../actions/scoutPrograms";
 import "leaflet/dist/leaflet.css";
@@ -33,17 +32,34 @@ const Home = () => {
     .slice(0, 3);
   return (
     <>
-   
       <img id="home-image" src={homeImage} alt="Home" />
-      
-      {
-  
-        <Grid className="imageText" style={ {  backgroundColor: "rgba(1, 9, 17, 0.5)",boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)" , display: "flex",flexDirection: "column", justifyContent:"center", alignItems: "center",  borderRadius: "5px" }}> 
-          {" "}
 
-         <strong style={{ margin: "30px"}}>Welcome to Tunisian Scouts <br/> in the Sultanate of Oman</strong> 
-         <a href="/register"  className= "joinus-button"style={{ marginBottom: "20px", fontSize: "2vh"}}> join us</a>
-          </Grid>
+      {
+        <Grid
+          className="imageText"
+          style={{
+            backgroundColor: "rgba(1, 9, 17, 0.5)",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: "5px",
+          }}
+        >
+          {" "}
+          <strong style={{ margin: "30px" }}>
+            Welcome to Tunisian Scouts <br /> in the Sultanate of Oman
+          </strong>
+          <a
+            href="/register"
+            className="joinus-button"
+            style={{ marginBottom: "20px", fontSize: "2vh" }}
+          >
+            {" "}
+            join us
+          </a>
+        </Grid>
       }
 
       <div id="news">
