@@ -154,6 +154,7 @@ const Footer = () => {
       component="footer"
       sx={{
         backgroundColor: "#010911",
+        backdropFilter:"9px",
         py: [3, 6],
         color: "white",
         paddingLeft: 0,

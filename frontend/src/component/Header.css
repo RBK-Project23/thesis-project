@@ -1,13 +1,28 @@
 /* src/components/Header.css */
 header {
-    background-color: rgba(1, 9, 17);;
+  background-color: rgba(25, 51, 77, 0.315);
+  backdrop-filter: blur(9px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  font-size: 1.2rem; 
+  /* background-color: rgba(1, 9, 17, 0.5);  */
+ 
+     /* background-color: rgba(1, 9, 17);;
+  
     color: white;
     padding: 10px;
     display: flex;
     justify-content: space-between; 
     align-items: center; 
     backdrop-filter: blur(10px);
-    font-size: 1.2rem; 
+    font-size: 1.2rem;   */
   }
   
   .logo-container {
@@ -31,6 +46,7 @@ nav li {
 }
 
 nav a {
+  background-color:  "rgba(1, 9, 17, 0.5)"; 
   text-decoration: none;
   color: white;
 }

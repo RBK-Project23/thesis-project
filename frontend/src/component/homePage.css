@@ -1,12 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=ScoutFont');
 
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+
+}
 /* Image styles */
 #home-image {
-    min-width: 100%;
+    /* min-width: 100%;
     min-height: 20vh;
-    max-height: 60vh;
+    max-height: 60vh; */
+    width: 100%;
+    height: auto;
     object-fit: cover;
-    object-position: center -33vh;
+    object-position: center -20vh;
 }
 
 
@@ -43,6 +53,7 @@
 
 
 #news, #scout-programs, #slider-section {
+ 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,6 +63,7 @@
 
 
 #event, #scout-programs, #slider-section {
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -82,7 +94,8 @@
 
 /* Donate Section Styles */
 .donate-section {
-    background-color: #f6c9ab ; 
+  background-color: rgba(25, 51, 77, 0.315);
+  backdrop-filter: blur(9px);
     box-shadow: #f4cea0;
     border-color: burlywood;
     padding: 20px;
@@ -104,18 +117,17 @@
   
   .donate-button {
     padding: 10px 25px; 
-    background-color: #f59051; 
-    color: white;
+    background-color: 	#f49e3a; 
+    color: rgb(253, 250, 250);
     border: none;
     border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    transition: all 0.3s ease; 
+    box-shadow: #fc9928 0px 50px 100px -20px, #f49e3a 0px 30px 60px -30px, #f49e3a 0px -2px 6px 0px inset;    transition: all 0.3s ease; 
   }
   .joinus-button {
     /* margin-bottom: 50px; */
-    padding: 10px 25px; 
+    padding: 5px 25px; 
     background-color: #f5701d; 
     color: white;
     border: none;

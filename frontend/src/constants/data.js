@@ -119,8 +119,8 @@ const testimonials = [
         
     },
     {
-        name: "Rick Perry",
-        text: "Scouting ought to be about building character, not about sex. Period. Precious few parents enroll their boys in the Scouts to get a crash course in sexual orientation."
+        name: "Lord Robert Baden-Powell",
+        text: "Be Prepared… the meaning of the motto is that a Scout must prepare himself by previous thinking out and practicing how to act on any accident or emergency so that he is never taken by surprise."
     },
     {
       name: "Michael Portill",
@@ -129,5 +129,47 @@ const testimonials = [
     }
  
 ];
+ const homeAbout = [
+  {
+    
+   
+    title: "Our Mission",
+    desc: "The mission of the Boy Scouts of America is to prepare young people to make ethical and moral choices over their lifetimes by instilling in them the values of the Scout Oath and Law.",
+  },
+  {
+ 
+    title: "Scout Law",
+    desc: "A Scout is trustworthy, loyal, helpful, friendly, courteous, kind, obedient, cheerful, thrifty, brave, clean, and reverent.",
+  },
+  {
+   
+    title: "Scout Oath",
+    desc: "“On my honor I will do my best to do my duty to God and my country and to obey the Scout Law; to help other people at all times; to keep myself physically strong, mentally awake, and morally straight.”",
+  },
+]
+const awrapper = [
+  {
+   
+    data: "+57 millions",
+    title: "Scouts et bénévoles",
+  },
 
-export default {skills, pics, services, testimonials};
+  {
+  
+    data: "174",
+    title: "Organisations Scoutes Nationales",
+  },
+  {
+   
+    data: "+2.7 milliards",
+    title: "Heures de service aux communautés",
+  },
+  {
+   
+    data: "+16 millions",
+    title: "Projets et actions de service",
+  },
+]
+
+
+export default {skills, pics, services, testimonials, homeAbout, awrapper};

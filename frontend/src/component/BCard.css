@@ -1,0 +1,214 @@
+.aboutHome {
+    height: auto;
+  }
+  .container {
+    max-width: 85%;
+    margin: auto;
+  }
+  .flexSB {
+    display: flex;
+    justify-content: space-between;
+  }
+  body {
+    font-family: "Roboto", sans-serif;
+    background-color: #f8f8f8;
+    
+  }
+  .aboutHome #heading {
+    text-align: left;
+    padding: 0;
+  }
+  .aboutHome .left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .aboutHome .right {
+    padding: 80px 50px;
+  }
+  .aboutHome .items {
+    margin-top: 50px;
+  }
+  .aboutHome .item {
+    background-color: #faf8f8;
+    margin-top: 30px;
+    padding: 20px;
+    transition: 0.5s;
+  }
+  .aboutHome .img {
+    width: 200px;
+  }
+  .aboutHome img {
+    width: 70px;
+    height: 70px;
+  }
+  .aboutHome .item h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  .aboutHome .item p {
+    color: #999999;
+  }
+  
+  .aboutHome .item:hover {
+    background-color: #FCD9B8;
+    color: #0b0b0b;
+    cursor: pointer;
+    box-shadow: 0 5px 25px -2px rgba(7, 7, 7, 0.06);
+  }
+  .aboutHome .item:hover p {
+    color: #080707;
+  }
+  /*----------awrapper------------*/
+  .awrapper {
+    background-image: url("/public/khaoulaa.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 30vh;
+    color: #fff;
+  }
+  .awrapper::before {
+    content: "";
+    position: relative;;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    filter: blur(5px); /* Adjust the blur value as needed */
+    opacity: 0.7; /* Adjust the opacity as needed */
+    z-index: -1;
+  }
+  .awrapper .box {
+    padding: 70px 0;
+  }
+  .awrapper .icon {
+    margin-right: 30px;
+  }
+  .awrapper h1 {
+    font-size: 50px;
+    color: #fff;
+  }
+  .awrapper h2 {
+    color: #fff;
+  }
+  .awrapper h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #f9f4f4;
+  }
+  /*----------awrapper------------*/
+  @media screen and (max-width: 768px) {
+    .aboutHome .container {
+      flex-direction: column-reverse;
+    }
+    .aboutHome .row {
+      width: 100%;
+    }
+    .awrapper {
+      height: 50vh;
+    }
+  }
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f8f8f8;
+}
+/*------------global-----------*/
+.container {
+  max-width: 85%;
+  margin: auto;
+}
+.flexSB {
+  display: flex;
+  justify-content: space-between;
+}
+.icon {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  
+  /* color: #f8faf8; */
+  transition: 0.5s;
+}
+.icon:hover {
+  cursor: pointer;
+  /* background-color: #f07808; */
+  color: #f8f7f7;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style-type: none;
+}
+.row {
+  width: 50%;
+}
+
+
+
+/*------------global-----------*/
+#heading {
+  text-align: center;
+  padding: 40px 0;
+}
+#heading h3 {
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #f45803;
+  text-transform: uppercase;
+}
+#heading h1 {
+  font-size: 45px;
+  margin: 20px 0;
+  text-transform: capitalize;
+}
+p {
+  line-height: 30px;
+  font-size: 18px;
+}
+
+
+.margin {
+  margin-top: 40.3%;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+}
+.flex {
+  display: flex;
+}
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+.padding {
+  padding: 80px 0;
+}
+.shadow {
+  box-shadow: 0 5px 25px -2px rgb(0 0 0 / 6%);
+  background-color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .grid2,
+  .grid3,
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+}
+
+  
