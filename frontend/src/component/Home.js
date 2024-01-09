@@ -12,6 +12,7 @@ import AboutCard from "./BCardH";
 import  Awrapper from "./Awrraper"
 
 
+
 import { getScoutPrograms } from "../actions/scoutPrograms";
 import "leaflet/dist/leaflet.css";
 import { relativeTimeRounding } from "moment";
@@ -36,9 +37,8 @@ const Home = () => {
     .slice(0, 3);
   return (
     <>
-   
       <img id="home-image" src={homeImage} alt="Home" />
-      
+
       {
   
         <Grid className="imageText" style={ {  backgroundColor: "rgba(25, 51, 77, 0.315)",boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)", backdropfilter: "9px" , display: "flex",flexDirection: "column", justifyContent:"center", alignItems: "baseline",  borderRadius: "5px", marginLeft: "50px"  }}> 
@@ -50,6 +50,8 @@ const Home = () => {
           </Grid>
 
 
+
+  
       }
        <AboutCard/>
        <div className="donate-section">

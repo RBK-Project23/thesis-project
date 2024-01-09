@@ -136,7 +136,7 @@ export default function DenseTable({ users, deleteUser, updateStatus }) {
                   variant="outlined"
                   startIcon={<DeleteIcon />}
                   size="small"
-                  onClick={() => deleteUser(user.id)}
+                  onClick={() => deleteUser(user._id)}
                 >
                   Delete
                 </Button>

@@ -37,7 +37,11 @@ module.exports = {
           return res.status(400).json({ error: err.message });
         } else {
           passport.authenticate("local")(req, res, () => {
-            res.json({ success: true, message: "User registered", userId: user._id });
+            res.json({
+              success: true,
+              message: "User registered",
+              userId: user._id,
+            });
           });
         }
       });
@@ -65,7 +69,6 @@ module.exports = {
         );
         // Send the token back to the client to store in local storage
         res.json({ message: "Logged in successfully", token });
-        // res.redirect('/');
       } catch (error) {
         res.status(500).send(error.message);
       }
@@ -73,19 +76,22 @@ module.exports = {
   },
 
   deleteUser: async (req, res) => {
+    const id = req.params.id;
+    if (!id || id === "undefined") {
+      return res.status(400).send("Invalid user ID");
+    }
+
     try {
-      const { id } = req.params;
+      const deletedUser = await User.deleteOne({ _id: id });
 
-      const user = await User.findById(id);
-
-      if (!user) {
+      if (!deletedUser) {
         return res.status(404).send("User not found");
       }
 
-      await user.remove();
-      res.json({ message: "User deleted successfully" });
-    } catch (error) {
-      res.status(500).send(error.message);
+      res.status(200).send(`User with id ${id} deleted successfully`);
+    } catch (err) {
+      console.error("Error deleting the user:", err);
+      res.status(500).send("Error deleting the user: " + err.message);
     }
   },
   getuser: async (req, res) => {
