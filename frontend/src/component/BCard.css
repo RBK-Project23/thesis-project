@@ -12,6 +12,7 @@
   body {
     font-family: "Roboto", sans-serif;
     background-color: #f8f8f8;
+    
   }
   .aboutHome #heading {
     text-align: left;
@@ -34,7 +35,7 @@
     padding: 20px;
     transition: 0.5s;
   }
-  .aboutHome .icon {
+  .aboutHome .img {
     width: 200px;
   }
   .aboutHome img {
@@ -48,14 +49,15 @@
   .aboutHome .item p {
     color: #999999;
   }
+  
   .aboutHome .item:hover {
-    background-color: rgb(244, 193, 130);
-    color: #fcf9f6;
+    background-color: #FCD9B8;
+    color: #0b0b0b;
     cursor: pointer;
-    box-shadow: 0 5px 25px -2px rgb(0 0 0 / 6%);
+    box-shadow: 0 5px 25px -2px rgba(7, 7, 7, 0.06);
   }
   .aboutHome .item:hover p {
-    color: #f9f5f5;
+    color: #080707;
   }
   /*----------awrapper------------*/
   .awrapper {
@@ -86,10 +88,15 @@
   }
   .awrapper h1 {
     font-size: 50px;
+    color: #fff;
+  }
+  .awrapper h2 {
+    color: #fff;
   }
   .awrapper h3 {
     font-size: 20px;
     font-weight: 500;
+    color: #f9f4f4;
   }
   /*----------awrapper------------*/
   @media screen and (max-width: 768px) {
@@ -128,14 +135,14 @@ body {
   line-height: 40px;
   border-radius: 50%;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #ea9414;
+  
+  /* color: #f8faf8; */
   transition: 0.5s;
 }
 .icon:hover {
   cursor: pointer;
-  background-color: #f07808;
-  color: #ffffff;
+  /* background-color: #f07808; */
+  color: #f8f7f7;
 }
 a {
   text-decoration: none;

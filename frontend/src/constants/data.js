@@ -119,8 +119,8 @@ const testimonials = [
         
     },
     {
-        name: "Rick Perry",
-        text: "Scouting ought to be about building character, not about sex. Period. Precious few parents enroll their boys in the Scouts to get a crash course in sexual orientation."
+        name: "Lord Robert Baden-Powell",
+        text: "Be Prepared… the meaning of the motto is that a Scout must prepare himself by previous thinking out and practicing how to act on any accident or emergency so that he is never taken by surprise."
     },
     {
       name: "Michael Portill",

@@ -1,6 +1,13 @@
+.Grid-Slider{
+  width: 100px;
+}
+
+
 .slide-card {
-    background-color: #f3f3f3;
-    height: 450px;
+    background-color: #f6dab6;
+    backdrop-filter: blur(70px);
+    box-shadow: #fddcb2;
+    height: 500px;
     color: black;
     border-radius: 15px;
     display: flex;
@@ -10,17 +17,19 @@
   
   .image-container {
     background-color: #010911; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    /* display: flex;
+    justify-content: space-around;
+    align-items: center; */
+    border-radius: 15px;
+   
   }
   
   .slide-image {
-    height: 176px; 
-    width: 176px; 
-    border-radius: 50%;
+    height: 200px; 
+    /* width: 176px; */
+    /* margin: 20px; 
+    border-radius: 15px; */
+    /* border-radius: 50%; */
   }
   
   .content-container {

@@ -1,6 +1,6 @@
 /* src/components/Header.css */
 header {
-  background-color: rgba(1, 9, 17,0.3);
+  background-color: rgba(25, 51, 77, 0.315);
   backdrop-filter: blur(9px);
   display: flex;
   align-items: center;

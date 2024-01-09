@@ -26,23 +26,23 @@ const Awrapper = () => {
 }
 const awrapper = [
     {
-      // img: `${images.charite}`,
+      img: "/icons8-scout-100.png",
       data: "+57 millions",
       title: "Scouts et bénévoles",
     },
   
     {
-      // img: `${images.travail-en-equipe}`,
+        img: "/icons8-national-100 (1).png",
       data: "174",
       title: "Organisations Scoutes Nationales",
     },
     {
-      // img: `${images.charite}`,
+        img: "/icons8-service-100 (1).png",
       data: "+2.7 milliards",
       title: "Heures de service aux communautés",
     },
     {
-      // img: `${images.charite}`,
+        img: "/icons8-project-100 (1).png",
       data: "+16 millions",
       title: "Projets et actions de service",
     },
