@@ -13,7 +13,6 @@ import Awrapper from "./Awrraper";
 
 import { getScoutPrograms } from "../actions/scoutPrograms";
 import "leaflet/dist/leaflet.css";
-import { relativeTimeRounding } from "moment";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -35,7 +34,9 @@ const Home = () => {
     .slice(0, 3);
   return (
     <>
-      <img id="home-image" src={homeImage} alt="Home" />
+      <div className="home-container">
+        <img id="home-image" src={homeImage} alt="Home" />
+      </div>
 
       {
         <Grid
@@ -117,10 +118,6 @@ const Home = () => {
           </div>
         ))}
       </div>
-      <div id="news">
-        <h2 className="section-title">Explore Our Adventures</h2>
-      </div>
-      {/* <SlideCard/> */}
       <Awrapper />
       <Footer />
     </>
