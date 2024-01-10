@@ -1,19 +1,47 @@
 import React, { useState, useEffect } from "react";
-import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
-import { useDispatch } from "react-redux";
-
+import {
+  Container,
+  AppBar,
+  Typography,
+  Grow,
+  Grid,
+  TextField,
+  Box,
+  InputAdornment,
+} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import ScoutsPrograms from "./ScoutsPrograms/ScoutsPrograms";
-import ScoutsProgramForm from "./ScoutsProgramForm/ScoutsProgramForm";
 import { getScoutPrograms } from "../actions/scoutPrograms";
+
 import Footer from "./footer";
+import SearchIcon from "@mui/icons-material/Search";
 
 const ScoutsProgramsPage = () => {
   const [currentId, setCurrentId] = useState(0);
+  const [search, setSearch] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const dispatch = useDispatch();
+  const scoutPrograms = useSelector((state) => state.scoutPrograms);
 
   useEffect(() => {
     dispatch(getScoutPrograms());
   }, [currentId, dispatch]);
+
+
+  useEffect(() => {
+    console.log("Search Term:", search);
+    console.log("Posts before filtering:", scoutPrograms);
+
+    if (search.trim()) {
+      const filtered = scoutPrograms.filter((program) =>
+        program.name.toLowerCase().includes(search.toLowerCase())
+      );
+      console.log("Filtered Posts:", filtered);
+      setFilteredPosts(filtered);
+    } else {
+      setFilteredPosts(scoutPrograms);
+    }
+  }, [search, scoutPrograms]);
 
   return (
     <>
@@ -28,10 +56,8 @@ const ScoutsProgramsPage = () => {
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: "100px",
           }}
         >
-      
           <Typography
             variant="h2"
             align="center"
@@ -43,9 +69,34 @@ const ScoutsProgramsPage = () => {
           >
             Scouts Programs
           </Typography>
-     
         </AppBar>
-
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
+            paddingRight: 2,
+          }}
+        >
+          <TextField
+            placeholder="Search scouts programs..."
+            variant="outlined"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            sx={{
+              marginBottom: "80px",
+              width: "25%",
+              alignSelf: "center",
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
         <Grow in>
           <Container>
             <Grid
@@ -54,15 +105,26 @@ const ScoutsProgramsPage = () => {
               alignItems="stretch"
               spacing={3}
             >
-              <Grid item xs={12} sm={7}>
-                <ScoutsPrograms setCurrentId={setCurrentId} />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <ScoutsProgramForm
-                  currentId={currentId}
+              {filteredPosts.length > 0 ? (
+                <ScoutsPrograms
+                  scoutPrograms={filteredPosts}
                   setCurrentId={setCurrentId}
                 />
-              </Grid>
+              ) : (
+                search && (
+                  <Typography
+                    variant="h4"
+                    align="center"
+                    sx={{
+                      width: "100%",
+                      marginTop: 2,
+                    }}
+                  >
+                    No scouts program found matching your search title.
+                  </Typography>
+                )
+              )}
+              
             </Grid>
           </Container>
         </Grow>

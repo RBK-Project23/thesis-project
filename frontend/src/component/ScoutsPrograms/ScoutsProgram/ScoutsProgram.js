@@ -41,6 +41,7 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
     <Card
       sx={{
         maxWidth: 345,
+        height: 400,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -122,13 +123,14 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
             justifyContent: "space-between",
           }}
         >
-          <Button
-            size="small"
-            color="primary"
-            onClick={() => setCurrentId(program._id)}
+          <Link
+            to={`/edit-scout-program/${program._id}`}
+            style={{ textDecoration: "none" }}
           >
-            <EditIcon fontSize="small" /> Edit
-          </Button>
+            <Button size="small" color="primary">
+              <EditIcon fontSize="small" /> Edit
+            </Button>
+          </Link>
           <Button
             size="small"
             color="primary"
