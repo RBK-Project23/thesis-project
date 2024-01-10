@@ -5,8 +5,6 @@ import { useDispatch } from "react-redux";
 import ScoutsPrograms from "./ScoutsPrograms/ScoutsPrograms";
 import ScoutsProgramForm from "./ScoutsProgramForm/ScoutsProgramForm";
 import { getScoutPrograms } from "../actions/scoutPrograms";
-//import logo1 from "../images/logo2.jpeg";
-//import logo2 from "../images/logo1.jpeg";
 import Footer from "./footer";
 
 const ScoutsProgramsPage = () => {
@@ -30,16 +28,10 @@ const ScoutsProgramsPage = () => {
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
+            marginTop: "100px",
           }}
         >
-      {/*     <img
-            src={logo1}
-            alt="logo1"
-            height="60"
-            sx={{
-              marginRight: "10px",
-            }}
-          /> */}
+      
           <Typography
             variant="h2"
             align="center"
@@ -51,14 +43,7 @@ const ScoutsProgramsPage = () => {
           >
             Scouts Programs
           </Typography>
-      {/*     <img
-            src={logo2}
-            alt="logo2"
-            height="60"
-            sx={{
-              marginLeft: "30px",
-            }}
-          /> */}
+     
         </AppBar>
 
         <Grow in>

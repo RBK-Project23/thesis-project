@@ -5,8 +5,7 @@ import { useDispatch } from "react-redux";
 import Posts from "./Posts/Posts";
 import Form from "./Form/Form";
 import { getPosts } from "../actions/posts";
-//import logo1 from "../images/logo2.jpeg";
-//import logo2 from "../images/logo1.jpeg";
+
 import Footer from "./footer";
 
 const Events = () => {
@@ -19,7 +18,7 @@ const Events = () => {
 
   return (
     <>
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" >
       <AppBar
         position="static"
         color="inherit"
@@ -30,35 +29,23 @@ const Events = () => {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
+          marginTop: "100px",
         }}
       >
-       {/*  <img
-          src={logo1}
-          alt="logo1"
-          height="60"
-          sx={{
-            marginRight: "10px",
-          }}
-        /> */}
+     
         <Typography
           variant="h2"
           align="center"
           sx={{
             color: 'rgba(239, 82, 87, 1)', 
             marginLeft: '20px',
-            marginRight: '20px'
+            marginRight: '20px',
+            
           }}
         >
           Events
         </Typography>
-      {/*   <img
-          src={logo2}
-          alt="logo2"
-          height="60"
-          sx={{
-            marginLeft: "30px",
-          }}
-        /> */}
+     
       </AppBar>
 
       <Grow in>

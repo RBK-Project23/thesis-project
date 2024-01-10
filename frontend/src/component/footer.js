@@ -170,8 +170,8 @@ const Footer = () => {
         <Grid item xs={12} sm={2} md={3}>
           {
             <img
-              style={{ width: "160px", height: "100px", marginLeft: "2px" }}
-              src="/Flogo.png"
+              style={{ width: "60px", height: "60px", marginLeft: "20px" }}
+              src="/logo-no-background2.png"
               alt="Logo"
               className="logo"
             />
