@@ -23,7 +23,8 @@ import UserProfilCommander from "./component/userpages/UserCommander";
 import UserProfilParent from "./component/userpages/UserParent";
 import Impactpage from "./component/Impact";
 import DonatePage from "./component/DonatePage";
-
+import Form from "./component/Form/Form";
+import ScoutsProgramForm from "./component/ScoutsProgramForm/ScoutsProgramForm";
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/create-event" element={<Form />} />
+          <Route path="/create-event/:id" element={<Form />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/" element={<Home />} exact />
             <Route path="/UserScout" element={<UserProfilScout />} />
@@ -50,11 +53,16 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/events/:id" element={<EventDetail />} />
           <Route path="/scouts-programs" element={<ScoutsProgramsPage />} />
+          <Route path="/create-scout-program" element={<ScoutsProgramForm />} />
+          <Route
+            path="/edit-scout-program/:id"
+            element={<ScoutsProgramForm />}
+          />
           <Route path="/dashboard" element={<Dashborad />} />
           <Route path="/Engagement" element={<Engagement />} />
           <Route path="/scoutPrograms/:id" element={<ScoutProgramDetail />} />
-          <Route path="/donate" element={<DonatePage />} /> {/* Add the route for DonatePage */}
-
+          <Route path="/donate" element={<DonatePage />} />{" "}
+         
         </Routes>
       </Router>
     </>
