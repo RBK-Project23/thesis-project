@@ -7,11 +7,9 @@ import Footer from "../component/footer";
 // import SlideCard from "./slider"
 import Post from "./Posts/Post/Post";
 import ScoutsProgram from "./ScoutsPrograms/ScoutsProgram/ScoutsProgram";
-import { Grid } from "@mui/material"
+import { Grid } from "@mui/material";
 import AboutCard from "./BCardH";
-import  Awrapper from "./Awrraper"
-
-
+import Awrapper from "./Awrraper";
 
 import { getScoutPrograms } from "../actions/scoutPrograms";
 import "leaflet/dist/leaflet.css";
@@ -40,22 +38,51 @@ const Home = () => {
       <img id="home-image" src={homeImage} alt="Home" />
 
       {
-  
-        <Grid className="imageText" style={ {  backgroundColor: "rgba(25, 51, 77, 0.315)",boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)", backdropfilter: "9px" , display: "flex",flexDirection: "column", justifyContent:"center", alignItems: "baseline",  borderRadius: "5px", marginLeft: "50px"  }}> 
+        <Grid
+          className="imageText"
+          style={{
+            backgroundColor: "rgba(25, 51, 77, 0.315)",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
+            backdropfilter: "9px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "baseline",
+            borderRadius: "5px",
+            marginLeft: "50px",
+          }}
+        >
           {" "}
-
-         <strong style={{ margin: "20px", marginBottom: "10px", color: "#f5701d"}}>  Tunisian Scouts in the Sultanate of Oman<br/></strong> 
-         <h5> Give young people the skills <br/>and means to create a better world</h5> 
-         <a href="/register"  className= "joinus-button"style={{ marginBottom: "20px",marginTop: "15px", marginRight:"px", fontSize: "2vh"}}> join us</a>
-          </Grid>
-
-
-
-  
+          <strong
+            style={{ margin: "20px", marginBottom: "10px", color: "#f5701d" }}
+          >
+            {" "}
+            Tunisian Scouts in the Sultanate of Oman
+            <br />
+          </strong>
+          <h5>
+            {" "}
+            Give young people the skills <br />
+            and means to create a better world
+          </h5>
+          <a
+            href="/register"
+            className="joinus-button"
+            style={{
+              marginBottom: "20px",
+              marginTop: "15px",
+              marginRight: "px",
+              fontSize: "2vh",
+            }}
+          >
+            {" "}
+            join us
+          </a>
+        </Grid>
       }
-       <AboutCard/>
-       <div className="donate-section">
-        <p className="donate-text" style={{ color: ''}}>
+      <AboutCard />
+      <div className="donate-section">
+        <p className="donate-text" style={{ color: "" }}>
           Donate to Tunisian Scouts in the Sultanate of Oman, today!
           <br /> Your support makes all the difference.
         </p>
@@ -74,7 +101,6 @@ const Home = () => {
           </div>
         ))}
       </div>
-   
 
       <div id="news">
         <h2 className="section-title">Scouts Programs</h2>
@@ -95,9 +121,8 @@ const Home = () => {
         <h2 className="section-title">Explore Our Adventures</h2>
       </div>
       {/* <SlideCard/> */}
-      <Awrapper/>
+      <Awrapper />
       <Footer />
-      
     </>
   );
 };
