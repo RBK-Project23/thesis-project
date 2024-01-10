@@ -1,20 +1,31 @@
-/* src/components/Header.css */
 header {
+  background-image: linear-gradient(rgba(1, 9, 17, 0.5), rgba(1, 9, 17, 0.5));
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  backdrop-filter: blur(10px);
+  font-size: 1.2rem; 
+}
+
+.home-page-header {
   background-color: rgba(25, 51, 77, 0.45);
   backdrop-filter: blur(1px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  position: fixed;
+  position:absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
   font-size: 1.2rem; 
-  
- 
-  }
+}
+
   
   .logo-container {
     display: flex;
