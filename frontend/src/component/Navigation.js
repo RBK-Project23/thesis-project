@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHome, FaSignInAlt, FaUserPlus, FaSignOutAlt } from "react-icons/fa";
 import { jwtDecode } from "jwt-decode";
+import { Menu, MenuItem, Button } from "@mui/material";
 
 const Navigation = () => {
   const isAuthenticated = () => {
@@ -47,11 +48,39 @@ const Navigation = () => {
     }
   };
 
+  const showCreateMenu = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const role = decodedToken.type_user;
+      return decodedToken.email === "admin@gmail.com" || role === "Commander";
+    }
+    return false;
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.reload();
   };
 
+  const [eventsAnchorEl, setEventsAnchorEl] = useState(null);
+  const [scoutsProgramsAnchorEl, setScoutsProgramsAnchorEl] = useState(null);
+
+  const handleEventsClick = (event) => {
+    setEventsAnchorEl(event.currentTarget);
+  };
+
+  const handleScoutsProgramsClick = (event) => {
+    setScoutsProgramsAnchorEl(event.currentTarget);
+  };
+
+  const handleEventsClose = () => {
+    setEventsAnchorEl(null);
+  };
+
+  const handleScoutsProgramsClose = () => {
+    setScoutsProgramsAnchorEl(null);
+  };
   return (
     <nav>
       <ul>
@@ -66,24 +95,95 @@ const Navigation = () => {
           </Link>
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
-          <Link to="/events" style={{ display: "flex", alignItems: "center" }}>
+          <Button
+            style={{
+              color: "white",
+              textTransform: "none",
+              fontSize: "1.2rem",
+            }}
+            aria-controls="events-menu"
+            aria-haspopup="true"
+            onClick={handleEventsClick}
+          >
             Events
-          </Link>
+          </Button>
+          <Menu
+            id="events-menu"
+            anchorEl={eventsAnchorEl}
+            keepMounted
+            open={Boolean(eventsAnchorEl)}
+            onClose={handleEventsClose}
+          >
+            <MenuItem onClick={handleEventsClose}>
+              <Link
+                to="/events"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                View Events
+              </Link>
+            </MenuItem>
+            {showCreateMenu() && (
+              <MenuItem onClick={handleEventsClose}>
+                <Link
+                  to="/create-event"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Create Event
+                </Link>
+              </MenuItem>
+            )}
+          </Menu>
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
-          <Link
-            to="/scouts-programs"
-            style={{ display: "flex", alignItems: "center" }}
+          <Button
+            style={{
+              color: "white",
+              textTransform: "none",
+              fontSize: "1.2rem",
+            }}
+            aria-controls="scout-programs-menu"
+            aria-haspopup="true"
+            onClick={handleScoutsProgramsClick}
           >
             Scouts Programs
-          </Link>
+          </Button>
+          <Menu
+            id="scout-programs-menu"
+            anchorEl={scoutsProgramsAnchorEl}
+            keepMounted
+            open={Boolean(scoutsProgramsAnchorEl)}
+            onClose={handleScoutsProgramsClose}
+          >
+            <MenuItem onClick={handleScoutsProgramsClose}>
+              <Link
+                to="/scouts-programs"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                View Scout Programs
+              </Link>
+            </MenuItem>
+            {showCreateMenu() && (
+              <MenuItem onClick={handleScoutsProgramsClose}>
+                <Link
+                  to="/create-scout-program"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Create Scout Program
+                </Link>
+              </MenuItem>
+            )}
+          </Menu>
         </li>
 
-        {isAuthenticated() && (
+        {isAuthenticated() && getUserRole() && (
           <li style={{ display: "flex", alignItems: "center" }}>
             <Link
               to={profileLink()}
-              style={{ display: "flex", alignItems: "center" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                color: "white",
+              }}
             >
               My Profil
             </Link>

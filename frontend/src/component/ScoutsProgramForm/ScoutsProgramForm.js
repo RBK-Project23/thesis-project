@@ -13,8 +13,9 @@ import {
   createScoutProgram,
   updateScoutProgram,
 } from "../../actions/scoutPrograms";
+import { useNavigate, useParams } from "react-router-dom";
 
-const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
+const ScoutsProgramForm = () => {
   const initialFormState = {
     name: "",
     description: "",
@@ -24,9 +25,11 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
   };
   const [scoutProgramData, setScoutProgramData] = useState(initialFormState);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   const program = useSelector((state) =>
-    currentId ? state.scoutPrograms.find((p) => p._id === currentId) : null
+    id ? state.scoutPrograms.find((p) => p._id === id) : null
   );
 
   const theme = useTheme();
@@ -36,25 +39,27 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
   }, [program]);
 
   const clear = () => {
-    setCurrentId(0);
     setScoutProgramData(initialFormState);
+    if (id) {
+      navigate("/scouts-programs");
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (new Date(scoutProgramData.endDate) < new Date(scoutProgramData.startDate)) {
-    alert("End date cannot be earlier than start date.");
-    return;
-  }
+    if (
+      new Date(scoutProgramData.endDate) < new Date(scoutProgramData.startDate)
+    ) {
+      alert("End date cannot be earlier than start date.");
+      return;
+    }
 
-
-    if (currentId === 0) {
+    if (!id) {
       dispatch(createScoutProgram(scoutProgramData));
     } else {
-      dispatch(updateScoutProgram(currentId, scoutProgramData));
+      dispatch(updateScoutProgram(id, scoutProgramData));
     }
     clear();
-    
   };
 
   return (
@@ -62,7 +67,14 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
       elevation={6}
       sx={{
         padding: (theme) => theme.spacing(2),
-        marginBottom: (theme) => theme.spacing(2),
+        marginTop: (theme) => theme.spacing(5),
+        marginLeft: "auto",
+        marginRight: "auto",
+        maxWidth: "700px",
+        borderRadius: "15px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
       <form
@@ -71,23 +83,29 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
         sx={{
           display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          "& .MuiTextField-root": {
-            margin: (theme) => theme.spacing(1),
-          },
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100%",
         }}
       >
-        <Typography variant="h6">
-          {currentId
-            ? `Editing "${program?.name}"`
-            : "Creating a Scout Program"}
+        <Typography
+          variant="h6"
+          sx={{
+            fontSize: "24px",
+            textAlign: "center",
+            margin: (theme) => theme.spacing(2),
+          }}
+        >
+          {id ? `Editing "${program?.name}"` : "Create Scouts Program"}
         </Typography>
         <TextField
           name="name"
           variant="outlined"
           label="Program Name"
           fullWidth
+          sx={{
+            margin: (theme) => theme.spacing(1),
+          }}
           value={scoutProgramData.name}
           onChange={(e) =>
             setScoutProgramData({ ...scoutProgramData, name: e.target.value })
@@ -100,6 +118,9 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
           fullWidth
           multiline
           rows={4}
+          sx={{
+            margin: (theme) => theme.spacing(1),
+          }}
           value={scoutProgramData.description}
           onChange={(e) =>
             setScoutProgramData({
@@ -114,6 +135,9 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
           label="Start Date"
           type="date"
           fullWidth
+          sx={{
+            margin: (theme) => theme.spacing(1),
+          }}
           value={scoutProgramData.startDate}
           onChange={(e) =>
             setScoutProgramData({
@@ -130,6 +154,9 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
           label="End Date"
           type="date"
           fullWidth
+          sx={{
+            margin: (theme) => theme.spacing(1),
+          }}
           value={scoutProgramData.endDate}
           onChange={(e) =>
             setScoutProgramData({
@@ -144,6 +171,9 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
           variant="outlined"
           label="Address"
           fullWidth
+          sx={{
+            margin: (theme) => theme.spacing(1),
+          }}
           value={scoutProgramData.address}
           onChange={(e) =>
             setScoutProgramData({
@@ -152,9 +182,10 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
             })
           }
         />
-        <Box sx={{ margin: "10px 0" }} />
+        <Box sx={{ width: "100%", margin: "10px 0" }} />
         <Button
           sx={{
+            margin: (theme) => theme.spacing(1),
             marginBottom: 2,
             backgroundColor: "#EF5257",
             color: "white",
@@ -163,7 +194,10 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
                 color: { main: "#EF5257" },
                 mainShade: "dark",
               }).dark,
+              transform: "scale(1.02)",
+              boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
             },
+            padding: "10px",
           }}
           variant="contained"
           color="primary"
@@ -176,6 +210,7 @@ const ScoutsProgramForm = ({ currentId, setCurrentId }) => {
         <Button
           variant="contained"
           sx={{
+            margin: (theme) => theme.spacing(1),
             backgroundColor: "#B0BEC5",
             color: "white",
             "&:hover": {

@@ -11,8 +11,9 @@ import { useDispatch, useSelector } from "react-redux";
 import FileBase from "react-file-base64";
 
 import { createPost, updatePost } from "../../actions/posts";
+import { useParams } from "react-router-dom";
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = () => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -21,9 +22,10 @@ const Form = ({ currentId, setCurrentId }) => {
     selectedFile: "",
   });
   const theme = useTheme();
+  const { id } = useParams();
 
   const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
+    id ? state.posts.find((p) => p._id === id) : null
   );
   const dispatch = useDispatch();
 
@@ -32,7 +34,6 @@ const Form = ({ currentId, setCurrentId }) => {
   }, [post]);
 
   const clear = () => {
-    setCurrentId(0);
     setPostData({
       creator: "",
       title: "",
@@ -45,20 +46,23 @@ const Form = ({ currentId, setCurrentId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (currentId === 0) {
+    if (!id) {
       dispatch(createPost(postData));
     } else {
-      dispatch(updatePost(currentId, postData));
+      dispatch(updatePost(id, postData));
     }
     clear();
   };
-
   return (
     <Paper
       elevation={6}
       sx={{
         padding: (theme) => theme.spacing(2),
-        marginBottom: (theme) => theme.spacing(2),
+        marginTop: (theme) => theme.spacing(5),
+        marginLeft: "auto",
+        marginRight: "auto",
+        maxWidth: "700px",
+        borderRadius: "15px",
       }}
     >
       <form
@@ -67,21 +71,29 @@ const Form = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
         sx={{
           display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          "& .MuiTextField-root": {
-            margin: (theme) => theme.spacing(1),
-          },
+          flexDirection: "column",
+          alignItems: "center",
+          margin: (theme) => theme.spacing(3),
         }}
       >
-        <Typography variant="h6">
-          {currentId ? `Editing "${post?.title}"` : "Creating a Events"}
+        <Typography
+          variant="h6"
+          sx={{
+            fontSize: "24px",
+            textAlign: "center",
+            marginBottom: (theme) => theme.spacing(3),
+          }}
+        >
+          {id ? `Editing "${post?.title}"` : "Create Event"}
         </Typography>
         <TextField
           name="creator"
           variant="outlined"
-          label="Admin"
+          label="Name Author"
           fullWidth
+          sx={{
+            margin: (theme) => theme.spacing(1),
+          }}
           value={postData.creator}
           onChange={(e) =>
             setPostData({ ...postData, creator: e.target.value })
@@ -92,6 +104,9 @@ const Form = ({ currentId, setCurrentId }) => {
           variant="outlined"
           label="Title"
           fullWidth
+          sx={{
+            margin: (theme) => theme.spacing(1),
+          }}
           value={postData.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
@@ -102,6 +117,9 @@ const Form = ({ currentId, setCurrentId }) => {
           fullWidth
           multiline
           rows={4}
+          sx={{
+            margin: (theme) => theme.spacing(1),
+          }}
           value={postData.message}
           onChange={(e) =>
             setPostData({ ...postData, message: e.target.value })
@@ -112,6 +130,9 @@ const Form = ({ currentId, setCurrentId }) => {
           variant="outlined"
           label="Tags (comma separated)"
           fullWidth
+          sx={{
+            margin: (theme) => theme.spacing(1),
+          }}
           value={postData.tags}
           onChange={(e) =>
             setPostData({ ...postData, tags: e.target.value.split(",") })
@@ -136,7 +157,10 @@ const Form = ({ currentId, setCurrentId }) => {
                 color: { main: "#EF5257" },
                 mainShade: "dark",
               }).dark,
+              transform: "scale(1.02)",
+              boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
             },
+            padding: "10px",
           }}
           variant="contained"
           color="primary"
@@ -149,10 +173,10 @@ const Form = ({ currentId, setCurrentId }) => {
         <Button
           variant="contained"
           sx={{
-            backgroundColor: "#B0BEC5", 
+            backgroundColor: "#B0BEC5",
             color: "white",
             "&:hover": {
-              backgroundColor: "#90A4AE", 
+              backgroundColor: "#90A4AE",
             },
           }}
           size="small"

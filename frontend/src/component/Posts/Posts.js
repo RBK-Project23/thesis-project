@@ -1,11 +1,9 @@
 import React from "react";
 import { Grid, CircularProgress, Box } from "@mui/material";
-import { useSelector } from "react-redux";
-
 import Post from "./Post/Post";
 
-const Posts = ({ setCurrentId }) => {
-  const posts = useSelector((state) => state.posts);
+const Posts = ({ posts, setCurrentId }) => {
+  
 
   const sortedPosts = posts.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -14,17 +12,28 @@ const Posts = ({ setCurrentId }) => {
   return !posts.length ? (
     <CircularProgress />
   ) : (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
-      <Grid container alignItems="stretch" spacing={3}>
-        {sortedPosts.map((post) => (
-          <Grid
-            key={post._id}
-            item
-            xs={12}
-            sm={5.7}
-            md={5.7}
+    <Grid container spacing={3}>
+      {sortedPosts.map((post) => (
+        <Grid
+          key={post._id}
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={4}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            padding: 2,
+          }}
+        >
+          <Box
             sx={{
-              margin: (theme) => theme.spacing(1),
+              width: "100%", 
+              height: 410, 
+              flexDirection: "column",
+              justifyContent: "center", 
+              alignItems: "center",
               boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
               borderRadius: "8px",
               transition: "transform 0.2s",
@@ -32,17 +41,14 @@ const Posts = ({ setCurrentId }) => {
                 transform: "scale(1.03)",
               },
               backgroundColor: "#fff",
+              overflow: "hidden",
             }}
           >
-            <Post
-              post={post}
-              setCurrentId={setCurrentId}
-              sx={{ textAlign: "center" }}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+            <Post post={post} setCurrentId={setCurrentId} />
+          </Box>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

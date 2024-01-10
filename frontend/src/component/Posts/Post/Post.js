@@ -12,11 +12,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-
 import { likePost, deletePost } from "../../../actions/posts";
 import { Link } from "react-router-dom";
 
-const Post = ({ post, setCurrentId, showActions = true }) => {
+const Post = ({ post, showActions = true }) => {
   const dispatch = useDispatch();
 
   const truncateText = (text, limit) => {
@@ -25,26 +24,24 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
   };
 
   return (
-    <Card    
+    <Card
       sx={{
         maxWidth: 345,
+        height: 400,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         borderRadius: "15px",
         position: "relative",
-        margin: "auto",
-        marginBottom: 3,
-        marginRight:3
-       
+        padding: 2,
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <CardMedia   
+      <CardMedia
         component="img"
         image={post.selectedFile || "defaultImageURL"}
         alt={post.title}
         sx={{
-        
           height: 194,
         }}
       />
@@ -108,13 +105,14 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
           >
             <ThumbUpAltIcon fontSize="small" /> Like {post.likeCount}
           </Button>
-          <Button
-            size="small"
-            color="primary"
-            onClick={() => setCurrentId(post._id)}
+          <Link
+            to={`/create-event/${post._id}`}
+            style={{ textDecoration: "none" }}
           >
-            <EditIcon fontSize="small" /> Edit
-          </Button>
+            <Button size="small" color="primary">
+              <EditIcon fontSize="small" /> Edit
+            </Button>
+          </Link>
           <Button
             size="small"
             color="primary"
