@@ -9,11 +9,12 @@ const Skills = () => {
             background: `url(${images.skills_bg}) center/cover no-repeat`
         }}>
             <div className="container">
-                <h2 className="section__title text__center">
-                    Scout Skills
-                </h2>
+               
                 <div className="skills__content grid">
                     <div className="skills__content--left">
+                    <h2 className="section__title text__center" style={{ textIndent: "-10px"}}>
+                    Scout Skills
+                </h2>
                         {
                             data.skills.map((skill, index) => {
                                 return (
