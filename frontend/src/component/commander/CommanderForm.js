@@ -132,7 +132,7 @@ const CommanderForm = () => {
               <Card
                 sx={{
                   width: "48%",
-                  backgroundColor: "rgba(240, 240, 240, 0.7)",
+                  backgroundColor: "rgba(240, 240, 240, 10)",
                   marginY: "10px",
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
                   backdropFilter: "blur(10px)",

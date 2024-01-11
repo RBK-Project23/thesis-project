@@ -42,9 +42,9 @@ const Home = () => {
         <Grid
           className="imageText"
           style={{
-            backgroundColor: "rgba(25, 51, 77, 0.315)",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
-            backdropfilter: "9px",
+            // backgroundColor: "rgba(25, 51, 77, 0.315)",
+            // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
+            // backdropfilter: "9px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
