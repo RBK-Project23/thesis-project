@@ -15,6 +15,9 @@ import { useDispatch } from "react-redux";
 import { likePost, deletePost } from "../../../actions/posts";
 import { Link } from "react-router-dom";
 
+
+
+
 const Post = ({ post, showActions = true }) => {
   const dispatch = useDispatch();
 
@@ -90,38 +93,42 @@ const Post = ({ post, showActions = true }) => {
           {truncateText(post.message, 30)}
         </Typography>
       </Box>
-      {showActions && (
-        <CardActions
-          sx={{
-            padding: "0 16px 8px 16px",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
+
+      <CardActions
+        sx={{
+          padding: "0 16px 8px 16px",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Button
+          size="medium"
+          color="primary"
+          onClick={() => dispatch(likePost(post._id))}
         >
-          <Button
-            size="medium"
-            color="primary"
-            onClick={() => dispatch(likePost(post._id))}
-          >
-            <ThumbUpAltIcon fontSize="small" /> Like {post.likeCount}
-          </Button>
-          <Link
-            to={`/create-event/${post._id}`}
-            style={{ textDecoration: "none" }}
-          >
-            <Button size="medium" color="primary">
-              <EditIcon fontSize="small" /> Edit
+          <ThumbUpAltIcon fontSize="small" /> Like {post.likeCount}
+        </Button>
+
+        {showActions && (
+          <>
+            <Link
+              to={`/create-event/${post._id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Button size="medium" color="primary">
+                <EditIcon fontSize="small" /> Edit
+              </Button>
+            </Link>
+            <Button
+              size="medium"
+              color="primary"
+              onClick={() => dispatch(deletePost(post._id))}
+            >
+              <DeleteIcon fontSize="small" /> Delete
             </Button>
-          </Link>
-          <Button
-            size="medium"
-            color="primary"
-            onClick={() => dispatch(deletePost(post._id))}
-          >
-            <DeleteIcon fontSize="small" /> Delete
-          </Button>
-        </CardActions>
-      )}
+          </>
+        )}
+      </CardActions>
     </Card>
   );
 };
