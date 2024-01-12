@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+
 import Header from "./component/Header";
 import Events from "./component/Events";
 import Home from "./component/Home";
@@ -15,8 +16,14 @@ import PrivacyPolicy from "./component/pageFooter/PrivacyPolicy";
 import ContactUs from "./component/pageFooter/ContactUs";
 import EventDetail from "./component/EventDetail";
 import ScoutsProgramsPage from "./component/ScoutsPrograms";
-import Dashborad from '../src/component/dashboard';
+import Dashborad from "../src/component/dashboard";
 import Engagement from "./component/engagement";
+import ScoutProgramDetail from "./component/ScoutProgramDetail";
+import UserProfilCommander from "./component/userpages/UserCommander";
+import UserProfilParent from "./component/userpages/UserParent";
+import Impactpage from "./component/Impact";
+import DonatePage from "./component/DonatePage";
+
 
 function App() {
   return (
@@ -28,9 +35,12 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/events" element={<Events />} />
           <Route element={<PrivateRoutes />}>
-            <Route element={<Home />} path="/" exact />
-            <Route path="/profiles" element={<UserProfilScout />} exact />
+            <Route path="/" element={<Home />} exact />
+            <Route path="/UserScout" element={<UserProfilScout />} />
+            <Route path="/UserCommander" element={<UserProfilCommander />} />
+            <Route path="/UserParent" element={<UserProfilParent />} />
           </Route>
+          <Route path="/Impact" element={<Impactpage />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/استمارة-التسجيل" element={<Istimara />} />
@@ -40,8 +50,10 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/events/:id" element={<EventDetail />} />
           <Route path="/scouts-programs" element={<ScoutsProgramsPage />} />
-          <Route path="/dashborad" element={<Dashborad />} />
+          <Route path="/dashboard" element={<Dashborad />} />
           <Route path="/Engagement" element={<Engagement />} />
+          <Route path="/scoutPrograms/:id" element={<ScoutProgramDetail />} />
+          <Route path="/donate" element={<DonatePage />} /> {/* Add the route for DonatePage */}
 
         </Routes>
       </Router>

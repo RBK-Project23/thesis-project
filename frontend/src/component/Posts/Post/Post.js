@@ -9,7 +9,7 @@ import {
 } from "@mui/material/";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import DeleteIcon from "@mui/icons-material/Delete";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import EditIcon from "@mui/icons-material/Edit";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 
@@ -25,7 +25,7 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
   };
 
   return (
-    <Card
+    <Card    
       sx={{
         maxWidth: 345,
         display: "flex",
@@ -34,14 +34,17 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
         borderRadius: "15px",
         position: "relative",
         margin: "auto",
-        marginBottom: 2,
+        marginBottom: 3,
+        marginRight:3
+       
       }}
     >
-      <CardMedia
+      <CardMedia   
         component="img"
         image={post.selectedFile || "defaultImageURL"}
         alt={post.title}
         sx={{
+        
           height: 194,
         }}
       />
@@ -60,23 +63,16 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
             {moment(post.createdAt).fromNow()}
           </Typography>
         </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "20px",
-            right: "20px",
-            color: "white",
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          style={{
+            fontSize: "1.7rem",
+            fontWeight: "bold",
+            color: "#010911",
           }}
         >
-          <Button
-            style={{ color: "white" }}
-            size="small"
-            onClick={() => setCurrentId(post._id)}
-          >
-            <MoreHorizIcon fontSize="default" />
-          </Button>
-        </Box>
-        <Typography gutterBottom variant="h5" component="h2">
           <Link
             to={`/events/${post._id}`}
             style={{ textDecoration: "none", color: "inherit" }}
@@ -84,7 +80,16 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
             {post.title}
           </Link>
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="h6">{post.creator}</Typography>
+        <Typography variant="body2" color="textSecondary">
+          {moment(post.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          style={{ fontSize: "1.2rem" }}
+        >
           {truncateText(post.message, 30)}
         </Typography>
       </Box>
@@ -102,6 +107,13 @@ const Post = ({ post, setCurrentId, showActions = true }) => {
             onClick={() => dispatch(likePost(post._id))}
           >
             <ThumbUpAltIcon fontSize="small" /> Like {post.likeCount}
+          </Button>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => setCurrentId(post._id)}
+          >
+            <EditIcon fontSize="small" /> Edit
           </Button>
           <Button
             size="small"

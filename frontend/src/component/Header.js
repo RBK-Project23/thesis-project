@@ -1,12 +1,17 @@
-import React from 'react';
-import Navigation from './Navigation';
-import './Header.css'; 
+import React from "react";
+import Navigation from "./Navigation";
+import "./Header.css";
 
 const Header = () => {
   return (
     <header>
-         <img src="/Scout_tunisen1.png" alt="Logo" className="logo" />
-         <Navigation />
+      <img
+        style={{ width: "60px", height: "60px", marginLeft: "20px" }}
+        src="/logo-no-background2.png"
+        alt="Logo"
+        className="logo"
+      />
+      <Navigation />
     </header>
   );
 };

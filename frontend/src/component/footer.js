@@ -3,6 +3,7 @@ import { Container, Typography, Link, Grid } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../actions/posts";
+import { getScoutPrograms } from "../actions/scoutPrograms";
 
 function Copyright(props) {
   return (
@@ -14,7 +15,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link style={{ color: "white" }} href="https://scoutTun.com/">
-        Scout Tunisia
+        Tunisian Scouts
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -24,7 +25,14 @@ function Copyright(props) {
 
 const GridItem = ({ footer }) => (
   <Grid item xs={12} sm={2} key={footer.title}>
-    <Typography variant="h6" style={{ color: "white" }} gutterBottom>
+    <Typography
+      variant="h6"
+      gutterBottom
+      sx={{
+        fontSize: "2rem",
+        color: "white",
+      }}
+    >
       {footer.title}
     </Typography>
     <ul>
@@ -34,9 +42,12 @@ const GridItem = ({ footer }) => (
             <Link
               href={item.url}
               variant="subtitle1"
-              style={{ color: "white" }}
+              sx={{
+                fontSize: "1.2rem",
+                color: "white",
+              }}
               target="_blank"
-              rel="noopener noreferrer" 
+              rel="noopener noreferrer"
             >
               {item.label}
             </Link>
@@ -45,7 +56,10 @@ const GridItem = ({ footer }) => (
               component={RouterLink}
               to={item.url}
               variant="subtitle1"
-              style={{ color: "white" }}
+              sx={{
+                fontSize: "1.2rem",
+                color: "white",
+              }}
             >
               {item.label}
             </Link>
@@ -56,10 +70,9 @@ const GridItem = ({ footer }) => (
   </Grid>
 );
 
-
 const footers = [
   {
-    title: "Scout Tunisia",
+    title: "Tunisian Scouts",
     description: [
       { label: "About Us", url: "/about-us" },
       { label: "Contact Us", url: "/contact-us" },
@@ -67,20 +80,29 @@ const footers = [
     ],
   },
   {
-    title: "Event",
+    title: "Events",
     description: [
       { label: "Event 1", url: "/event1" },
       { label: "Event 2", url: "/event2" },
       { label: "Event 3", url: "/event3" },
     ],
   },
+
   {
+    title: "Scouts Programs",
+    description: [
+      { label: "Program 1", url: "/program1" },
+      { label: "Program 2", url: "/program2" },
+      { label: "Program 3", url: "/program3" },
+    ],
+  },
+  /*  {
     title: "Your Account",
     description: [
       { label: "Personal informations", url: "/profile" },
       { label: "Subscribe", url: "/Subscribe" },
     ],
-  },
+  }, */
   {
     title: "Follow Us",
     description: [
@@ -89,26 +111,39 @@ const footers = [
       { label: "Instagram", url: "https://www.instagram.com/" },
       { label: "LinkedIn", url: "https://www.linkedin.com/" },
     ],
-  }
+  },
 ];
 
 const Footer = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
+  const scoutPrograms = useSelector((state) => state.scoutPrograms);
 
   useEffect(() => {
     dispatch(getPosts());
+    dispatch(getScoutPrograms());
   }, [dispatch]);
 
   const latestThreePosts = [...posts]
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, 3);
 
+  const latestThreePrograms = scoutPrograms
+    .slice()
+    .sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
+    .slice(0, 3);
+
   const updatedFooters = footers.map((footer) => {
-    if (footer.title === "Event") {
+    if (footer.title === "Events") {
       footer.description = latestThreePosts.map((post, index) => ({
         label: post.title,
         url: `/events/${post._id}`,
+      }));
+    }
+    if (footer.title === "Scouts Programs") {
+      footer.description = latestThreePrograms.map((program) => ({
+        label: program.name,
+        url: `/scoutPrograms/${program._id}`,
       }));
     }
     return footer;
@@ -118,7 +153,7 @@ const Footer = () => {
       maxWidth={false}
       component="footer"
       sx={{
-        backgroundColor: "#000F16",
+        backgroundColor: "#010911",
         py: [3, 6],
         color: "white",
         paddingLeft: 0,
@@ -132,7 +167,14 @@ const Footer = () => {
         alignItems="flex-start"
       >
         <Grid item xs={12} sm={2} md={3}>
-          {<img src="/Scout_tunisen1.png" alt="Logo" className="logo" />}
+          {
+            <img
+              style={{ width: "160px", height: "100px", marginLeft: "2px" }}
+              src="/Flogo.png"
+              alt="Logo"
+              className="logo"
+            />
+          }
         </Grid>
         {updatedFooters.map((footer) => (
           <GridItem footer={footer} key={footer.title} />

@@ -117,3 +117,49 @@ display: inline;
 border-bottom: 1px solid white;
 }
 
+.pagination {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination li a {
+    cursor: pointer;
+  }
+  
+  .pagination .active a {
+    font-weight: bold;
+  }
+
+
+  .export-button-container {
+    margin: 20px;
+  }
+  
+  .export-button-container button {
+    padding: 10px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+  }
+  
+  #dhashboard-filter select {
+    width: 50%;
+    margin-right: 3vh;
+    padding: 0.5vh;
+    
+  }
+  
+  #dhashboard-filter select option {
+    padding: 0.5vh;
+   
+  }

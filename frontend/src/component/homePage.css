@@ -1,41 +1,138 @@
-#home-image{
-    
-    
+@import url('https://fonts.googleapis.com/css?family=ScoutFont');
+
+/* Image styles */
+#home-image {
     min-width: 100%;
     min-height: 20vh;
     max-height: 60vh;
     object-fit: cover;
-    object-position: center -40vh;
-
-    
+    object-position: center -33vh;
 }
 
+
+/* Text on top of the home image */
 .imageText {
     position: absolute;
-    top: 50%; /* Center vertically */
-    left: 73.5%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust for exact centering */
-    color: white; /* Choose text color */
-    font-size: 6vh; /* Adjust as needed */
-    /* Add more styling as needed */
+    top: 45%; 
+    left: 13.5%; 
+    transform: translate(-50%, -50%); 
+    color: white; 
+    font-size: 3vh; 
 }
-#news{
+
+
+.section-title {
+    font-family: 'ScoutFont', sans-serif;
+    color: #db3737; 
+    text-decoration: underline;
+    font-size: 3vh; 
+    margin-bottom: 20px; 
+    transition: all 0.5s ease; 
+    text-align: center; 
     width: 100%;
+}
+
+
+.section-title:hover {
+    transform: scale(1.05); 
+    cursor: pointer; 
+}
+
+
+
+
+
+#news, #scout-programs, #slider-section {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-#news h2{
-    color: rgb(219, 55, 55);
-    text-decoration: underline;
-
+    flex-wrap: wrap;
+    margin: 20px 0; 
 }
 
-#event{
-    padding: 20px;
-    margin: 20px;
+
+#event, #scout-programs, #slider-section {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px; 
 }
+
+.card {
+    flex: 1; 
+    min-width: 250px; 
+    max-width: calc(33.33% - 40px);
+    margin-bottom: 20px;
+    
+}
+
+
+#event .section-title,
+#scout-programs .section-title,
+#slider-section .section-title {
+    font-weight: bold; 
+}
+
+
+#slider-section .section-title {
+    font-size: 3vh; 
+}
+
+/* Donate Section Styles */
+.donate-section {
+    background-color: #f6c9ab ; 
+    box-shadow: #f4cea0;
+    border-color: burlywood;
+    padding: 20px;
+    text-align: center; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 20px; 
+    min-height: 200px;
+    margin-top: 20px;
+  }
+  
+  .donate-text {
+    color: #ffffff; 
+    font-size: 2rem; 
+    margin: 0; 
+    flex-grow: 1; 
+  }
+  
+  .donate-button {
+    padding: 10px 25px; 
+    background-color: #f59051; 
+    color: white;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease; 
+  }
+  .joinus-button {
+    /* margin-bottom: 50px; */
+    padding: 10px 25px; 
+    background-color: #f5701d; 
+    color: white;
+    border: none;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease; 
+  }
+  .joinus-button:hover {
+    background-color: #b55010; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+    transform: translateY(-2px); 
+  }
+  .donate-button:hover {
+    background-color: #b5612c; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+    transform: translateY(-2px); 
+  }
+  

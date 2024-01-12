@@ -7,8 +7,9 @@ export default function InputSelect({ onRoleChange }) {
  
   
     const type = [
-      { label: 'scout' },
-      { label: 'commander' }
+      { label: 'Scouts' },
+      { label: 'Commander' },
+      { label: 'Parent'}
     ];
   return (
     <Autocomplete
@@ -17,7 +18,7 @@ export default function InputSelect({ onRoleChange }) {
       options={type}
       sx={{ width: 500}}
       onChange={(event, value) => onRoleChange(value ? value.label : '')}
-      renderInput={(params) => <TextField {...params} label="who you are?" />}
+      renderInput={(params) => <TextField {...params} label="Please, select your type of user" />}
      
     />
   );

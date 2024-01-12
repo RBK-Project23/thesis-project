@@ -1,12 +1,13 @@
 /* src/components/Header.css */
 header {
-    background-color: #000F16;
+    background-color: rgba(1, 9, 17);;
     color: white;
     padding: 10px;
     display: flex;
     justify-content: space-between; 
     align-items: center; 
     backdrop-filter: blur(10px);
+    font-size: 1.2rem; 
   }
   
   .logo-container {
