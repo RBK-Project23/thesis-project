@@ -31,7 +31,9 @@ body {
 
 .section-title {
     font-family: 'ScoutFont', sans-serif;
-    color: #db3737; 
+    color: #de4504; 
+    font-weight: bold;
+  
     text-decoration: underline;
     font-size: 3vh; 
     margin-bottom: 20px; 

@@ -118,6 +118,7 @@ const Home = () => {
           </div>
         ))}
       </div>
+      {/* <SlideCard /> */}
       <Awrapper />
       <Footer />
     </>
