@@ -13,7 +13,7 @@ const PrivacyPolicy = () => {
           component="h1"
           sx={{ textAlign: "center", mb: 4, color: "#666" }}
         >
-          Politique de confidentialité
+          Privacy Policy
         </Typography>
 
         <Paper
@@ -37,99 +37,88 @@ const PrivacyPolicy = () => {
               opacity: 0.2, 
               zIndex: -1,
             },
-            // Make sure the text is visible on top of the ::before pseudo-element
             zIndex: 2,
-            // Apply additional styling to create a white semi-transparent overlay
             backgroundColor: "rgba(255, 255, 255, 0.7)",
           }}
         >
-          {/* This div acts as an overlay between the background image and the content */}
           <div style={{ position: "relative", zIndex: 2 }}>
             <Typography variant="h6" gutterBottom>
               Introduction
             </Typography>
             <Typography variant="body1" sx={{ mb: 2 }}>
-              Nous, l'organisation des Scouts Tunisiens en Oman, accordons une
-              grande importance à la confidentialité et à la sécurité des
-              informations personnelles de nos membres, bénévoles et visiteurs
-              de notre site web. Cette politique de confidentialité vise à vous
-              informer sur la manière dont nous recueillons, utilisons,
-              divulguons et gérons vos données personnelles.
+              We, the Tunisian Scouts Organization in Oman, place great 
+              importance on the privacy and security of the personal information 
+              of our members, volunteers, and website visitors. This privacy 
+              policy aims to inform you about how we collect, use, disclose, 
+              and manage your personal data.
             </Typography>
 
             <Typography variant="h6" gutterBottom>
-              Collecte des informations
+              Collection of Information
             </Typography>
             <Typography variant="body1" sx={{ mb: 2 }}>
-              Nous collectons des informations personnelles lorsque vous vous
-              inscrivez à nos événements, participez à nos forums, vous abonnez
-              à notre newsletter ou interagissez avec nous de toute autre
-              manière. Les types d'informations que nous pouvons collecter
-              incluent votre nom, adresse e-mail, numéro de téléphone, adresse
-              postale et préférences de communication.
+              We collect personal information when you register for our events, 
+              participate in our forums, subscribe to our newsletter, or 
+              interact with us in any other way. The types of information we may 
+              collect include your name, email address, phone number, postal 
+              address, and communication preferences.
             </Typography>
 
             <Typography variant="h6" gutterBottom>
-              Utilisation des informations
+              Use of Information
             </Typography>
             <Typography variant="body1" sx={{ mb: 2 }}>
-              Vos informations personnelles sont utilisées pour gérer votre
-              adhésion, vous fournir les services demandés, communiquer avec
-              vous concernant les événements à venir, les activités de scoutisme
-              et les initiatives de l'organisation. Nous les utilisons également
-              pour améliorer nos services et pour des besoins statistiques
-              internes.
+              Your personal information is used to manage your membership, 
+              provide you with requested services, communicate with you about 
+              upcoming events, scouting activities, and organization initiatives. 
+              We also use it to improve our services and for internal statistical 
+              purposes.
             </Typography>
 
             <Typography variant="h6" gutterBottom>
-              Partage des informations
+              Sharing of Information
             </Typography>
             <Typography variant="body1" sx={{ mb: 2 }}>
-              Nous ne partageons vos informations personnelles avec des tiers
-              que lorsque cela est nécessaire pour fournir les services
-              demandés, par exemple lors de l'inscription à des événements
-              externes ou pour des besoins logistiques. Nous exigeons de ces
-              tiers qu'ils protègent vos informations et ne les utilisent que
-              pour les fins spécifiées.
+              We share your personal information with third parties only when 
+              necessary to provide requested services, such as registering for 
+              external events or for logistical needs. We require these third 
+              parties to protect your information and use it only for the 
+              specified purposes.
             </Typography>
 
             <Typography variant="h6" gutterBottom>
-              Sécurité
+              Security
             </Typography>
             <Typography variant="body1" sx={{ mb: 2 }}>
-              Nous prenons la sécurité de vos informations personnelles très au
-              sérieux et mettons en œuvre des mesures techniques et
-              organisationnelles appropriées pour les protéger contre l'accès
-              non autorisé, la modification, la divulgation ou la destruction.
+              We take the security of your personal information very seriously 
+              and implement appropriate technical and organizational measures to 
+              protect it against unauthorized access, alteration, disclosure, or 
+              destruction.
             </Typography>
 
             <Typography variant="h6" gutterBottom>
-              Vos droits
+              Your Rights
             </Typography>
             <Typography variant="body1" sx={{ mb: 2 }}>
-              Vous avez le droit d'accéder à vos informations personnelles, de
-              les corriger, de demander leur suppression ou de vous opposer à
-              leur traitement pour des motifs légitimes. Pour exercer ces
-              droits, veuillez nous contacter via les coordonnées fournies sur
-              notre site web.
+              You have the right to access your personal information, correct it, 
+              request its deletion, or object to its processing for legitimate 
+              reasons. To exercise these rights, please contact us using the 
+              contact details provided on our website.
             </Typography>
 
             <Typography variant="h6" gutterBottom>
-              Modifications de la politique de confidentialité
+              Changes to the Privacy Policy
             </Typography>
             <Typography variant="body1" sx={{ mb: 2 }}>
-              Nous nous réservons le droit de modifier cette politique de
-              confidentialité à tout moment. Toutes les modifications entreront
-              en vigueur immédiatement après leur publication sur notre site
-              web. Nous vous encourageons à consulter régulièrement cette
-              politique pour rester informé de la manière dont nous protégeons
-              vos informations.
+              We reserve the right to modify this privacy policy at any time. All 
+              changes will take effect immediately upon their publication on our 
+              website. We encourage you to regularly review this policy to stay 
+              informed about how we protect your information.
             </Typography>
 
             <Typography variant="body1">
-              Pour toute question ou préoccupation concernant notre politique de
-              confidentialité, veuillez nous contacter à
-              [tsgoman@gmail.com].
+              For any questions or concerns regarding our privacy policy, please 
+              contact us at [tsgoman@gmail.com].
             </Typography>
           </div>
         </Paper>
@@ -140,3 +129,4 @@ const PrivacyPolicy = () => {
 };
 
 export default PrivacyPolicy;
+

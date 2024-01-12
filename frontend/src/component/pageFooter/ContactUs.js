@@ -28,15 +28,15 @@ const ContactUs = () => {
         formData
       );
       console.log(response.data);
-      // Handle success by updating state with success message
+      
       setFormStatus({
         message: "Votre message a été envoyé avec succès!",
         isError: false,
       });
-      // Optionally, reset the form or navigate the user to a different page
+      
     } catch (error) {
       console.error("There was an error sending the contact form:", error);
-      // Handle error by updating state with error message
+      
       setFormStatus({
         message: "Erreur lors de l'envoi du message. Veuillez réessayer.",
         isError: true,
@@ -48,7 +48,7 @@ const ContactUs = () => {
     <>
       <Container maxWidth="md" component="main" sx={{ mt: 4, mb: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Contactez-nous
+          Contact Us
         </Typography>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>
@@ -56,7 +56,7 @@ const ContactUs = () => {
               <TextField
                 required
                 fullWidth
-                label="Nom"
+                label="First Name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
@@ -87,9 +87,9 @@ const ContactUs = () => {
             </Grid>
             <Grid item xs={12}>
               <Button type="submit" variant="contained" color="primary">
-                Envoyer
+                Submit 
               </Button>
-              {/* Display success or error message */}
+              
               {formStatus.message && (
                 <Typography
                   color={formStatus.isError ? "error" : "primary"}

@@ -7,22 +7,13 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import {
-  Radio,
-  FormControl,
-} from "@mui/material";
+import { Radio } from "@mui/material";
 
 export default function Engagement() {
   const [Condition, setCondition] = useState("no");
-  const [participation, setParticipation] = useState("no");
-
-  const handleChangeParticipation = (event) => {
-    setParticipation(event.target.value);
-  };
 
   const handleChange = (event) => {
     Condition(event.target.value);
@@ -76,12 +67,12 @@ export default function Engagement() {
           {
             text: " Guide de l'Engagement Parental : Accompagner son Enfant dans le Monde Scout",
             alignment: "center",
-            fontSize: 12, // Adjust the font size as needed
+            fontSize: 12,
             bold: true,
             margin: [0, 10, 10, 10],
             width: "*",
           },
-          
+
           {
             image: logo2ImageDataUrl,
             width: 50,
@@ -91,7 +82,7 @@ export default function Engagement() {
                 image: logo1ImageDataUrl,
                 width: 50,
               },
-           
+
               {
                 image: logo2ImageDataUrl,
                 width: 50,
@@ -106,15 +97,15 @@ export default function Engagement() {
         {
           canvas: [
             {
-                type: "rect",
-                x: 10,
-                y: 10,
-                w: 520,
-                h: 700,
-                r: 5, // corner radius
-                lineWidth: 2,
-              },
-  
+              type: "rect",
+              x: 10,
+              y: 10,
+              w: 520,
+              h: 700,
+              r: 5, // corner radius
+              lineWidth: 2,
+            },
+
             //   {
             //     type: "rect",
             //     x: 50, // adjust the x-coordinate as needed
@@ -132,14 +123,20 @@ export default function Engagement() {
               text: `
           
              
-              je soussigné ${formData.fullnameP || ''}
-              Parent Scout ${formData.fullnameS || ''} Titulaire d'un numéro national ${
-                formData.cin ? `C.I.N : ${formData.cin}` : ''
+              je soussigné ${formData.fullnameP || ""}
+              Parent Scout ${
+                formData.fullnameS || ""
+              } Titulaire d'un numéro national ${
+                formData.cin ? `C.I.N : ${formData.cin}` : ""
               } 
-              délivré le ${formData.datecin || ''}  par ${formData.placecin || ''}
-              Titulaire d'une carte de séjour numéro  ${formData.visaNum || ''}  
-               délivrée le ${formData.dateEndVisa || ''}  par ${
-                formData.placevisa || ''
+              délivré le ${formData.datecin || ""}  par ${
+                formData.placecin || ""
+              }
+              Titulaire d'une carte de séjour numéro  ${
+                formData.visaNum || ""
+              }  
+               délivrée le ${formData.dateEndVisa || ""}  par ${
+                formData.placevisa || ""
               }  
               Je soumets une demande à la direction du Régiment Scout Tunisien au Sultanat d'Oman pour participer à une activité de scoutisme, pour (mon/ma) (fils/fille),
               Pour la saison de recrutement 2023/2024, je m'engage à ce qui suit :
@@ -148,7 +145,7 @@ export default function Engagement() {
               3- Suivi des programmes scouts de la troupe dans laquelle mon enfant est actif.
               4- Accompagnement des activités et des réunions dédiées aux parents et communication avec la direction du groupe chaque fois que nécessaire.
               5- Partager de photos et de vidéos de l'activité scoute de mon enfant sur les réseaux sociaux officiels du groupe. : ${
-                formData.yes === 'yes' ? 'Oui' : 'Non'
+                formData.yes === "yes" ? "Oui" : "Non"
               }
               Je certifie l'exactitude des informations fournies dans cette déclaration.
               \n Remarque :
@@ -161,7 +158,7 @@ export default function Engagement() {
               Signature
               
               `,
-              style: 'subheader',
+              style: "subheader",
               absolutePosition: { x: 60, y: 40 },
             },
           ],
@@ -209,7 +206,7 @@ export default function Engagement() {
             flexDirection: "column",
             alignItems: "center",
             margin: "auto",
-            marginTop: "-30px", // Add top margin if needed
+            marginTop: "-30px",
           }}
         >
           <Box
@@ -230,7 +227,7 @@ export default function Engagement() {
             >
               <Card
                 sx={{
-                  height: "1200 vh", // Adjust the height as needed
+                  height: "1200 vh",
                   width: "100%",
                   backgroundColor: "rgba(240, 240, 240, 0.7)",
                   marginLeft: "10px",
@@ -239,165 +236,203 @@ export default function Engagement() {
                   backdropFilter: "blur(10px)",
                 }}
               >
-<Grid container spacing={2} sx={{ width: '90%', marginBottom: 4, marginTop: 4, marginLeft: 4, marginRight: 5 }}>
+                <Grid
+                  container
+                  spacing={2}
+                  sx={{
+                    width: "90%",
+                    marginBottom: 4,
+                    marginTop: 4,
+                    marginLeft: 4,
+                    marginRight: 5,
+                  }}
+                >
                   <TextField
                     required
                     fullWidth
                     id="fullnameP"
-                    label="Nom et prénom Parent"
+                    label="Parent's Full Name"
                     name="fullnameP"
                     autoComplete="family-name"
                     sx={{ mb: 2 }}
                   />
                 </Grid>
-                <Grid container spacing={2} sx={{ width: '90%', marginBottom: 4, marginTop: 2, marginLeft: 4, marginRight: 5 }}>
+                <Grid
+                  container
+                  spacing={2}
+                  sx={{
+                    width: "90%",
+                    marginBottom: 4,
+                    marginTop: 2,
+                    marginLeft: 4,
+                    marginRight: 5,
+                  }}
+                >
                   <TextField
                     required
                     fullWidth
                     id="fullnameS"
-                    label="Nom et prénom Scout"
+                    label="Scout's Full Name"
                     name="fullnameS"
                     autoComplete="family-name"
                     sx={{ mb: 2 }}
                   />
                 </Grid>
-                <Grid container spacing={2} sx={{ width: '91.7%', marginBottom: 4,  marginLeft: 2, marginRight: 3 }}>
+                <Grid
+                  container
+                  spacing={2}
+                  sx={{
+                    width: "91.7%",
+                    marginBottom: 4,
+                    marginLeft: 2,
+                    marginRight: 3,
+                  }}
+                >
+                  <Grid item xs={12} sm={4}>
+                    <TextField
+                      autoComplete="given-name"
+                      name="cin"
+                      required
+                      fullWidth
+                      id="cin"
+                      label="C.I.N"
+                      autoFocus
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="datecin"
+                      label="Issued on"
+                      name="datecin"
+                      type="date"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <TextField
+                      required
+                      fullWidth
+                      name="placecin"
+                      label="by"
+                      autoComplete="family-name"
+                      id="placecin"
+                    />
+                  </Grid>
+                </Grid>
 
-                <Grid item xs={12} sm={4}>
-                  <TextField
-                    autoComplete="given-name"
-                    name="cin"
-                    required
-                    fullWidth
-                    id="cin"
-                    label="C.I.N"
-                    autoFocus
-                  />
+                <br></br>
+                <Grid
+                  container
+                  spacing={2}
+                  sx={{
+                    width: "91.7%",
+                    marginBottom: 4,
+                    marginLeft: 2,
+                    marginRight: 3,
+                  }}
+                >
+                  <Grid item xs={12} sm={4}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="visaNum"
+                      label="Residence card number"
+                      name="visaNum"
+                      autoComplete="family-name"
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <TextField
+                      required
+                      fullWidth
+                      name="dateEndVisa"
+                      label="Issued on"
+                      type="date"
+                      id="dateEndVisa"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <TextField
+                      required
+                      fullWidth
+                      name="placevisa"
+                      label="by"
+                      autoComplete="family-name"
+                      id="placevisa"
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={12} sm={4}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="datecin"
-                    label=" délivré le"
-                    name="datecin"
-                    type="date" // Use type="date" for a simplified date picker
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="placecin"
-                    label="par"
-                    autoComplete="family-name"
-                    id="placecin"
-                  />
-                </Grid>
-                </Grid>
-
-<br></br>
-<Grid container spacing={2} sx={{ width: '91.7%', marginBottom: 4,  marginLeft: 2, marginRight: 3 }}>
-
-<Grid item xs={12} sm={4}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="visaNum"
-                    label="Titulaire d'une carte de séjour numéro"
-                    name="visaNum"
-                    autoComplete="family-name"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="dateEndVisa"
-                    label="délivrée le"
-                    type="date"
-                    id="dateEndVisa"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="placevisa"
-                    label="par"
-                    autoComplete="family-name"
-                    id="placevisa"
-                  />
-                </Grid>
-                </Grid>
-                <Grid container spacing={2} sx={{ width: '91.7%', marginBottom: 3,  marginLeft: 2, marginRight: 3 }}>
+                <Grid
+                  container
+                  spacing={2}
+                  sx={{
+                    width: "91.7%",
+                    marginBottom: 3,
+                    marginLeft: 2,
+                    marginRight: 3,
+                  }}
+                >
                   <Grid item xs={12}>
-                  <p>
-                      Je souhaite partager de photos et de vidéos de l'activité scoute de
-                      mon enfant sur les réseaux sociaux officiels du groupe.
+                    <p>
+                      I wish to share photos and videos of my child's scouting
+                      activities on the group's official social networks.
                     </p>
                     <FormControlLabel
                       control={
-                        <Radio
-                          name="Condition"
-                          value="no"
-                          color="primary"
-                        />
+                        <Radio name="Condition" value="no" color="primary" />
                       }
-                      label="Non"
+                      label="No"
                       checked={Condition === "no"}
                       onChange={handleChange}
                     />
                     <FormControlLabel
                       control={
-                        <Radio
-                          name="Condition"
-                          value="yes"
-                          color="primary"
-                        />
+                        <Radio name="Condition" value="yes" color="primary" />
                       }
-                      label="Oui"
+                      label="Yes"
                       checked={Condition === "yes"}
                       onChange={handleChange}
                     />
                   </Grid>
-                 </Grid>
-                
-        
-              <div style={{ display: "flex" }}>
-              <Grid container spacing={2} sx={{ width: '91.7%',   marginLeft: 3, marginRight: 3 }}>
-                  <p>
-                    Je certifie que les informations ci-dessus sont exactes{" "}
-                  </p>
                 </Grid>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  padding: "20px",
-                }}
-              >
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  style={{ backgroundColor: "darkgreen", color: "white" }}
+
+                <div style={{ display: "flex" }}>
+                  <Grid
+                    container
+                    spacing={2}
+                    sx={{ width: "91.7%", marginLeft: 3, marginRight: 3 }}
+                  >
+                    <p>I certify that the information above is accurate.</p>
+                  </Grid>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "20px",
+                  }}
                 >
-                  IMPRIMER
-                </Button>
-              </div>
-            </Card>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    style={{ backgroundColor: "darkgreen", color: "white" }}
+                  >
+                    PRINT
+                  </Button>
+                </div>
+              </Card>
+            </Box>
           </Box>
-        </Box>
-      </Container>
+        </Container>
       </div>
     </ThemeProvider>
   );

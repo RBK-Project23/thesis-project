@@ -127,12 +127,12 @@ const ScoutsProgram = ({ program, setCurrentId, showActions = true }) => {
             to={`/edit-scout-program/${program._id}`}
             style={{ textDecoration: "none" }}
           >
-            <Button size="small" color="primary">
+            <Button size="meduim" color="primary">
               <EditIcon fontSize="small" /> Edit
             </Button>
           </Link>
           <Button
-            size="small"
+            size="meduim"
             color="primary"
             onClick={() => dispatch(deleteScoutProgram(program._id))}
           >

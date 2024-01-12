@@ -35,7 +35,7 @@ const AboutUs = () => {
           gutterBottom
           sx={{ color: "#666666" }}
         >
-          À propos de nous
+          About Us
         </Typography>
 
         <Grid
@@ -60,12 +60,11 @@ const AboutUs = () => {
                 Introduction
               </Typography>
               <Typography variant="body1" align="justify">
-                Les Scouts Tunisiens en Oman est une organisation dédiée à
-                soutenir les jeunes en leur fournissant des opportunités
-                d'apprendre, de grandir et de devenir des leaders dans leur
-                communauté. Nous offrons un espace où les jeunes peuvent
-                développer leurs compétences en leadership, leur autonomie et
-                leur sens du service.
+                The Tunisian Scouts in Oman is an organization dedicated to 
+                supporting youth by providing opportunities to learn, grow, 
+                and become leaders in their community. We offer a space where 
+                youth can develop their leadership skills, autonomy, and sense 
+                of service.
               </Typography>
             </Paper>
           </Grid>
@@ -83,14 +82,13 @@ const AboutUs = () => {
                 color="textSecondary"
                 gutterBottom
               >
-                Notre mission
+                Our Mission
               </Typography>
               <Typography variant="body1" align="justify">
-                Notre mission est de contribuer au développement des jeunes, à
-                travers un système de valeurs basé sur la promesse et la loi
-                scoute, pour aider à construire un monde meilleur où les gens
-                sont réalisés en tant qu'individus et jouent un rôle constructif
-                dans la société.
+                Our mission is to contribute to the development of young people 
+                through a value system based on the Scout promise and law, to 
+                help build a better world where people are self-fulfilled as 
+                individuals and play a constructive role in society.
               </Typography>
             </Paper>
           </Grid>
@@ -109,15 +107,14 @@ const AboutUs = () => {
                 color="textSecondary"
                 gutterBottom
               >
-                Histoire
+                History
               </Typography>
               <Typography variant="body1" align="justify">
-                Fondée en 1977, notre organisation a commencé comme un petit
-                groupe de passionnés et a grandi pour devenir un mouvement
-                reconnu au service de la jeunesse tunisienne en Oman. Tout au
-                long de notre histoire, nous avons été guidés par les principes
-                du scoutisme et nous sommes fiers de l'impact que nous avons eu
-                sur les vies de nombreux jeunes.
+                Founded in 1977, our organization began as a small group of 
+                enthusiasts and has grown into a recognized movement serving 
+                the Tunisian youth in Oman. Throughout our history, we have 
+                been guided by the principles of Scouting and are proud of 
+                the impact we have had on the lives of many young people.
               </Typography>
             </Paper>
           </Grid>
@@ -129,3 +126,4 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
+

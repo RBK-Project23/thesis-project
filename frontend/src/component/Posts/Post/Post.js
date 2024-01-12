@@ -99,7 +99,7 @@ const Post = ({ post, showActions = true }) => {
           }}
         >
           <Button
-            size="small"
+            size="medium"
             color="primary"
             onClick={() => dispatch(likePost(post._id))}
           >
@@ -109,12 +109,12 @@ const Post = ({ post, showActions = true }) => {
             to={`/create-event/${post._id}`}
             style={{ textDecoration: "none" }}
           >
-            <Button size="small" color="primary">
+            <Button size="medium" color="primary">
               <EditIcon fontSize="small" /> Edit
             </Button>
           </Link>
           <Button
-            size="small"
+            size="medium"
             color="primary"
             onClick={() => dispatch(deletePost(post._id))}
           >
