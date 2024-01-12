@@ -141,7 +141,7 @@ const ScoutForm = () => {
                     onChange={handleFileChange}
                   />
                   <TextField
-                    label="Prénom"
+                    label="First Name"
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -150,7 +150,7 @@ const ScoutForm = () => {
                     onChange={handleChange}
                   />
                   <TextField
-                    label="Nom"
+                    label="Last Name"
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -168,7 +168,7 @@ const ScoutForm = () => {
                     onChange={handleChange}
                   />
                   <TextField
-                    label="Date de naissance"
+                    label="Date of Birth"
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -181,7 +181,7 @@ const ScoutForm = () => {
                     onChange={handleChange}
                   />
                   <TextField
-                    label="Adresse au Sultanat"
+                    label="Address in Sultanate"
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -190,7 +190,7 @@ const ScoutForm = () => {
                     onChange={handleChange}
                   />
                   <TextField
-                    label="Numéro de Téléphone à Oman"
+                    label="Phone Number in Oman"
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -219,12 +219,12 @@ const ScoutForm = () => {
                     <FormControlLabel
                       value="female"
                       control={<Radio />}
-                      label="Féminin "
+                      label="Female"
                     />
                     <FormControlLabel
                       value="male"
                       control={<Radio />}
-                      label="Masculin"
+                      label="Male"
                     />
                   </RadioGroup>
                   <RadioGroup
@@ -236,18 +236,18 @@ const ScoutForm = () => {
                     <FormControlLabel
                       value="I have chronic diseases"
                       control={<Radio />}
-                      label="Je suis atteint de maladies chroniques"
+                      label="I have chronic diseases"
                     />
                     <FormControlLabel
                       value="I don't have chronic diseases"
                       control={<Radio />}
-                      label="Je n'ai pas de maladies chroniques"
+                      label="I don't have chronic diseases"
                     />
                   </RadioGroup>
                   <FormControl fullWidth margin="normal">
-                    <InputLabel>Groupe sanguin</InputLabel>
+                    <InputLabel>Blood Group</InputLabel>
                     <Select
-                      label="Groupe sanguin"
+                      label="Blood Group"
                       name="Blood_type"
                       value={scout.Blood_type}
                       onChange={handleChange}
@@ -260,7 +260,7 @@ const ScoutForm = () => {
                     </Select>
                   </FormControl>
                   <TextField
-                    label="Numéro de passeport"
+                    label="Passport Number"
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -269,7 +269,7 @@ const ScoutForm = () => {
                     onChange={handleChange}
                   />
                   <TextField
-                    label="Date d'expiration du passeport"
+                    label="Passport Expiry Date"
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -282,7 +282,7 @@ const ScoutForm = () => {
                     onChange={handleChange}
                   />
                   <TextField
-                    label="Numéro de visa"
+                    label="Visa Number"
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -291,7 +291,7 @@ const ScoutForm = () => {
                     onChange={handleChange}
                   />
                   <TextField
-                    label="Date d'expiration du visa"
+                    label="Visa Expiry Date"
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -317,7 +317,7 @@ const ScoutForm = () => {
                   marginBottom: "20px",
                 }}
               >
-                Valider
+                Validate
               </Button>
             </Box>
           </form>
@@ -325,6 +325,7 @@ const ScoutForm = () => {
       </Container>
     </Box>
   );
-};
-
-export default ScoutForm;
+  };
+  
+  export default ScoutForm;
+  

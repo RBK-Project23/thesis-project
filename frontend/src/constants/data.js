@@ -109,21 +109,21 @@ const services = [
 // testimonials
 const testimonials = [
     {
-        name: "Terry Rozier ",
+        name: "tarek ben zaied",
         text: "Scouting is important. You just want to know how you are playing against and how to play them well within the team's defense."
       
     },
     {
-        name: "Robert Powell",
+        name: "Anis Jemail",
         text: "The sport in Scouting is to find the good in every boy and develop it."
         
     },
     {
-        name: "Lord Robert Baden-Powell",
+        name: "Khaoula Sellami",
         text: "Be Prepared… the meaning of the motto is that a Scout must prepare himself by previous thinking out and practicing how to act on any accident or emergency so that he is never taken by surprise."
     },
     {
-      name: "Michael Portill",
+      name: "ikram ben yahia",
       text: "One enjoyable consequence of being in the Scouts was that, at the start of each new school year, we had to camp out in tents on the school playing fields."
    
     }

@@ -12,7 +12,7 @@ header {
 }
 
 .home-page-header {
-  background-color:  rgba(0, 2, 4, 0.6);
+  background-color:  rgba(0, 2, 4, 0.3);
   backdrop-filter: blur(17px);
   display: flex;
   align-items: center;

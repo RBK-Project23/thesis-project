@@ -46,14 +46,14 @@ const homeAbout = [
         id: 1,
         cover: "/mountain.png",
         title: "Scout Mission",
-        desc: "The mission of the Boy Scouts of America is to prepare young people to make ethical and moral choices over their lifetimes by instilling in them the values of the Scout Oath and Law.",
+        desc: "Empower young Tunisians in Oman to develop ethical and moral values, blending Tunisian culture with universal Scouting principles.",
       },
   
     {
       id: 1,
       cover: "https://img.icons8.com/ios/80/000000/law.png",
       title: "Scout Law",
-      desc: "A Scout is trustworthy, loyal, helpful, friendly, courteous, kind, obedient, cheerful, thrifty, brave, clean, and reverent.",
+      desc: "A Tunisian Scout in Oman is trustworthy, loyal, helpful, respectful, environmentally aware, brave, and culturally conscious.",
     },
    
 
@@ -61,7 +61,7 @@ const homeAbout = [
       id: 1,
       cover: "/oath.png",
       title: "Scout Oath",
-      desc: "“On my honor I will do my best to do my duty to God and my country and to obey the Scout Law; to help other people at all times; to keep myself physically strong, mentally awake, and morally straight.”",
+      desc: "I promise to do my best in serving my community and respecting the diverse cultures of Tunisia and Oman, living by the Scout Law and maintaining my physical and moral integrity.",
     },
   ];
 
