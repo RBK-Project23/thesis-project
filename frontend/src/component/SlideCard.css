@@ -1,72 +1,66 @@
-.Grid-Slider{
-  width: 100px;
+.Grid-Slider {
+  width: 100%;
 }
 
-
 .slide-card {
-    background-color: #f6dab6;
-    backdrop-filter: blur(70px);
-    box-shadow: #fddcb2;
-    height: 500px;
-    color: black;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-  }
-  
-  .image-container {
-    background-color: #010911; 
-    /* display: flex;
-    justify-content: space-around;
-    align-items: center; */
-    border-radius: 15px;
-   
-  }
-  
-  .slide-image {
-    height: 200px; 
-    /* width: 176px; */
-    /* margin: 20px; 
-    border-radius: 15px; */
-    /* border-radius: 50%; */
-  }
-  
-  .content-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    padding: 16px;
-  }
-  
-  .title {
-    font-size: 16px; 
-    font-weight: bold;
-    margin: 7px 0; 
-  }
-  
-  .review {
-    font-size: 13px; 
-    text-align: center;
-    padding: 0 10px; 
-  }
-  
-  .see-more-button {
-    background-color: transparent;
-    color: #010911;
-    font-weight: bold;
-    padding: 6px 12px;
-    border: 2px solid #010911;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    font-size: 13px;
-  }
-  
-  .see-more-button:hover {
-    background-color: #010911;
-    color: white;
-    border-color: transparent;
-  }
-  
+  background-color: #f6dab6;
+  backdrop-filter: blur(70px);
+  box-shadow: #fddcb2;
+  height: 500px;
+  color: black;
+  border-radius: 15px;
+  display: flex;
+  padding: 20px;
+}
+
+.image-container {
+  background-color: #010911;
+  border-radius: 15px;
+  margin-right: 20px; /* Add margin to create space between image and content */
+}
+
+.slide-image {
+  height: 200px;
+  width: 176px;
+  margin: 20px;
+  border-radius: 15px;
+  border-radius: 50%;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 7px 0;
+}
+
+.review {
+  font-size: 13px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.see-more-button {
+  background-color: transparent;
+  color: #010911;
+  font-weight: bold;
+  padding: 6px 12px;
+  border: 2px solid #010911;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 13px;
+}
+
+.see-more-button:hover {
+  background-color: #010911;
+  color: white;
+  border-color: transparent;
+}
