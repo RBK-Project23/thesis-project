@@ -42,35 +42,19 @@ export default function Dashboard() {
   const updateStatus = async (email, initialStatus) => {
     try {
       const status = !initialStatus;
-      console.log("email: " + email, "status :" + status);
-      const confirmUser = window.confirm(
-        !initialStatus
-          ? "Are you sure you want to confirm this user?"
-          : "Are you sure you want to pend this user?"
-      );
-      if (confirmUser) {
-        const response = await axios.post(
-          "http://localhost:7000/users/updateStatus",
-          { email, status }
-        );
-        console.log(response);
-
-        if (status === false) {
-          console.log(`Sending pending email for ${email}`);
-          const user = users.find((u) => u.email === email);
-          if (user) {
-            await sendPendingEmail(email, user.firstName);
-          }
-        }
-        const updatedUsers = users.map((user) => {
-          if (user.email === email) {
-            return { ...user, status: response.data.status };
-          }
-          return user;
-        });
-        setUsers(updatedUsers);
+      console.log('email: '+email,'status :'+status);
+      const confirmUser = window.confirm(!initialStatus?'Are you sure you want to confirm this user?':'Are you sure you want to pend this user?');
+      if(confirmUser){
+      
+         const response = await axios.post('http://localhost:7000/users/updateStatus', {email, status});
+       console.log(response);
+       window.location.reload();
+     
       }
-    } catch (err) {
+      
+
+     }
+     catch (err){
       console.log(err);
     }
   };
@@ -82,12 +66,11 @@ export default function Dashboard() {
         "Are you sure you want to delete this user?"
       );
 
-      if (confirmDelete) {
-        await axios.delete(`http://localhost:7000/users/delete/${userId}`);
-        const updatedUsers = users.filter((user) => user.id !== userId);
-        setUsers(updatedUsers);
-        window.confirm("deleted successfully!");
-        window.location.reload();
+      if(confirmDelete){
+         await axios.delete(`http://localhost:7000/tech/delete/${userId}`);
+      // Update the users state to reflect the deletion
+      const updatedUsers = users.filter(user => user.id !== userId);
+      setUsers(updatedUsers);
       }
     } catch (error) {
       console.error("Error deleting user:", error);
@@ -166,87 +149,22 @@ export default function Dashboard() {
 
   return (
     <>
-      <div id="body">
-        <div className="dashboard-container">
-          <div id="dashboard-title">
-            <h1>DASHBORAD ADMINISTRATOR</h1>
-          </div>
+    <div id='body'>
+     <div class="dashboard-container">
+     <div id="dashboard-title">
+        <h1>DASHBORAD ADMINISTRATOR </h1>
+     
+     </div>
+     
+     <div class="dashboard-tab">
+       
+       <DenseTable users ={users} deleteUser={deleteUser} updateStatus={updateStatus} />
+        
+     </div>
 
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              p: 2,
-              boxShadow: 1,
-              borderRadius: 1,
-              bgcolor: "background.paper",
-              mb: 2,
-              width: "75%",
-            }}
-          >
-            <TextField
-              placeholder="Filter by name"
-              value={nameFilter}
-              onChange={(e) => setNameFilter(e.target.value)}
-              size="small"
-              variant="outlined"
-              sx={{ mr: 1 }}
-            />
-            <TextField
-              placeholder="Filter by email"
-              value={emailFilter}
-              onChange={(e) => setEmailFilter(e.target.value)}
-              size="small"
-              variant="outlined"
-              sx={{ mx: 1 }}
-            />
-            <TextField
-              select
-              onChange={handleFilterChange}
-              value={filter}
-              size="small"
-              variant="outlined"
-              sx={{ mx: 1 }}
-            >
-              <MenuItem value="all">All Positions</MenuItem>
-              <MenuItem value="Scouts">Scouts</MenuItem>
-              <MenuItem value="Commander">Commander</MenuItem>
-              <MenuItem value="Parent">Parent</MenuItem>
-            </TextField>
-            <Button
-              onClick={exportToCSV}
-              size="small"
-              variant="contained"
-              sx={{ ml: 1 }}
-            >
-              Export to CSV
-            </Button>
-          </Box>
 
-          <div className="dashboard-tab">
-            <DenseTable
-              users={visibleUsers}
-              deleteUser={deleteUser}
-              updateStatus={updateStatus}
-            />
-          </div>
-          <ReactPaginate
-            previousLabel={"previous"}
-            nextLabel={"next"}
-            breakLabel={"..."}
-            breakClassName={"break-me"}
-            pageCount={pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            subContainerClassName={"pages pagination"}
-            activeClassName={"active"}
-          />
-        </div>
-      </div>
-      <Footer />
+    </div> 
+    </div>
     </>
   );
 }
